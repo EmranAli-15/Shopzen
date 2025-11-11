@@ -1,6 +1,6 @@
+import BackButton from '@/components/BackButton';
 import Container from '@/components/Container';
 import { globalStyles } from '@/constants/globalStyles';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -13,12 +13,7 @@ export default function AUthHome() {
     <Container>
       <View>
         <View style={{ marginBottom: 40 }}>
-          <TouchableOpacity
-            onPress={() => router.back()}
-            style={{ backgroundColor: "#FFF2EB", width: 50, height: 50, alignItems: "center", justifyContent: "center", borderRadius: "50%" }}
-          >
-            <Ionicons name="arrow-back" size={24} color="#FF620A" />
-          </TouchableOpacity>
+          <BackButton></BackButton>
         </View>
 
 
@@ -41,13 +36,13 @@ export default function AUthHome() {
         <View style={{ flexDirection: "column", rowGap: 28, marginTop: 60 }}>
           <TouchableOpacity
             style={globalStyles.btnFilled}
-          onPress={() => router.navigate('/SignIn')}
+            onPress={() => router.navigate('/SignIn')}
           >
             <Text style={[globalStyles.txt as any, { color: "white" }]}>Sign in to your Account</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={globalStyles.btn}
-          // onPress={() => router.navigate('/AuthHome')}
+          onPress={() => router.navigate('/SignUp')}
           >
             <Text style={[globalStyles.txt as any, { color: "#FF620A" }]}>Sign Up Now</Text>
           </TouchableOpacity>
