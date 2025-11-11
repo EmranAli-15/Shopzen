@@ -178,7 +178,8 @@ const styles = StyleSheet.create({
     h6: {
         fontWeight: "500",
         fontSize: 16,
-        fontFamily: "Poppins"
+        fontFamily: "Poppins",
+        color:"#333333"
     },
     devideLine: {
         height: 2,
@@ -187,7 +188,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#666666"
     },
     inputBlurred: {
-        backgroundColor: '#F2F6FF',
+        backgroundColor: '#e4ebfcff',
         borderWidth: 1,
         borderColor: "transparent"
     },

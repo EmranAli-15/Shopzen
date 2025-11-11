@@ -5,7 +5,7 @@ import { globalStyles } from '@/constants/globalStyles';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 const delivery_truck = require('@/assets/images/delivery_truck.png');
 
 export default function SignIn() {
@@ -28,33 +28,30 @@ export default function SignIn() {
 
     return (
         <Container>
-            <ScrollView>
 
-                <View style={{ marginBottom: 40 }}>
-                    <BackButton></BackButton>
+            <BackButton></BackButton>
+
+            {/* Logo and into */}
+            <View>
+                <Text style={styles.heading}>Shop<Text style={{ color: "#0973BA" }}>Zen</Text></Text>
+                <View style={{ flexDirection: "row", alignSelf: "center", alignItems: "center", columnGap: 2 }}>
+                    <Text style={{ color: "#3CB64B", fontWeight: "600", fontFamily: "Poppins" }}>Your Trusted Marketplace.</Text>
+                    <Image
+                        style={{ height: "auto", width: "auto" }}
+                        source={delivery_truck}
+                        width={37}
+                        height={26}
+                    />
                 </View>
+                <Text style={[styles.h6, { alignSelf: "center" }]}>Welcome Back! Please enter your details.</Text>
+            </View>
 
 
-                {/* Logo and into */}
-                <View>
-                    <Text style={styles.heading}>Shop<Text style={{ color: "#0973BA" }}>Zen</Text></Text>
-                    <View style={{ flexDirection: "row", alignSelf: "center", alignItems: "center", columnGap: 2 }}>
-                        <Text style={{ color: "#3CB64B", fontWeight: "600" }}>Your Trusted Marketplace.</Text>
-                        <Image
-                            style={{ height: "auto", width: "auto" }}
-                            source={delivery_truck}
-                            width={37}
-                            height={26}
-                        />
-                    </View>
-                    <Text style={{ fontWeight: "500", fontSize: 15, alignSelf: "center" }}>Welcome Back! Please enter your details.</Text>
-                </View>
-
-
+            <View style={{ flex: 1, flexDirection: "column", justifyContent: "space-evenly" }}>
                 {/* Email & password filed */}
-                <View style={{ marginTop: 30, flexDirection: "column", rowGap: 15 }}>
+                <View style={{ flexDirection: "column", rowGap: 10 }}>
                     <View>
-                        <Text style={{ fontWeight: "500", fontSize: 15 }}>Email or phone</Text>
+                        <Text style={styles.h6}>Email or phone</Text>
                         <TextInput
                             style={[
                                 globalStyles.textInput,
@@ -70,7 +67,7 @@ export default function SignIn() {
                         />
                     </View>
                     <View>
-                        <Text style={{ fontWeight: "500", fontSize: 15 }}>Password</Text>
+                        <Text style={styles.h6}>Password</Text>
                         <View style={{ position: "relative" }}>
                             <TextInput
                                 style={[
@@ -96,7 +93,7 @@ export default function SignIn() {
                             </View>
                         </View>
                     </View>
-                    <View style={{ marginTop: 20 }}>
+                    <View>
                         <TouchableOpacity
                             style={globalStyles.btnFilled}
                         // onPress={() => router.navigate('/AuthHome')}
@@ -107,25 +104,23 @@ export default function SignIn() {
                 </View>
 
                 {/* Line devide */}
-                <View style={{ flexDirection: "row", alignItems: "center", columnGap: 5, marginVertical: 30 }}>
+                <View style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}>
                     <View style={styles.devideLine}></View>
-                    <Text style={{ fontWeight: "600", fontSize: 16 }}>Or continue with</Text>
+                    <Text style={styles.h6}>Or continue with</Text>
                     <View style={styles.devideLine}></View>
                 </View>
 
 
                 {/* Auth provider components */}
+                <AuthProvider></AuthProvider>
+
+
                 <View>
-                    <AuthProvider></AuthProvider>
-                </View>
-
-
-                <View style={{ marginTop: 10 }}>
                     <TouchableOpacity onPress={() => router.navigate('/ForgetHome')}>
-                        <Text style={{ fontWeight: 500, fontSize: 16, alignSelf: "center" }}>Forget Password?</Text>
+                        <Text style={[styles.h6, { alignSelf: "center" }]}>Forget Password?</Text>
                     </TouchableOpacity>
-                    <View style={{ flexDirection: "row", alignItems: "center", columnGap: 2, alignSelf: "center", marginTop: 10 }}>
-                        <Text style={{ fontWeight: 500, fontSize: 16, alignSelf: "center" }}>
+                    <View style={{ flexDirection: "row", alignItems: "center", columnGap: 2, alignSelf: "center" }}>
+                        <Text style={[styles.h6, { alignSelf: "center" }]}>
                             Dont have an account?
                         </Text>
                         <TouchableOpacity
@@ -135,9 +130,9 @@ export default function SignIn() {
                         </TouchableOpacity>
                     </View>
                 </View>
+            </View>
 
 
-            </ScrollView>
         </Container>
     )
 }
@@ -156,8 +151,14 @@ const styles = StyleSheet.create({
         borderRadius: 2,
         backgroundColor: "#666666"
     },
+    h6: {
+        fontWeight: "500",
+        fontSize: 16,
+        fontFamily: "Poppins",
+        color: "#333333"
+    },
     inputBlurred: {
-        backgroundColor: '#F2F6FF',
+        backgroundColor: '#e4ebfcff',
         borderWidth: 1,
         borderColor: "transparent"
     },
