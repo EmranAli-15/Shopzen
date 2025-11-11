@@ -121,7 +121,9 @@ export default function SignIn() {
 
 
                 <View style={{ marginTop: 10 }}>
-                    <Text style={{ fontWeight: 500, fontSize: 16, alignSelf: "center" }}>Forget Password?</Text>
+                    <TouchableOpacity onPress={() => router.navigate('/ForgetHome')}>
+                        <Text style={{ fontWeight: 500, fontSize: 16, alignSelf: "center" }}>Forget Password?</Text>
+                    </TouchableOpacity>
                     <View style={{ flexDirection: "row", alignItems: "center", columnGap: 2, alignSelf: "center", marginTop: 10 }}>
                         <Text style={{ fontWeight: 500, fontSize: 16, alignSelf: "center" }}>
                             Dont have an account?
