@@ -5,7 +5,7 @@ import { globalStyles } from '@/constants/globalStyles';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 const delivery_truck = require('@/assets/images/delivery_truck.png');
 
 export default function SignUp() {
@@ -35,37 +35,37 @@ export default function SignUp() {
 
     return (
         <Container>
-            <ScrollView>
-                <View style={{ marginBottom: 40 }}>
-                    <BackButton></BackButton>
+            <BackButton></BackButton>
+            {/* Logo and into */}
+            <View>
+                <Text style={styles.heading}>Shop<Text style={{ color: "#0973BA" }}>Zen</Text></Text>
+                <View style={{ flexDirection: "row", alignSelf: "center", alignItems: "center", columnGap: 2 }}>
+                    <Text style={{ color: "#3CB64B", fontWeight: "600", fontSize: 13 }}>Your Trusted Marketplace.</Text>
+                    <Image
+                        style={{ height: "auto", width: "auto" }}
+                        source={delivery_truck}
+                        width={37}
+                        height={26}
+                    />
                 </View>
+                <Text style={[styles.h6, { alignSelf: "center" }]}>Welcome to ShopZen.</Text>
+            </View>
 
-                {/* Logo and into */}
-                <View>
-                    <Text style={styles.heading}>Shop<Text style={{ color: "#0973BA" }}>Zen</Text></Text>
-                    <View style={{ flexDirection: "row", alignSelf: "center", alignItems: "center", columnGap: 2 }}>
-                        <Text style={{ color: "#3CB64B", fontWeight: "600" }}>Your Trusted Marketplace.</Text>
-                        <Image
-                            style={{ height: "auto", width: "auto" }}
-                            source={delivery_truck}
-                            width={37}
-                            height={26}
-                        />
-                    </View>
-                    <Text style={{ fontWeight: "500", fontSize: 15, alignSelf: "center" }}>Welcome to ShopZen.</Text>
-                </View>
+
+            <View style={{ flex: 1, flexDirection: "column", justifyContent: "space-evenly" }}>
+
 
 
                 {/* Auth providers */}
-                <View style={{ marginVertical: 30, flexDirection: "column", rowGap: 10 }}>
-                    <Text style={{ fontWeight: "500", fontSize: 16 }}>Sign up quickly with:</Text>
+                <View style={{ flexDirection: "column", rowGap: 10 }}>
+                    <Text style={{ fontFamily: "Poppins", fontSize: 16 }}>Sign up quickly with:</Text>
 
                     <AuthProvider></AuthProvider>
 
                     {/* Line devide */}
                     <View style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}>
                         <View style={styles.devideLine}></View>
-                        <Text style={{ fontWeight: "600", fontSize: 16 }}>Or continue with</Text>
+                        <Text style={styles.h6}>Or continue with</Text>
                         <View style={styles.devideLine}></View>
                     </View>
                 </View>
@@ -74,9 +74,9 @@ export default function SignUp() {
 
                 {/* Inputs for signup */}
                 {/* Inputs for signup */}
-                <View style={{ marginTop: 10, flexDirection: "column", rowGap: 15 }}>
+                <View style={{ flexDirection: "column", rowGap: 10 }}>
                     <View>
-                        <Text style={{ fontWeight: "500", fontSize: 15 }}>Full name</Text>
+                        <Text style={styles.h6}>Full name</Text>
                         <TextInput
                             style={[
                                 globalStyles.textInput,
@@ -91,7 +91,7 @@ export default function SignUp() {
                         />
                     </View>
                     <View>
-                        <Text style={{ fontWeight: "500", fontSize: 15 }}>Email or phone</Text>
+                        <Text style={styles.h6}>Email or phone</Text>
                         <TextInput
                             style={[
                                 globalStyles.textInput,
@@ -107,7 +107,7 @@ export default function SignUp() {
                         />
                     </View>
                     <View>
-                        <Text style={{ fontWeight: "500", fontSize: 15 }}>Password</Text>
+                        <Text style={styles.h6}>Password</Text>
                         <View style={{ position: "relative" }}>
                             <TextInput
                                 style={[
@@ -133,7 +133,11 @@ export default function SignUp() {
                             </View>
                         </View>
                     </View>
-                    <View style={{ marginTop: 20 }}>
+
+                </View>
+
+                <View>
+                    <View>
                         <TouchableOpacity
                             style={globalStyles.btnFilled}
                         // onPress={() => router.navigate('/AuthHome')}
@@ -141,26 +145,25 @@ export default function SignUp() {
                             <Text style={[globalStyles.txt as any, { color: "white" }]}>Sign up</Text>
                         </TouchableOpacity>
                     </View>
-                </View>
 
-
-
-                {/* Redirect to sign in page */}
-                <View style={{ marginTop: 10, paddingBottom:30 }}>
-                    <View style={{ flexDirection: "row", alignItems: "center", columnGap: 2, alignSelf: "center", marginTop: 10 }}>
-                        <Text style={{ fontWeight: 500, fontSize: 16, alignSelf: "center" }}>
-                            Already have an account?
-                        </Text>
-                        <TouchableOpacity
-                            onPress={() => router.navigate('/SignIn')}
-                        >
-                            <Text style={{ color: "#FF620A" }}>Sign in</Text>
-                        </TouchableOpacity>
+                    {/* Redirect to sign in page */}
+                    <View>
+                        <View style={{ flexDirection: "row", alignItems: "center", columnGap: 2, alignSelf: "center", marginTop: 10 }}>
+                            <Text style={[styles.h6, { alignSelf: "center" }]}>
+                                Already have an account?
+                            </Text>
+                            <TouchableOpacity
+                                onPress={() => router.navigate('/SignIn')}
+                            >
+                                <Text style={{ color: "#FF620A" }}>Sign in</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
 
 
-            </ScrollView>
+            </View>
+
         </Container>
     )
 };
@@ -171,6 +174,11 @@ const styles = StyleSheet.create({
         fontWeight: "900",
         textAlign: "center",
         color: "#FF620A"
+    },
+    h6: {
+        fontWeight: "500",
+        fontSize: 16,
+        fontFamily: "Poppins"
     },
     devideLine: {
         height: 2,

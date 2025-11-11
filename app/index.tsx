@@ -1,9 +1,8 @@
-import Container from '@/components/Container';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import React, { useState } from 'react';
 const bdLogo = require('@/assets/images/bdLogo.png')
 
-import MyModal from '@/components/MyModal';
+import Container from '@/components/Container';
 import { globalStyles } from '@/constants/globalStyles';
 import { useRouter } from 'expo-router';
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -56,46 +55,24 @@ export default function index() {
 
     return (
         <Container>
-            <MyModal modal={modal} setModal={setModal}>
-                <View>
-                    <Text style={{ fontWeight: "700", fontSize: 18, alignSelf: "center" }}>Allow ShopZen Shopping to send you notifications?</Text>
-
-                    <View style={{ flex: 1, height: 2, backgroundColor: "#333333", borderRadius: 2, marginVertical: 10 }}></View>
-
-                    <TouchableOpacity
-                        style={globalStyles.btnFilled}
-                        onPress={() => setModal(false)}
-                    >
-                        <Text style={[globalStyles.txt as any, { color: "white" }]}>Allow</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={[globalStyles.btn, { marginTop: 10 }]}
-                        onPress={() => setModal(false)}
-                    >
-                        <Text style={[globalStyles.txt as any, { color: "#FF620A" }]}>Don't Allow</Text>
-                    </TouchableOpacity>
-                </View>
-            </MyModal>
-            <View>
+            <View style={{ flexDirection: "column", justifyContent: "space-evenly" }}>
 
 
-
-                <View style={{ flexDirection: "row", justifyContent: "center" }}>
+                <View style={styles.container}>
                     <Image
-                        style={{ transform: [{ rotate: '-10deg' }] }}
+                        style={styles.image}
+                        resizeMode="contain"
                         source={bdLogo}
-                        width={300}
-                        height={300}
                     />
                 </View>
 
-                <View style={{ marginTop: 40 }}>
-                    <Text style={[{ fontSize: 18, textAlign: "center", marginTop: -50 }]}>We noticed you’re using Softzen from <Text style={{ color: "#FF620A", fontWeight: "bold" }}>Bangladesh</Text>. Tell us your preferred language and where you’re from.</Text>
+                <View>
+                    <Text style={{ fontSize: 18, textAlign: "center" }}>We noticed you’re using Softzen from <Text style={{ color: "#FF620A", fontWeight: "bold" }}>Bangladesh</Text>. Tell us your preferred language and where you’re from.</Text>
 
                     <View>
                         <TouchableOpacity
                             onPress={() => setOpenLan(!openLan)}
-                            style={[styles.select, styles.mt]}>
+                            style={[styles.select]}>
                             <Text>{myLanguage}</Text>
                             <AntDesign style={openLan && { transform: [{ rotate: '180deg' }] }} name="caret-down" size={16} color="black" />
                         </TouchableOpacity>
@@ -133,7 +110,7 @@ export default function index() {
                     </View>
                 </View>
 
-                <View style={{ marginTop: 150 }}>
+                <View>
                     <TouchableOpacity
                         style={globalStyles.btnFilled}
                         onPress={() => router.navigate('/AuthHome')}
@@ -150,9 +127,6 @@ export default function index() {
 
 
 const styles = StyleSheet.create({
-    mt: {
-        marginTop: 30
-    },
     select: {
         backgroundColor: "#FFF2EB",
         borderColor: "#FF620A",
@@ -168,5 +142,38 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: "gray",
         paddingVertical: 3
-    }
+    },
+    container: {
+        width: '100%', // Example: 80% of parent width
+        height: "40%", // Fixed height for the container
+        alignSelf: 'center', // Center the container
+    },
+    image: {
+        width: '100%',
+        height: '100%',
+    },
 });
+
+
+
+
+{/* <MyModal modal={modal} setModal={setModal}>
+                <View>
+                    <Text style={{ fontWeight: "700", fontSize: 18, alignSelf: "center" }}>Allow ShopZen Shopping to send you notifications?</Text>
+
+                    <View style={{ flex: 1, height: 2, backgroundColor: "#333333", borderRadius: 2, marginVertical: 10 }}></View>
+
+                    <TouchableOpacity
+                        style={globalStyles.btnFilled}
+                        onPress={() => setModal(false)}
+                    >
+                        <Text style={[globalStyles.txt as any, { color: "white" }]}>Allow</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[globalStyles.btn, { marginTop: 10 }]}
+                        onPress={() => setModal(false)}
+                    >
+                        <Text style={[globalStyles.txt as any, { color: "#FF620A" }]}>Don't Allow</Text>
+                    </TouchableOpacity>
+                </View>
+            </MyModal> */}

@@ -19,11 +19,12 @@ export const globalStyles = {
         fontSize: 16,
         textAlign: "center",
         fontWeight: "600",
+        fontFamily: "Poppins"
     },
     textInput: {
         paddingHorizontal: 16,
         paddingVertical: 16,
         borderRadius: 28,
-
+        fontFamily: "Poppins"
     },
 }
