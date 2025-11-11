@@ -74,7 +74,7 @@ export default function SignUp() {
 
                 {/* Inputs for signup */}
                 {/* Inputs for signup */}
-                <View style={{ marginTop: 30, flexDirection: "column", rowGap: 15 }}>
+                <View style={{ marginTop: 10, flexDirection: "column", rowGap: 15 }}>
                     <View>
                         <Text style={{ fontWeight: "500", fontSize: 15 }}>Full name</Text>
                         <TextInput

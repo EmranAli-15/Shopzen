@@ -3,26 +3,24 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import React, { useState } from 'react';
 const bdLogo = require('@/assets/images/bdLogo.png')
 
+import MyModal from '@/components/MyModal';
 import { globalStyles } from '@/constants/globalStyles';
 import { useRouter } from 'expo-router';
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function index() {
     const router = useRouter();
+    const [modal, setModal] = useState(true);
 
     const languages = [
         {
-            language: "Bangla",
+            language: "বাংলা",
             id: "1"
         },
         {
             language: "English",
             id: "2"
-        },
-        {
-            language: "Hindi",
-            id: "3"
-        },
+        }
     ];
     const districts = [
         {
@@ -58,7 +56,30 @@ export default function index() {
 
     return (
         <Container>
-            <View style={{}}>
+            <MyModal modal={modal} setModal={setModal}>
+                <View>
+                    <Text style={{ fontWeight: "700", fontSize: 18, alignSelf: "center" }}>Allow ShopZen Shopping to send you notifications?</Text>
+
+                    <View style={{ flex: 1, height: 2, backgroundColor: "#333333", borderRadius: 2, marginVertical: 10 }}></View>
+
+                    <TouchableOpacity
+                        style={globalStyles.btnFilled}
+                        onPress={() => setModal(false)}
+                    >
+                        <Text style={[globalStyles.txt as any, { color: "white" }]}>Allow</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[globalStyles.btn, { marginTop: 10 }]}
+                        onPress={() => setModal(false)}
+                    >
+                        <Text style={[globalStyles.txt as any, { color: "#FF620A" }]}>Don't Allow</Text>
+                    </TouchableOpacity>
+                </View>
+            </MyModal>
+            <View>
+
+
+
                 <View style={{ flexDirection: "row", justifyContent: "center" }}>
                     <Image
                         style={{ transform: [{ rotate: '-10deg' }] }}
@@ -76,7 +97,7 @@ export default function index() {
                             onPress={() => setOpenLan(!openLan)}
                             style={[styles.select, styles.mt]}>
                             <Text>{myLanguage}</Text>
-                            <AntDesign name="caret-down" size={16} color="black" />
+                            <AntDesign style={openLan && { transform: [{ rotate: '180deg' }] }} name="caret-down" size={16} color="black" />
                         </TouchableOpacity>
                         {
                             openLan &&
@@ -95,7 +116,7 @@ export default function index() {
                             onPress={() => setOpenDis(!openDis)}
                             style={[styles.select, { marginTop: 15 }]}>
                             <Text>{myDistrict}</Text>
-                            <AntDesign name="caret-down" size={16} color="black" />
+                            <AntDesign style={openDis && { transform: [{ rotate: '180deg' }] }} name="caret-down" size={16} color="black" />
                         </TouchableOpacity>
                         {
                             openDis &&
@@ -120,6 +141,8 @@ export default function index() {
                         <Text style={[globalStyles.txt as any, { color: "white" }]}>Done</Text>
                     </TouchableOpacity>
                 </View>
+
+
             </View>
         </Container>
     )

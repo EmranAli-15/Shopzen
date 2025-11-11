@@ -82,8 +82,8 @@ const styles = StyleSheet.create({
     color: "#FF620A"
   },
   devideLine: {
+    flex:1,
     height: 2,
-    width: 160,
     borderRadius: 2,
     backgroundColor: "#666666"
   }
