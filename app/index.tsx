@@ -24,17 +24,25 @@ export default function index() {
     ];
     const districts = [
         {
-            district: "Dhaka",
+            district: "Barishal",
             id: "1"
         },
         {
-            district: "Sylhet",
+            district: "Chittagong",
             id: "2"
         },
         {
-            district: "Rajshahi",
+            district: "Dhaka",
             id: "3"
         },
+        {
+            district: "Khulna",
+            id: "4"
+        },
+        {
+            district: "Rangpur",
+            id: "5"
+        }
     ];
 
     const [myLanguage, setMyLanguage] = useState("Choose your preffered language")
@@ -47,11 +55,13 @@ export default function index() {
     const handleLan = (txt: string) => {
         setMyLanguage(txt);
         setOpenLan(!openLan);
+        setOpenDis(false);
     }
 
     const handleDis = (txt: string) => {
         setMyDistrict(txt);
         setOpenDis(!openDis);
+        setOpenLan(false);
     }
 
     return (
@@ -76,7 +86,7 @@ export default function index() {
                     </TouchableOpacity>
                 </View>
             </MyModal>
-            <View>
+            <View style={{ flex: 1, flexDirection: "column", justifyContent: "space-evenly" }}>
 
 
 
@@ -89,51 +99,61 @@ export default function index() {
                     />
                 </View>
 
-                <View style={{ marginTop: 40 }}>
+                <View>
                     <Text style={[{ fontSize: 18, textAlign: "center", marginTop: -50 }]}>We noticed you’re using Softzen from <Text style={{ color: "#FF620A", fontWeight: "bold" }}>Bangladesh</Text>. Tell us your preferred language and where you’re from.</Text>
 
                     <View>
-                        <TouchableOpacity
-                            onPress={() => setOpenLan(!openLan)}
-                            style={[styles.select, styles.mt]}>
-                            <Text>{myLanguage}</Text>
-                            <AntDesign style={openLan && { transform: [{ rotate: '180deg' }] }} name="caret-down" size={16} color="black" />
-                        </TouchableOpacity>
-                        {
-                            openLan &&
-                            <FlatList
-                                data={languages}
-                                renderItem={({ item }) => (
-                                    <TouchableOpacity
-                                        onPress={() => handleLan(item.language)}
-                                    ><Text style={styles.optiosText}>{item.language}</Text></TouchableOpacity>
-                                )}
-                                keyExtractor={item => item.id}
-                            ></FlatList>
-                        }
+                        <View style={{ position: "relative", width: "100%" }}>
+                            <TouchableOpacity
+                                onPress={() => setOpenLan(!openLan)}
+                                style={[styles.select, { marginTop: 15 }]}>
+                                <Text>{myLanguage}</Text>
+                                <AntDesign style={openLan && { transform: [{ rotate: '180deg' }] }} name="caret-down" size={16} color="black" />
+                            </TouchableOpacity>
+                            {
+                                openLan &&
+                                <View style={{ flex: 1, width: "100%" }}>
+                                    <FlatList
+                                        style={[styles.boxShadow, styles.fixedModal]}
+                                        data={languages}
+                                        renderItem={({ item }) => (
+                                            <TouchableOpacity
+                                                onPress={() => handleLan(item.language)}
+                                            ><Text style={styles.optiosText}>{item.language}</Text></TouchableOpacity>
+                                        )}
+                                        keyExtractor={item => item.id}
+                                    ></FlatList>
+                                </View>
+                            }
+                        </View>
 
-                        <TouchableOpacity
-                            onPress={() => setOpenDis(!openDis)}
-                            style={[styles.select, { marginTop: 15 }]}>
-                            <Text>{myDistrict}</Text>
-                            <AntDesign style={openDis && { transform: [{ rotate: '180deg' }] }} name="caret-down" size={16} color="black" />
-                        </TouchableOpacity>
-                        {
-                            openDis &&
-                            <FlatList
-                                data={districts}
-                                renderItem={({ item }) => (
-                                    <TouchableOpacity
-                                        onPress={() => handleDis(item.district)}
-                                    ><Text style={styles.optiosText}>{item.district}</Text></TouchableOpacity>
-                                )}
-                                keyExtractor={item => item.id}
-                            ></FlatList>
-                        }
+                        <View style={{ position: "relative", width: "100%" }}>
+                            <TouchableOpacity
+                                onPress={() => setOpenDis(!openDis)}
+                                style={[styles.select, { marginTop: 15 }]}>
+                                <Text>{myDistrict}</Text>
+                                <AntDesign style={openDis && { transform: [{ rotate: '180deg' }] }} name="caret-down" size={16} color="black" />
+                            </TouchableOpacity>
+                            {
+                                openDis &&
+                                <View style={{ flex: 1, width: "100%" }}>
+                                    <FlatList
+                                        style={[styles.boxShadow, styles.fixedModal]}
+                                        data={districts}
+                                        renderItem={({ item }) => (
+                                            <TouchableOpacity
+                                                onPress={() => handleDis(item.district)}
+                                            ><Text style={styles.optiosText}>{item.district}</Text></TouchableOpacity>
+                                        )}
+                                        keyExtractor={item => item.id}
+                                    ></FlatList>
+                                </View>
+                            }
+                        </View>
                     </View>
                 </View>
 
-                <View style={{ marginTop: 150 }}>
+                <View>
                     <TouchableOpacity
                         style={globalStyles.btnFilled}
                         onPress={() => router.navigate('/AuthHome')}
@@ -168,5 +188,17 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: "gray",
         paddingVertical: 3
+    },
+    boxShadow: {
+        backgroundColor: 'white',
+        boxShadow: '6px 6px 6px 4px rgba(0, 0, 0, 0.3)', // offsetX offsetY blurRadius spreadRadius color
+    },
+    fixedModal: {
+        flex: 1,
+        width: "100%",
+        backgroundColor: "white",
+        maxHeight: 100,
+        position: "absolute",
+        zIndex: 30
     }
 });

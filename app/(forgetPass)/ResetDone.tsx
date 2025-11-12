@@ -5,9 +5,9 @@ import { useRouter } from 'expo-router';
 import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { ForgotStyles } from './styles/ForgotStyles';
-const forget1 = require('@/assets/images/forget/Forget2.png');
+const forget4 = require('@/assets/images/forget/Forget4.png');
 
-export default function CheckEmail() {
+export default function ResetDone() {
     const router = useRouter();
 
     return (
@@ -18,38 +18,23 @@ export default function CheckEmail() {
                         <View style={{ alignSelf: "center" }}>
                             <Image
                                 style={{ height: 70, width: 70 }}
-                                source={forget1}
+                                source={forget4}
                                 width={37}
                                 height={26}
                             />
                         </View>
 
-                        <Text style={globalStyles.h3 as any}>Check Your Email</Text>
+                        <Text style={globalStyles.h3 as any}>Password Reset</Text>
                         <Text style={globalStyles.p as any}>
-                            A reset link has been sent to your email.
+                            Your password has been reset successfully. You can now sign in with your new password.
                         </Text>
                     </View>
 
-
-                    {/* Email form */}
-                    <View style={{ flexDirection: "column", rowGap: 16 }}>
-                        <TouchableOpacity
-                            onPress={() => router.navigate("/ResetPassword")}
-                            style={[globalStyles.btnFilled]}>
-                            <Text style={[globalStyles.txt as any, { color: "white" }]}>Open email app</Text>
-                        </TouchableOpacity>
-
-                        <View style={{ flexDirection: "row", alignItems: "center", columnGap: 2, alignSelf: "center" }}>
-                            <Text style={[globalStyles.h6 as any, { alignSelf: "center" }]}>
-                                Don't receive the email?
-                            </Text>
-                            <TouchableOpacity
-                                onPress={() => router.navigate('/ForgetHome')}
-                            >
-                                <Text style={{ color: "#FF620A" }}>Click to resend</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
+                    <TouchableOpacity
+                        onPress={() => router.navigate("/")}
+                        style={[globalStyles.btnFilled]}>
+                        <Text style={[globalStyles.txt as any, { color: "white" }]}>Continue</Text>
+                    </TouchableOpacity>
 
                     <TouchableOpacity
                         onPress={() => router.navigate("/SignIn")}

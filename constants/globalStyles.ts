@@ -24,6 +24,43 @@ export const globalStyles = {
         paddingHorizontal: 16,
         paddingVertical: 16,
         borderRadius: 28,
+        marginTop: 4,
+        fontWeight:"400",
+        fontFamily:"Poppins"
+    },
 
+    p: {
+        fontWeight: "400",
+        fontSize: 16,
+        fontFamily: "Poppins",
+        color: "#666666",
+        textAlign: "center"
+    },
+
+
+    h6: {
+        fontWeight: "500",
+        fontSize: 16,
+        fontFamily: "Poppins",
+        color: "#333333"
+    },
+
+    h3: {
+        fontWeight: "600",
+        fontSize: 24,
+        fontFamily: "Poppins",
+        color: "#333333",
+        textAlign: "center"
+    },
+
+    inputBlurred: {
+        backgroundColor: '#FFF2EB',
+        borderWidth: 1,
+        borderColor: "transparent"
+    },
+    inputFocused: {
+        backgroundColor: '#FFF',
+        borderWidth: 1,
+        borderColor: '#FF620A',
     },
 }
