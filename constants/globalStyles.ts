@@ -1,3 +1,6 @@
+export const primaryColor = "#FF620A";
+export const primaryBg = "#F2F6FF";
+
 export const globalStyles = {
     btn: {
         borderWidth: 1,
@@ -25,8 +28,8 @@ export const globalStyles = {
         paddingVertical: 16,
         borderRadius: 28,
         marginTop: 4,
-        fontWeight:"400",
-        fontFamily:"Poppins"
+        fontWeight: "400",
+        fontFamily: "Poppins"
     },
 
     p: {

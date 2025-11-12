@@ -139,7 +139,7 @@ export default function SignUp() {
                     <View>
                         <TouchableOpacity
                             style={globalStyles.btnFilled}
-                        // onPress={() => router.navigate('/AuthHome')}
+                            onPress={() => router.navigate('/Profile')}
                         >
                             <Text style={[globalStyles.txt as any, { color: "white" }]}>Sign up</Text>
                         </TouchableOpacity>
