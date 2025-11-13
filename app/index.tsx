@@ -90,12 +90,11 @@ export default function index() {
 
 
 
-                <View style={{ flexDirection: "row", justifyContent: "center" }}>
+                <View style={styles.container}>
                     <Image
-                        style={{ transform: [{ rotate: '-10deg' }] }}
+                        style={styles.image}
+                        resizeMode="contain"
                         source={bdLogo}
-                        width={300}
-                        height={300}
                     />
                 </View>
 
@@ -200,5 +199,15 @@ const styles = StyleSheet.create({
         maxHeight: 100,
         position: "absolute",
         zIndex: 30
-    }
+    },
+    container: {
+        width: '100%',
+        height: "30%",
+        alignSelf: 'center',
+    },
+    image: {
+        width: '100%',
+        height: '100%',
+        transform:[{rotate:"-12deg"}]
+    },
 });

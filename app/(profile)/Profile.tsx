@@ -10,20 +10,29 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+const logout = require('@/assets/images/signInOut/Logout.png')
 
 export default function Profile() {
     const router = useRouter();
     const [modal, setModal] = useState(false);
 
     return (
-        <View>
+        <View style={{ paddingBottom: 10 }}>
 
             <Container>
 
 
                 <MyModal modal={modal} setModal={setModal}>
                     <View style={{ flexDirection: "column", rowGap: 10 }}>
+                        <View>
+                            <Image
+                                style={{ alignSelf: "center" }}
+                                resizeMode="contain"
+                                source={logout}
+                                height={40}
+                            />
+                        </View>
                         <Text style={globalStyles.h3 as any}>Sign Out</Text>
                         <Text style={globalStyles.p as any}>Are you sure want to SIgn out of your ShopZen account?</Text>
                         <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", columnGap: 10 }}>
@@ -35,7 +44,7 @@ export default function Profile() {
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={[globalStyles.btn, { flex: 1 }]}
-                            onPress={() => router.navigate("/LoggedOut")}
+                                onPress={() => router.navigate("/LoggedOut")}
                             >
                                 <Text style={[globalStyles.txt as any, { color: primaryColor }]}>Sign Out</Text>
                             </TouchableOpacity>
@@ -46,7 +55,7 @@ export default function Profile() {
                 <BackButton></BackButton>
                 <Text style={{ position: "absolute", flex: 1, alignSelf: "center", paddingVertical: 10, fontFamily: "Poppins", fontWeight: 700, fontSize: 24, color: "#1A1F71" }}>Profile</Text>
 
-                <View style={{ flex: 1, flexDirection: "column", justifyContent: "space-between" }}>
+                <View style={{ flex: 1, flexDirection: "column", rowGap: 40 }}>
                     {/* User profile view */}
                     <View style={{ flexDirection: "column", alignItems: "center" }}>
                         <View style={{ borderRadius: "50%", backgroundColor: primaryBg, padding: 10, height: 100, width: 100, alignItems: "center", justifyContent: "center" }}>
@@ -77,6 +86,7 @@ export default function Profile() {
 
                             <TouchableOpacity
                                 style={styles.linkStyle}
+                                onPress={() => router.navigate('/MyOrder')}
                             >
                                 <View style={styles.linkStyleIn}>
                                     <MaterialCommunityIcons name="invoice-text-outline" size={24} color="black" />

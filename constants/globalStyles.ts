@@ -1,5 +1,11 @@
 export const primaryColor = "#FF620A";
-export const primaryBg = "#FFF2EB";
+// export const primaryBg = "#FFF2EB";
+
+// tarik vai
+// export const primaryBg = "#F2F6FF";
+
+// tarik vai deep
+export const primaryBg = "#e1e9fcff";
 
 // initialDeep=
 
@@ -59,7 +65,7 @@ export const globalStyles = {
     },
 
     inputBlurred: {
-        backgroundColor: '#FFF2EB',
+        backgroundColor: primaryBg,
         borderWidth: 1,
         borderColor: "transparent"
     },

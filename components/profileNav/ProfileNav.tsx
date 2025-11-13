@@ -1,17 +1,18 @@
 import { primaryBg, primaryColor } from '@/constants/globalStyles';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
-import { useRouter } from 'expo-router';
+import { usePathname, useRouter } from 'expo-router';
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 export default function ProfileNav() {
     const router = useRouter();
+    const pathname = usePathname();
 
     return (
         <View style={[styles.navbar, { backgroundColor: primaryBg }]}>
             <TouchableOpacity
-                // onPress={() => router.navigate("/HelpCenter")}
+                onPress={() => router.navigate("/")}
                 style={styles.linkStyle}
             >
                 <AntDesign name="home" size={24} color="black" />
@@ -23,15 +24,16 @@ export default function ProfileNav() {
                 <AntDesign name="menu" size={24} color="black" />
             </TouchableOpacity>
             <TouchableOpacity
-                // onPress={() => router.navigate("/AccountInfo")}
+                onPress={() => router.navigate("/MyCart")}
                 style={styles.linkStyle}
             >
-                <AntDesign name="shopping-cart" size={24} color="black" />
+                <AntDesign name="shopping-cart" size={24} color={pathname == "/MyCart" ? primaryColor : "black"} />
             </TouchableOpacity>
             <TouchableOpacity
+                onPress={() => router.navigate("/Profile")}
                 style={styles.linkStyle}
             >
-                <SimpleLineIcons name="user" size={24} color={primaryColor} />
+                <SimpleLineIcons name="user" size={24} color={pathname == "/Profile" ? primaryColor : "black"} />
             </TouchableOpacity>
         </View>
     )

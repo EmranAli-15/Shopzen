@@ -1,16 +1,30 @@
 import ProfileNav from '@/components/profileNav/ProfileNav';
 import { Stack } from 'expo-router';
-
-import { StyleSheet, View } from 'react-native';
-
+import React, { useEffect, useState } from 'react';
+import { Keyboard, StyleSheet, View } from 'react-native';
 
 export default function Layout() {
+    const [keyboardVisible, setKeyboardVisible] = useState(false);
+
+    useEffect(() => {
+        const showSub = Keyboard.addListener('keyboardDidShow', () => setKeyboardVisible(true));
+        const hideSub = Keyboard.addListener('keyboardDidHide', () => setKeyboardVisible(false));
+
+        return () => {
+            showSub.remove();
+            hideSub.remove();
+        };
+    }, []);
 
     return (
         <View style={styles.container}>
-            <Stack screenOptions={{ headerShown: false }}>
-            </Stack>
-            <ProfileNav></ProfileNav>
+            <Stack screenOptions={{ headerShown: false }} />
+
+            {!keyboardVisible && (
+                <View style={styles.navbarWrapper}>
+                    <ProfileNav />
+                </View>
+            )}
         </View>
     );
 }
@@ -18,8 +32,12 @@ export default function Layout() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: "column",
-        rowGap: 10,
+        backgroundColor: '#FFFFFF',
+    },
+    navbarWrapper: {
+        position: 'absolute',
+        bottom: 0,
+        width: '100%',
         backgroundColor: '#fff',
     },
 });
