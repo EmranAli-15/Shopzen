@@ -5,7 +5,7 @@ export const primaryColor = "#FF620A";
 // export const primaryBg = "#F2F6FF";
 
 // tarik vai deep
-export const primaryBg = "#e1e9fcff";
+export const primaryBg = "#e7edfcff";
 
 // initialDeep=
 

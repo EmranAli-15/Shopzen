@@ -59,7 +59,7 @@ export default function AUthHome() {
         <View>
           <TouchableOpacity
             style={globalStyles.btnFilled}
-          // onPress={() => router.navigate('/AuthHome')}
+          onPress={() => router.navigate('/Testing')}
           >
             <Text style={[globalStyles.txt as any, { color: "white" }]}>Continue Shopping</Text>
           </TouchableOpacity>

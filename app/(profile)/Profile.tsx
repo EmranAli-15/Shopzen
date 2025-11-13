@@ -99,6 +99,7 @@ export default function Profile() {
 
                             <TouchableOpacity
                                 style={styles.linkStyle}
+                                onPress={() => router.navigate('/MyAddress')}
                             >
                                 <View style={styles.linkStyleIn}>
                                     <EvilIcons name="location" size={24} color="black" />
