@@ -1,27 +1,20 @@
 export const primaryColor = "#FF620A";
-// export const primaryBg = "#FFF2EB";
-
-// tarik vai
-// export const primaryBg = "#F2F6FF";
-
-// tarik vai deep
-export const primaryBg = "#e7edfcff";
-
-// initialDeep=
+export const primaryBg = "#F2F6FF";
+export const screenBg = "#FFF"
 
 export const globalStyles = {
     btn: {
         borderWidth: 1,
-        borderColor: "#FF620A",
-        backgroundColor: "#FFF",
+        borderColor: primaryColor,
+        backgroundColor: screenBg,
         paddingHorizontal: 10,
         paddingVertical: 14,
         borderRadius: 28
     },
     btnFilled: {
         borderWidth: 1,
-        borderColor: "#FF620A",
-        backgroundColor: "#FF620A",
+        borderColor: primaryColor,
+        backgroundColor: primaryColor,
         paddingHorizontal: 10,
         paddingVertical: 14,
         borderRadius: 28
@@ -70,8 +63,8 @@ export const globalStyles = {
         borderColor: "transparent"
     },
     inputFocused: {
-        backgroundColor: '#FFF',
+        backgroundColor: screenBg,
         borderWidth: 1,
-        borderColor: '#FF620A',
+        borderColor: primaryColor,
     },
 }

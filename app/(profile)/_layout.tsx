@@ -1,4 +1,5 @@
 import ProfileNav from '@/components/profileNav/ProfileNav';
+import { screenBg } from '@/constants/globalStyles';
 import { Stack } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { Keyboard, StyleSheet, View } from 'react-native';
@@ -18,7 +19,11 @@ export default function Layout() {
 
     return (
         <View style={styles.container}>
-            <Stack screenOptions={{ headerShown: false }} />
+            <Stack screenOptions={{
+                headerShown: false,
+                contentStyle: { backgroundColor: screenBg }
+            }}>
+            </Stack>
 
             {!keyboardVisible && (
                 <View style={styles.navbarWrapper}>
@@ -31,8 +36,7 @@ export default function Layout() {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#FFFFFF',
+        flex: 1
     },
     navbarWrapper: {
         position: 'absolute',

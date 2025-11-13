@@ -2,6 +2,7 @@ import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 
+import { screenBg } from '@/constants/globalStyles';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { StyleSheet, View } from 'react-native';
 
@@ -16,7 +17,10 @@ export default function RootLayout() {
     //   <StatusBar style="auto" />
     // </ThemeProvider>
     <View style={styles.container}>
-      <Stack screenOptions={{ headerShown: false }}>
+      <Stack screenOptions={{
+        headerShown: false,
+        contentStyle: { backgroundColor: screenBg }
+      }}>
       </Stack>
       <StatusBar style="dark" />
     </View>
@@ -25,7 +29,6 @@ export default function RootLayout() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
+    flex: 1
   },
 });
