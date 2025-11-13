@@ -38,26 +38,23 @@ export default function SignUp() {
         <Container>
             <BackButton></BackButton>
             {/* Logo and into */}
+            <View>
+                <Text style={styles.heading}>Shop<Text style={{ color: "#0973BA" }}>Zen</Text></Text>
+                <View style={{ flexDirection: "row", alignSelf: "center", alignItems: "center", columnGap: 2 }}>
+                    <Text style={{ color: "#3CB64B", fontWeight: "600", fontSize: 13 }}>Your Trusted Marketplace.</Text>
+                    <Image
+                        style={{ height: "auto", width: "auto" }}
+                        source={delivery_truck}
+                        width={37}
+                        height={26}
+                    />
+                </View>
+                <Text style={[globalStyles.h6 as any, { alignSelf: "center" }]}>Welcome to ShopZen.</Text>
+            </View>
+
 
             <View style={{ flex: 1, justifyContent: "center" }}>
                 <View style={AuthStyles.sectionGap as any}>
-                    <View>
-                        <Text style={styles.heading}>Shop<Text style={{ color: "#0973BA" }}>Zen</Text></Text>
-                        <View style={{ flexDirection: "row", alignSelf: "center", alignItems: "center", columnGap: 2 }}>
-                            <Text style={{ color: "#3CB64B", fontWeight: "600", fontSize: 13 }}>Your Trusted Marketplace.</Text>
-                            <Image
-                                style={{ height: "auto", width: "auto" }}
-                                source={delivery_truck}
-                                width={37}
-                                height={26}
-                            />
-                        </View>
-                        <Text style={[globalStyles.h6 as any, { alignSelf: "center" }]}>Welcome to ShopZen.</Text>
-                    </View>
-
-
-
-
                     {/* Auth providers */}
                     <View style={{ flexDirection: "column", rowGap: 10 }}>
                         <Text style={{ fontFamily: "Poppins", fontSize: 16 }}>Sign up quickly with:</Text>

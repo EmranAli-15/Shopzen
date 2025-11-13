@@ -52,14 +52,14 @@ export default function index() {
     const [openDis, setOpenDis] = useState(false);
 
 
-    const handleLan = (txt: string) => {
-        setMyLanguage(txt);
+    const handleLan = (txt: string, flag: boolean) => {
+        if (flag) setMyLanguage(txt);
         setOpenLan(!openLan);
         setOpenDis(false);
     }
 
-    const handleDis = (txt: string) => {
-        setMyDistrict(txt);
+    const handleDis = (txt: string, flag: boolean) => {
+        if (flag) setMyDistrict(txt);
         setOpenDis(!openDis);
         setOpenLan(false);
     }
@@ -105,7 +105,7 @@ export default function index() {
                     <View>
                         <View style={{ position: "relative", width: "100%" }}>
                             <TouchableOpacity
-                                onPress={() => setOpenLan(!openLan)}
+                                onPress={() => handleLan("", false)}
                                 style={[styles.select, { marginTop: 15 }]}>
                                 <Text>{myLanguage}</Text>
                                 <AntDesign style={openLan && { transform: [{ rotate: '180deg' }] }} name="caret-down" size={16} color="black" />
@@ -118,7 +118,7 @@ export default function index() {
                                         data={languages}
                                         renderItem={({ item }) => (
                                             <TouchableOpacity
-                                                onPress={() => handleLan(item.language)}
+                                                onPress={() => handleLan(item.language, true)}
                                             ><Text style={styles.optiosText}>{item.language}</Text></TouchableOpacity>
                                         )}
                                         keyExtractor={item => item.id}
@@ -129,7 +129,7 @@ export default function index() {
 
                         <View style={{ position: "relative", width: "100%" }}>
                             <TouchableOpacity
-                                onPress={() => setOpenDis(!openDis)}
+                                onPress={() => handleDis("", false)}
                                 style={[styles.select, { marginTop: 15 }]}>
                                 <Text>{myDistrict}</Text>
                                 <AntDesign style={openDis && { transform: [{ rotate: '180deg' }] }} name="caret-down" size={16} color="black" />
@@ -142,7 +142,7 @@ export default function index() {
                                         data={districts}
                                         renderItem={({ item }) => (
                                             <TouchableOpacity
-                                                onPress={() => handleDis(item.district)}
+                                                onPress={() => handleDis(item.district, true)}
                                             ><Text style={styles.optiosText}>{item.district}</Text></TouchableOpacity>
                                         )}
                                         keyExtractor={item => item.id}

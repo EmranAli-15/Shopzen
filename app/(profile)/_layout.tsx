@@ -1,3 +1,4 @@
+import ProfileNav from '@/components/profileNav/ProfileNav';
 import { Stack } from 'expo-router';
 
 import { StyleSheet, View } from 'react-native';
@@ -9,6 +10,7 @@ export default function Layout() {
         <View style={styles.container}>
             <Stack screenOptions={{ headerShown: false }}>
             </Stack>
+            <ProfileNav></ProfileNav>
         </View>
     );
 }
@@ -16,6 +18,8 @@ export default function Layout() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        flexDirection: "column",
+        rowGap: 10,
         backgroundColor: '#fff',
     },
 });

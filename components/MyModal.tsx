@@ -1,54 +1,42 @@
-import React from 'react'
-import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import React from 'react';
+import { Modal, StyleSheet, TouchableOpacity, View } from 'react-native';
 
-export default function MyModal({ modal, setModal, children }: { modal: boolean, setModal: Function, children: any }) {
+export default function MyModal({ modal, setModal, children }: { modal: any, setModal: any, children: any }) {
     return (
-        <>
-            {
-                modal && <View style={style.modalBox}>
-                    <TouchableOpacity
-                        // onPress={() => setModal(!modal)}
-                        style={style.customModal}>
-
-                    </TouchableOpacity>
-                    <View style={style.insideModal}>
-                        {
-                            children
-                        }
-                    </View>
+        <Modal
+            visible={modal}
+            transparent
+            animationType="fade"
+            // onRequestClose={() => setModal(false)}
+        >
+            <View style={styles.modalBox}>
+                <TouchableOpacity
+                    activeOpacity={1}
+                    // onPress={() => setModal(false)}
+                    style={styles.overlay}
+                />
+                <View style={styles.insideModal}>
+                    {children}
                 </View>
-            }
-        </>
-    )
+            </View>
+        </Modal>
+    );
 }
 
-
-const style = StyleSheet.create({
-    customModal: {
+const styles = StyleSheet.create({
+    modalBox: {
         flex: 1,
-        position: "absolute",
-        top: 0,
-        bottom: 0,
-        width: "120%",
-        height: "100%",
-        right: 10,
-        overflow: "visible",
-        backgroundColor: "#000000dc",
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    overlay: {
+        ...StyleSheet.absoluteFillObject,
+        backgroundColor: '#000000dc',
     },
     insideModal: {
-        backgroundColor: "#FFF",
+        backgroundColor: '#fff',
         padding: 30,
-        top: "30%",
-        borderRadius: 5,
-        left: "5%",
-        width: "80%",
+        borderRadius: 10,
+        width: '80%',
     },
-    modalBox: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        height: "100%",
-        width: "110%",
-        zIndex: 30,
-    }
-})
+});

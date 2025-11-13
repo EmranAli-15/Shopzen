@@ -1,5 +1,7 @@
 export const primaryColor = "#FF620A";
-export const primaryBg = "#F2F6FF";
+export const primaryBg = "#FFF2EB";
+
+// initialDeep=
 
 export const globalStyles = {
     btn: {
