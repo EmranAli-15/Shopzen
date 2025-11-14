@@ -17,6 +17,8 @@ export default function Layout() {
         };
     }, []);
 
+
+
     return (
         <View style={styles.container}>
             <Stack screenOptions={{

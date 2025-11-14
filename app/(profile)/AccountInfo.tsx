@@ -1,3 +1,4 @@
+import Alert from '@/components/alert/Alert';
 import BackButton from '@/components/BackButton';
 import Container from '@/components/Container';
 import { globalStyles, primaryBg, primaryColor } from '@/constants/globalStyles';
@@ -11,6 +12,7 @@ import { Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, Vi
 
 export default function AccountInfo() {
     const router = useRouter();
+    const [success, setSuccess] = useState(false);
 
 
     const [birthDate, setBirthDate] = useState("2025-11-13");
@@ -46,13 +48,23 @@ export default function AccountInfo() {
 
 
 
+    const handleProfileUpdate = () => {
+        setSuccess(true);
+        setTimeout(() => {
+            setSuccess(false)
+        }, 1000);
+    }
+
     return (
         <Container>
+            {
+                success && <Alert text='Profile update successfully' type='success'></Alert>
+            }
             <BackButton></BackButton>
             <Text style={{ position: "absolute", flex: 1, alignSelf: "center", paddingVertical: 10, fontFamily: "Poppins", fontWeight: 700, fontSize: 24, color: "#1A1F71" }}>Account Information</Text>
 
             <ScrollView>
-                <View style={{ flexDirection: "column", rowGap: 40, paddingBottom:80 }}>
+                <View style={{ flexDirection: "column", rowGap: 40, paddingBottom: 80 }}>
                     {/* User profile view */}
                     <View style={{ flexDirection: "column", alignItems: "center" }}>
                         <View style={{ borderRadius: "50%", backgroundColor: primaryBg, padding: 10, height: 100, width: 100, alignItems: "center", justifyContent: "center" }}>
@@ -198,6 +210,16 @@ export default function AccountInfo() {
                                 </View>
                             }
                         </View>
+                    </View>
+
+
+                    <View>
+                        <TouchableOpacity
+                            style={globalStyles.btnFilled}
+                            onPress={() => handleProfileUpdate()}
+                        >
+                            <Text style={[globalStyles.txt as any, { color: "white" }]}>Update</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </ScrollView>

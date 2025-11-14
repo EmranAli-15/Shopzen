@@ -1,0 +1,50 @@
+import Feather from '@expo/vector-icons/Feather';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import React from 'react';
+import { Text, View } from 'react-native';
+
+type TType = "success" | "error" | "warning" | "loading";
+
+export default function Alert({ text, type }: { text: string; type: TType }) {
+    return (
+        <View
+            style={{
+                position: 'absolute',
+                left: 0,
+                right: 0,
+                alignItems: 'center',
+                zIndex: 9999,
+            }}
+        >
+            <View
+                style={{
+                    borderLeftWidth: 6,
+                    borderLeftColor: type === 'error' ? 'red' : type === 'success' ? 'green' : type === 'loading' ? 'orange' : 'orange',
+                    backgroundColor: type === 'error' ? '#fdeded' : type === 'success' ? '#edf7ed' : type === 'warning' ? '#fff4e5' : '#e5f6fd',
+                    height: 40,
+                    paddingHorizontal: 10,
+                    borderRadius: 5,
+                    width: '95%',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    columnGap: 5,
+                    boxShadow: '6px 6px 6px 4px rgba(0, 0, 0, 0.2)',
+                }}
+            >
+                <Text>
+                    {
+                        type === 'error' ? <MaterialIcons name="error" size={24} color="red" /> :
+                            type === 'success' ? <MaterialIcons name="done" size={24} color="green" /> :
+                                type === 'warning' ? <Ionicons name="warning" size={24} color="#ed6c02" /> :
+                                    <Feather name="loader" size={24} color="#ed6c02" />
+                    }
+                </Text>
+                <Text style={{ color: 'black' }}>
+                    {text}
+                </Text>
+            </View>
+        </View>
+    );
+}
