@@ -12,20 +12,36 @@ const delivery_truck = require('@/assets/images/delivery_truck.png');
 export default function SignIn() {
     const router = useRouter();
 
+    const [logInError, setLogInError] = useState("");
+    const [emailError, setEmailError] = useState("");
+    const [passwordError, setPasswordError] = useState("");
+
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-
-    const [emailFocus, setEmailFocus] = useState(false);
-    const handleEmailFocus = () => setEmailFocus(true);
-    const handleEmailBlur = () => setEmailFocus(false);
+    const resetForm = () => {
+        setEmail("");
+        setPassword("");
+        setEmailError("");
+        setPasswordError("");
+        setLogInError("");
+    }
+    const handleLogin = () => {
+        
+        if (!email) return setEmailError("* Email or phone number required");
+        else setEmailError("");
+        if (!password) return setPasswordError("* password required");
+        else setPasswordError("")
+        
+        resetForm();
+        router.navigate("/Profile");
+    }
 
 
     const [passwordFocus, setPasswordFocus] = useState(false);
+    const [emailFocus, setEmailFocus] = useState(false);
     const [showPass, setShowPass] = useState(true);
-    const handlePasswordFocus = () => setPasswordFocus(true);
-    const handlePasswordBlur = () => setPasswordFocus(false);
 
     return (
         <View>
@@ -65,9 +81,12 @@ export default function SignIn() {
                                     inputMode='email'
                                     placeholder="Enter your email or phone number"
                                     placeholderTextColor="#666666"
-                                    onFocus={handleEmailFocus}
-                                    onBlur={handleEmailBlur}
+                                    onFocus={() => setEmailFocus(true)}
+                                    onBlur={() => setEmailFocus(false)}
                                 />
+                                {
+                                    emailError && <Text style={styles.errorText}>{emailError}</Text>
+                                }
                             </View>
                             <View>
                                 <Text style={globalStyles.h6 as any}>Password</Text>
@@ -82,9 +101,12 @@ export default function SignIn() {
                                         value={password}
                                         placeholder="Enter your password"
                                         placeholderTextColor="#666666"
-                                        onFocus={handlePasswordFocus}
-                                        onBlur={handlePasswordBlur}
+                                        onFocus={() => setPasswordFocus(true)}
+                                        onBlur={() => setPasswordFocus(false)}
                                     />
+                                    {
+                                        passwordError && <Text style={styles.errorText}>{passwordError}</Text>
+                                    }
                                     <View style={{ position: "absolute", right: 15, top: 17 }}>
                                         <TouchableOpacity
                                             onPress={() => setShowPass(!showPass)}
@@ -100,7 +122,7 @@ export default function SignIn() {
                             {/* Sign in button */}
                             <TouchableOpacity
                                 style={globalStyles.btnFilled}
-                                onPress={() => router.navigate('/Profile')}
+                                onPress={handleLogin}
                             >
                                 <Text style={[globalStyles.txt as any, { color: "white" }]}>Sign in</Text>
                             </TouchableOpacity>
@@ -153,4 +175,8 @@ const styles = StyleSheet.create({
         borderRadius: 2,
         backgroundColor: "#666666"
     },
+    errorText: {
+        fontSize: 12,
+        color: "red"
+    }
 });
