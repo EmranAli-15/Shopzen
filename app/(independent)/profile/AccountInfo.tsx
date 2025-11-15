@@ -5,6 +5,7 @@ import { globalStyles, primaryBg, primaryColor } from '@/constants/globalStyles'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Feather from '@expo/vector-icons/Feather';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
@@ -33,11 +34,11 @@ export default function AccountInfo() {
     }
 
 
-    const [email, setEmail] = useState("");
-    const [name, setName] = useState("");
+    const [email, setEmail] = useState("Softzenit@gmail.com");
+    const [name, setName] = useState("Md. Abdul Gaffar");
     const [gender, setGender] = useState("Gender");
-    const [number, setNumber] = useState("");
-    const [occupation, setOccupation] = useState("");
+    const [number, setNumber] = useState("01712345678");
+    const [occupation, setOccupation] = useState("Student");
 
 
 
@@ -60,33 +61,37 @@ export default function AccountInfo() {
             {
                 success && <Alert text='Profile update successfully' type='success'></Alert>
             }
-            <BackButton></BackButton>
-            <Text style={{ position: "absolute", flex: 1, alignSelf: "center", paddingVertical: 10, fontFamily: "Poppins", fontWeight: 700, fontSize: 24, color: "#1A1F71" }}>Account Information</Text>
+
 
             <ScrollView>
                 <View style={{ flexDirection: "column", rowGap: 40, paddingBottom: 80 }}>
+                    <View>
+                        <BackButton></BackButton>
+                        <Text style={{ position: "absolute", flex: 1, alignSelf: "center", paddingVertical: 10, fontFamily: "Poppins", fontWeight: 700, fontSize: 24, color: "#1A1F71" }}>Account Information</Text>
+                    </View>
+
                     {/* User profile view */}
                     <View style={{ flexDirection: "column", alignItems: "center" }}>
-                        <View style={{ borderRadius: "50%", backgroundColor: primaryBg, padding: 10, height: 100, width: 100, alignItems: "center", justifyContent: "center" }}>
-                            <FontAwesome name="user" size={80} color={primaryColor} />
+                        <View style={{ borderRadius: "50%", backgroundColor: primaryBg, padding: 10, height: 120, width: 120, alignItems: "center", justifyContent: "center" }}>
+                            <FontAwesome name="user" size={100} color={primaryColor} />
                             <TouchableOpacity
                                 onPress={() => router.navigate("/profile/ProfilePhoto")}
                                 style={{ position: "absolute", bottom: 0, right: 10 }}>
-                                <AntDesign name="camera" size={16} color={primaryColor} />
+                                <AntDesign name="camera" size={20} color={primaryColor} />
                             </TouchableOpacity>
                         </View>
                     </View>
 
 
 
-                    <View style={{ flexDirection: "column", rowGap: 24 }}>
+                    <View style={{ flexDirection: "column", rowGap: 20 }}>
                         {/* Name */}
                         <View>
-                            <Text style={globalStyles.h6 as any}>Full Name</Text>
+                            <Text style={styles.inputHeading as any}>Full Name</Text>
                             <View style={{ position: "relative" }}>
                                 <TextInput
                                     style={[
-                                        globalStyles.textInput as any,
+                                        globalStyles.inputStyle as any,
                                         nameFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
                                     ]}
                                     onChangeText={text => setName(text)}
@@ -97,17 +102,17 @@ export default function AccountInfo() {
                                     onFocus={() => setNameFocus(true)}
                                     onBlur={() => setNameFocus(false)}
                                 />
-                                <Feather style={styles.editIcon} name="edit" size={12} color="black" />
+                                <Feather style={styles.editIcon} name="edit" size={20} color="black" />
                             </View>
                         </View>
 
                         {/* Email */}
                         <View>
-                            <Text style={globalStyles.h6 as any}>Email</Text>
+                            <Text style={styles.inputHeading as any}>Email</Text>
                             <View style={{ position: "relative" }}>
                                 <TextInput
                                     style={[
-                                        globalStyles.textInput as any,
+                                        globalStyles.inputStyle as any,
                                         emailFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
                                     ]}
                                     onChangeText={text => setEmail(text)}
@@ -118,17 +123,17 @@ export default function AccountInfo() {
                                     onFocus={() => setEmailFocus(true)}
                                     onBlur={() => setEmailFocus(false)}
                                 />
-                                <Feather style={styles.editIcon} name="edit" size={12} color="black" />
+                                <Feather style={styles.editIcon} name="edit" size={20} color="black" />
                             </View>
                         </View>
 
                         {/* Phone number */}
                         <View>
-                            <Text style={globalStyles.h6 as any}>Phone number</Text>
+                            <Text style={styles.inputHeading as any}>Phone number</Text>
                             <View style={{ position: "relative" }}>
                                 <TextInput
                                     style={[
-                                        globalStyles.textInput as any,
+                                        globalStyles.inputStyle as any,
                                         numberFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
                                     ]}
                                     onChangeText={text => setNumber(text)}
@@ -139,13 +144,13 @@ export default function AccountInfo() {
                                     onFocus={() => setNumberFocus(true)}
                                     onBlur={() => setNumberFocus(false)}
                                 />
-                                <Feather style={styles.editIcon} name="edit" size={12} color="black" />
+                                <Feather style={styles.editIcon} name="edit" size={20} color="black" />
                             </View>
                         </View>
 
                         {/* Date of birth */}
                         <View>
-                            <Text style={globalStyles.h6 as any}>Date of Birth</Text>
+                            <Text style={styles.inputHeading as any}>Date of Birth</Text>
                             <View style={{ position: "relative" }}>
                                 <TouchableOpacity
                                     style={[globalStyles.btnFilled, { backgroundColor: primaryBg, borderColor: primaryBg, borderWidth: 4 }]}
@@ -153,7 +158,7 @@ export default function AccountInfo() {
                                 >
                                     <Text style={[{ color: "black", fontFamily: "Poppins" }]}>{birthDate}</Text>
                                 </TouchableOpacity>
-                                <AntDesign style={styles.editIcon} name="caret-down" size={12} color="black" />
+                                <MaterialCommunityIcons style={styles.editIcon} name="arrow-down-drop-circle-outline" size={20} color="black" />
                             </View>
                             {show && (
                                 <DateTimePicker
@@ -167,11 +172,11 @@ export default function AccountInfo() {
 
                         {/* Occupation */}
                         <View>
-                            <Text style={globalStyles.h6 as any}>Occupation</Text>
+                            <Text style={styles.inputHeading as any}>Occupation</Text>
                             <View style={{ position: "relative" }}>
                                 <TextInput
                                     style={[
-                                        globalStyles.textInput as any,
+                                        globalStyles.inputStyle as any,
                                         occupationFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
                                     ]}
                                     onChangeText={text => setOccupation(text)}
@@ -182,13 +187,13 @@ export default function AccountInfo() {
                                     onFocus={() => setOccupationFocus(true)}
                                     onBlur={() => setOccupationFocus(false)}
                                 />
-                                <Feather style={styles.editIcon} name="edit" size={12} color="black" />
+                                <Feather style={styles.editIcon} name="edit" size={20} color="black" />
                             </View>
                         </View>
 
                         {/* Gender */}
                         <View>
-                            <Text style={globalStyles.h6 as any}>Gender</Text>
+                            <Text style={styles.inputHeading as any}>Gender</Text>
                             <View style={{ position: "relative" }}>
                                 <TouchableOpacity
                                     style={[globalStyles.btnFilled, showGender && { borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }, { backgroundColor: primaryBg, borderColor: primaryBg, borderWidth: 4 }]}
@@ -196,7 +201,7 @@ export default function AccountInfo() {
                                 >
                                     <Text style={[{ color: "black", fontFamily: "Poppins" }]}>{gender}</Text>
                                 </TouchableOpacity>
-                                <AntDesign style={styles.editIcon} name="caret-down" size={12} color="black" />
+                                <MaterialCommunityIcons style={styles.editIcon} name="arrow-down-drop-circle-outline" size={20} color="black" />
                             </View>
                             {
                                 showGender && <View style={{ padding: 16, backgroundColor: primaryBg, borderBottomLeftRadius: 28, borderBottomRightRadius: 28, marginTop: 4 }}>
@@ -245,7 +250,7 @@ const styles = StyleSheet.create({
     editIcon: {
         position: "absolute",
         right: 10,
-        top: 24
+        top: 16
     },
     devideLine: {
         height: 1,
@@ -254,4 +259,10 @@ const styles = StyleSheet.create({
         borderRadius: 2,
         backgroundColor: "#666666"
     },
+    inputHeading:{
+        fontSize:16,
+        fontWeight:"600",
+        fontFamily:"Poppins",
+        marginBottom:8
+    }
 })

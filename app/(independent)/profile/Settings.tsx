@@ -175,15 +175,15 @@ const styles = StyleSheet.create({
         borderRadius: 32
     },
     track: {
-        width: 62,
+        width: 58,
         borderWidth: 1,
         borderColor: primaryColor,
         padding: 2,
     },
     knob: {
-        width: 28,
-        height: 28,
-        borderRadius: 14,
+        width: 24,
+        height: 24,
+        borderRadius: "50%",
         backgroundColor: primaryColor,
     },
 })

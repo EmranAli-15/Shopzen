@@ -55,14 +55,14 @@ export default function SignUp() {
                         height={26}
                     />
                 </View>
-                <Text style={[globalStyles.h6 as any, { alignSelf: "center" }]}>Welcome to ShopZen.</Text>
+                <Text style={[styles.font as any, { alignSelf: "center" }]}>Welcome to ShopZen.</Text>
             </View>
 
 
             <View style={{ flex: 1, justifyContent: "center" }}>
                 <View style={AuthStyles.sectionGap as any}>
                     {/* Auth providers */}
-                    <View style={{ flexDirection: "column", rowGap: 10 }}>
+                    <View style={{ flexDirection: "column", rowGap: 20 }}>
                         <Text style={{ fontFamily: "Poppins", fontSize: 16 }}>Sign up quickly with:</Text>
 
                         <AuthProvider></AuthProvider>
@@ -70,19 +70,19 @@ export default function SignUp() {
                         {/* Line devide */}
                         <View style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}>
                             <View style={styles.devideLine}></View>
-                            <Text style={globalStyles.h6 as any}>Or continue with</Text>
+                            <Text style={styles.font as any}>Or continue with</Text>
                             <View style={styles.devideLine}></View>
                         </View>
                     </View>
 
 
                     {/* Inputs for signup */}
-                    <View style={AuthStyles.inputGap as any}>
+                    <View style={{ flexDirection: "column", rowGap: 20, marginTop:-20 }}>
                         <View>
-                            <Text style={globalStyles.h6 as any}>Full name</Text>
+                            <Text style={globalStyles.inputHeading as any}>Full name</Text>
                             <TextInput
                                 style={[
-                                    globalStyles.textInput as any,
+                                    globalStyles.inputStyle as any,
                                     nameFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
                                 ]}
                                 onChangeText={text => setName(text)}
@@ -97,10 +97,10 @@ export default function SignUp() {
                             }
                         </View>
                         <View>
-                            <Text style={globalStyles.h6 as any}>Email or phone</Text>
+                            <Text style={globalStyles.inputHeading as any}>Email or phone</Text>
                             <TextInput
                                 style={[
-                                    globalStyles.textInput as any,
+                                    globalStyles.inputStyle as any,
                                     emailFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
                                 ]}
                                 inputMode='email'
@@ -116,11 +116,11 @@ export default function SignUp() {
                             }
                         </View>
                         <View>
-                            <Text style={globalStyles.h6 as any}>Password</Text>
+                            <Text style={globalStyles.inputHeading as any}>Password</Text>
                             <View style={{ position: "relative" }}>
                                 <TextInput
                                     style={[
-                                        globalStyles.textInput as any,
+                                        globalStyles.inputStyle as any,
                                         passwordFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
                                     ]}
                                     secureTextEntry={showPass && true}
@@ -134,12 +134,12 @@ export default function SignUp() {
                                 {
                                     passwordError && <Text style={styles.errorText}>{passwordError}</Text>
                                 }
-                                <View style={{ position: "absolute", right: 15, top: 17 }}>
+                                <View style={{ position: "absolute", right: 15, top: 13 }}>
                                     <TouchableOpacity
                                         onPress={() => setShowPass(!showPass)}
                                     >
                                         {
-                                            showPass ? <Ionicons name="eye-off-outline" size={24} color="black" /> : <Ionicons name="eye-outline" size={24} color="black" />
+                                            showPass ? <Ionicons name="eye-off-outline" size={24} color="#666666" /> : <Ionicons name="eye-outline" size={24} color="#666666" />
                                         }
                                     </TouchableOpacity>
                                 </View>
@@ -156,13 +156,13 @@ export default function SignUp() {
                             <Text style={[globalStyles.txt as any, { color: "white" }]}>Sign up</Text>
                         </TouchableOpacity>
                         <View style={{ flexDirection: "row", alignItems: "center", columnGap: 2, alignSelf: "center", marginTop: 10 }}>
-                            <Text style={[globalStyles.h6 as any, { alignSelf: "center" }]}>
+                            <Text style={[styles.font as any, { alignSelf: "center" }]}>
                                 Already have an account?
                             </Text>
                             <TouchableOpacity
                                 onPress={() => router.navigate('/SignIn')}
                             >
-                                <Text style={[globalStyles.h6 as any, { color: "#FF620A" }]}>Sign in</Text>
+                                <Text style={[styles.font as any, { color: "#FF620A" }]}>Sign in</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -186,7 +186,13 @@ const styles = StyleSheet.create({
         backgroundColor: "#666666"
     },
     errorText: {
-        fontSize: 12,
-        color: "red"
+        fontSize: 14,
+        color: "#E63946"
+    },
+    font: {
+        fontWeight: "500",
+        fontSize: 16,
+        fontFamily: "Poppins",
+        color: "#333333"
     }
 });

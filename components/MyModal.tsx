@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
     },
     insideModal: {
         backgroundColor: '#fff',
-        padding: 30,
+        padding: 20,
         borderRadius: 10,
-        width: '80%',
+        width: '90%',
     },
 });

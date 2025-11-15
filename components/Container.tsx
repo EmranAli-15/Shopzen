@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 export default function Container({ children }: { children: any }) {
     return (
         <SafeAreaView>
-            <View style={{ marginHorizontal: 10, height:"100%" }}>
+            <View style={{ marginHorizontal: 16, height:"100%" }}>
                 {
                     children
                 }

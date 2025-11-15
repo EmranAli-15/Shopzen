@@ -10,7 +10,7 @@ import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react
 
 export default function index() {
     const router = useRouter();
-    const [modal, setModal] = useState(true);
+    const [modal, setModal] = useState(false);
 
     const languages = [
         {

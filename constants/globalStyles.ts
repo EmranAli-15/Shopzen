@@ -30,7 +30,8 @@ export const globalStyles = {
         borderRadius: 28,
         marginTop: 4,
         fontWeight: "400",
-        fontFamily: "Poppins"
+        fontSize: 14,
+        fontFamily: "Poppins",
     },
 
     p: {
@@ -57,6 +58,21 @@ export const globalStyles = {
         textAlign: "center"
     },
 
+
+
+
+    // -----------------------------
+    inputHeading: {
+        fontSize: 16,
+        fontWeight: "500",
+        fontFamily: "poppins",
+        color: "#333333",
+        marginBottom: 8
+    },
+    inputStyle: {
+        borderRadius: 31,
+        padding: 16,
+    },
     inputBlurred: {
         backgroundColor: primaryBg,
         borderWidth: 1,

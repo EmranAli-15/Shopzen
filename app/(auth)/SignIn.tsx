@@ -28,12 +28,12 @@ export default function SignIn() {
         setLogInError("");
     }
     const handleLogin = () => {
-        
+
         if (!email) return setEmailError("* Email or phone number required");
         else setEmailError("");
         if (!password) return setPasswordError("* password required");
         else setPasswordError("")
-        
+
         resetForm();
         router.navigate("/Profile");
     }
@@ -62,19 +62,18 @@ export default function SignIn() {
                                     height={26}
                                 />
                             </View>
-                            <Text style={[globalStyles.h6 as any, { alignSelf: "center", marginTop: 10 }]}>Welcome Back! Please enter your details.</Text>
+                            <Text style={[styles.font as any, { alignSelf: "center", marginTop: 10 }]}>Welcome Back! Please enter your details.</Text>
                         </View>
 
 
 
                         {/* Email & password filed */}
-                        <View style={AuthStyles.inputGap as any}>
+                        <View style={{ flexDirection: "column", rowGap: 20 }}>
                             <View>
-                                <Text style={globalStyles.h6 as any}>Email or phone</Text>
+                                <Text style={globalStyles.inputHeading as any}>Email or phone</Text>
                                 <TextInput
-                                    style={[
-                                        globalStyles.textInput as any,
-                                        emailFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
+                                    style={[globalStyles.inputStyle,
+                                    emailFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
                                     ]}
                                     onChangeText={text => setEmail(text)}
                                     value={email}
@@ -89,11 +88,11 @@ export default function SignIn() {
                                 }
                             </View>
                             <View>
-                                <Text style={globalStyles.h6 as any}>Password</Text>
+                                <Text style={globalStyles.inputHeading as any}>Password</Text>
                                 <View style={{ position: "relative" }}>
                                     <TextInput
                                         style={[
-                                            globalStyles.textInput as any,
+                                            globalStyles.inputStyle as any,
                                             passwordFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
                                         ]}
                                         secureTextEntry={showPass && true}
@@ -107,49 +106,49 @@ export default function SignIn() {
                                     {
                                         passwordError && <Text style={styles.errorText}>{passwordError}</Text>
                                     }
-                                    <View style={{ position: "absolute", right: 15, top: 17 }}>
+                                    <View style={{ position: "absolute", right: 15, top: 13 }}>
                                         <TouchableOpacity
                                             onPress={() => setShowPass(!showPass)}
                                         >
                                             {
-                                                showPass ? <Ionicons name="eye-off-outline" size={24} color="black" /> : <Ionicons name="eye-outline" size={24} color="black" />
+                                                showPass ? <Ionicons name="eye-off-outline" size={24} color="#666666" /> : <Ionicons name="eye-outline" size={24} color="#666666" />
                                             }
                                         </TouchableOpacity>
                                     </View>
                                 </View>
                             </View>
-
-                            {/* Sign in button */}
-                            <TouchableOpacity
-                                style={globalStyles.btnFilled}
-                                onPress={handleLogin}
-                            >
-                                <Text style={[globalStyles.txt as any, { color: "white" }]}>Sign in</Text>
-                            </TouchableOpacity>
                         </View>
 
+                        {/* Sign in button */}
+                        <TouchableOpacity
+                            style={[globalStyles.btnFilled, { marginTop: 20 }]}
+                            onPress={handleLogin}
+                        >
+                            <Text style={[globalStyles.txt as any, { color: "white" }]}>Sign in</Text>
+                        </TouchableOpacity>
 
-                        <View style={AuthStyles.inputGap as any}>
+
+                        <View style={[AuthStyles.inputGap as any, { marginTop: -20 }]}>
                             <View style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}>
                                 <View style={styles.devideLine}></View>
-                                <Text style={globalStyles.h6 as any}>Or continue with</Text>
+                                <Text style={styles.font as any}>Or continue with</Text>
                                 <View style={styles.devideLine}></View>
                             </View>
 
                             <AuthProvider></AuthProvider>
 
-                            <View>
+                            <View style={{ flexDirection: "column", rowGap: 8 }}>
                                 <TouchableOpacity onPress={() => router.navigate('/ForgetHome')}>
-                                    <Text style={[globalStyles.h6 as any, { alignSelf: "center" }]}>Forget Password?</Text>
+                                    <Text style={[styles.font as any, { alignSelf: "center" }]}>Forget Password?</Text>
                                 </TouchableOpacity>
                                 <View style={{ flexDirection: "row", alignItems: "center", columnGap: 2, alignSelf: "center" }}>
-                                    <Text style={[globalStyles.h6 as any, { alignSelf: "center" }]}>
+                                    <Text style={[styles.font as any, { alignSelf: "center" }]}>
                                         Dont have an account?
                                     </Text>
                                     <TouchableOpacity
                                         onPress={() => router.navigate('/SignUp')}
                                     >
-                                        <Text style={[globalStyles.h6 as any, { color: "#FF620A" }]}>Sign up</Text>
+                                        <Text style={[styles.font as any, { color: "#FF620A" }]}>Sign up</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
@@ -176,7 +175,13 @@ const styles = StyleSheet.create({
         backgroundColor: "#666666"
     },
     errorText: {
-        fontSize: 12,
-        color: "red"
+        fontSize: 14,
+        color: "#E63946"
+    },
+    font: {
+        fontWeight: "500",
+        fontSize: 16,
+        fontFamily: "Poppins",
+        color: "#333333"
     }
 });
