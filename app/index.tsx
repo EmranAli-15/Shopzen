@@ -1,5 +1,6 @@
 import Container from '@/components/Container';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import { useFonts } from 'expo-font';
 import React, { useState } from 'react';
 const bdLogo = require('@/assets/images/bdLogo.png')
 
@@ -9,6 +10,12 @@ import { useRouter } from 'expo-router';
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function index() {
+    const [loaded] = useFonts({
+        PoppinsSemiBold: require('@/assets/fonts/Poppins-SemiBold.ttf'),
+        PoppinsRegular: require('@/assets/fonts/Poppins-Regular.ttf'),
+        PoppinsMedium: require("@/assets/fonts/Poppins-Medium.ttf")
+    });
+
     const router = useRouter();
     const [modal, setModal] = useState(false);
 
@@ -208,6 +215,6 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         height: '100%',
-        transform:[{rotate:"-12deg"}]
+        transform: [{ rotate: "-12deg" }]
     },
 });

@@ -56,7 +56,7 @@ export default function Profile() {
                 <View style={{ flex: 1, flexDirection: "column", rowGap: 20 }}>
                     <View>
                         <BackButton></BackButton>
-                        <Text style={{ position: "absolute", flex: 1, alignSelf: "center", paddingVertical: 10, fontFamily: "Poppins", fontWeight: 700, fontSize: 24, color: "#1A1F71" }}>Profile</Text>
+                        <Text style={{ position: "absolute", flex: 1, alignSelf: "center", paddingVertical: 10, fontFamily: "PoppinsSemiBold", fontSize: 24, color: "#1A1F71" }}>Profile</Text>
                     </View>
 
                     {/* User profile view */}
@@ -174,14 +174,14 @@ const styles = StyleSheet.create({
     headlines: {
         fontWeight: 700,
         fontSize: 20,
-        fontFamily: "Poppins",
+        fontFamily: "PoppinsSemiBold",
         color: "#333333",
         marginBottom: 4
     },
     linkHeading: {
         fontWeight: 500,
         fontSize: 18,
-        fontFamily: "Poppins",
+        fontFamily: "PoppinsMedium",
         color: "#4D4D4D"
     },
     linkStyle: {

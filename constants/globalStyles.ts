@@ -35,9 +35,8 @@ export const globalStyles = {
     },
 
     p: {
-        fontWeight: "400",
         fontSize: 16,
-        fontFamily: "Poppins",
+        fontFamily: "PoppinsRegular",
         color: "#666666",
         textAlign: "center"
     },
@@ -64,14 +63,14 @@ export const globalStyles = {
     // -----------------------------
     inputHeading: {
         fontSize: 16,
-        fontWeight: "500",
-        fontFamily: "poppins",
+        fontFamily: "PoppinsMedium",
         color: "#333333",
         marginBottom: 8
     },
     inputStyle: {
         borderRadius: 31,
         padding: 16,
+        fontFamily:"PoppinsRegular"
     },
     inputBlurred: {
         backgroundColor: primaryBg,

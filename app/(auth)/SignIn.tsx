@@ -179,9 +179,8 @@ const styles = StyleSheet.create({
         color: "#E63946"
     },
     font: {
-        fontWeight: "500",
         fontSize: 16,
-        fontFamily: "Poppins",
+        fontFamily: "PoppinsMedium",
         color: "#333333"
     }
 });
