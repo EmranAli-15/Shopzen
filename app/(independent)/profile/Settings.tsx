@@ -1,14 +1,33 @@
 import BackButton from '@/components/BackButton'
 import Container from '@/components/Container'
-import { primaryBg } from '@/constants/globalStyles'
+import { primaryBg, primaryColor } from '@/constants/globalStyles'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import { Checkbox } from 'expo-checkbox'
 import { useRouter } from 'expo-router'
-import React, { useState } from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React, { useRef, useState } from 'react'
+import { Animated, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 export default function Settings() {
     const router = useRouter();
+
+
+    const [on, setOn] = useState(false);
+    // Animated value for sliding
+    const offset = useRef(new Animated.Value(0)).current;
+    const toggleSwitch = () => {
+        setOn(!on);
+        Animated.timing(offset, {
+            toValue: on ? 0 : 1,   // 0 = left , 1 = right
+            duration: 230,
+            useNativeDriver: true,
+        }).start();
+    };
+    // Interpolate movement (button sliding)
+    const translateX = offset.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0, 28], // move right by 28px
+    });
+
 
     const [isChecked1, setChecked1] = useState(false);
     const [isChecked2, setChecked2] = useState(false);
@@ -18,9 +37,6 @@ export default function Settings() {
 
     return (
         <Container>
-
-
-
             <View style={{ flexDirection: "column", rowGap: 40 }}>
                 <View>
                     <BackButton></BackButton>
@@ -31,7 +47,6 @@ export default function Settings() {
                 <View style={{ flexDirection: "column", rowGap: 8 }}>
                     <TouchableOpacity
                         style={styles.linkStyle}
-                        onPress={() => router.navigate('/AccountInfo')}
                     >
                         <View style={styles.linkStyleIn}>
                             <MaterialIcons name="lock" size={24} color="black" />
@@ -39,15 +54,28 @@ export default function Settings() {
                         </View>
                         <MaterialIcons name="arrow-forward-ios" size={16} color="black" />
                     </TouchableOpacity>
-                    <TouchableOpacity
+                    <View
                         style={styles.linkStyle}
                     >
                         <View style={styles.linkStyleIn}>
                             <MaterialIcons name="language" size={24} color="black" />
                             <Text style={styles.linkHeading}>Change Language</Text>
                         </View>
-                        <MaterialIcons name="arrow-forward-ios" size={16} color="black" />
-                    </TouchableOpacity>
+                        <View style={{ flexDirection: "row", alignItems: "center" }}>
+                            {on && <Text style={{ marginRight: -22, fontWeight: "700" }}>EN</Text>}
+                            <TouchableOpacity activeOpacity={0.9} onPress={toggleSwitch}>
+                                <View style={[styles.track, { borderRadius: 20 }]}>
+                                    <Animated.View
+                                        style={[
+                                            styles.knob,
+                                            { transform: [{ translateX }] },
+                                        ]}
+                                    />
+                                </View>
+                            </TouchableOpacity>
+                            {!on && <Text style={{ marginLeft: -22, fontWeight: "700" }}>BN</Text>}
+                        </View>
+                    </View>
                 </View>
 
 
@@ -61,7 +89,7 @@ export default function Settings() {
                             <Checkbox
                                 value={isChecked1}
                                 onValueChange={setChecked1}
-                                color={isChecked1 ? '#4630EB' : undefined}
+                                color={isChecked1 ? primaryColor : undefined}
                             />
                             <Text>Other updates</Text>
                         </TouchableOpacity>
@@ -71,7 +99,7 @@ export default function Settings() {
                             <Checkbox
                                 value={isChecked2}
                                 onValueChange={setChecked2}
-                                color={isChecked2 ? '#4630EB' : undefined}
+                                color={isChecked2 ? primaryColor : undefined}
                             />
                             <Text>Promotional Offers & Discounts</Text>
                         </TouchableOpacity>
@@ -81,7 +109,7 @@ export default function Settings() {
                             <Checkbox
                                 value={isChecked3}
                                 onValueChange={setChecked3}
-                                color={isChecked3 ? '#4630EB' : undefined}
+                                color={isChecked3 ? primaryColor : undefined}
                             />
                             <Text>Seller Messages & Chat</Text>
                         </TouchableOpacity>
@@ -91,7 +119,7 @@ export default function Settings() {
                             <Checkbox
                                 value={isChecked4}
                                 onValueChange={setChecked4}
-                                color={isChecked4 ? '#4630EB' : undefined}
+                                color={isChecked4 ? primaryColor : undefined}
                             />
                             <Text>Payment & Refund Alerts</Text>
                         </TouchableOpacity>
@@ -101,7 +129,7 @@ export default function Settings() {
                             <Checkbox
                                 value={isChecked5}
                                 onValueChange={setChecked5}
-                                color={isChecked5 ? '#4630EB' : undefined}
+                                color={isChecked5 ? primaryColor : undefined}
                             />
                             <Text>App Updates & Announcements</Text>
                         </TouchableOpacity>
@@ -145,5 +173,17 @@ const styles = StyleSheet.create({
         backgroundColor: primaryBg,
         padding: 16,
         borderRadius: 32
-    }
+    },
+    track: {
+        width: 62,
+        borderWidth: 1,
+        borderColor: primaryColor,
+        padding: 2,
+    },
+    knob: {
+        width: 28,
+        height: 28,
+        borderRadius: 14,
+        backgroundColor: primaryColor,
+    },
 })

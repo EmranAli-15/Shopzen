@@ -112,7 +112,7 @@ export default function Profile() {
 
                             <TouchableOpacity
                                 style={styles.linkStyle}
-                                onPress={() => router.navigate('/Settings')}
+                                onPress={() => router.navigate('/profile/Settings')}
                             >
                                 <View style={styles.linkStyleIn}>
                                     <Feather name="settings" size={24} color="black" />
@@ -132,6 +132,7 @@ export default function Profile() {
 
                             <TouchableOpacity
                                 style={styles.linkStyle}
+                                onPress={() => router.navigate("/profile/HelpCenter")}
                             >
                                 <View style={styles.linkStyleIn}>
                                     <MaterialIcons name="help-outline" size={24} color="black" />

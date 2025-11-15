@@ -70,7 +70,7 @@ export default function AccountInfo() {
                         <View style={{ borderRadius: "50%", backgroundColor: primaryBg, padding: 10, height: 100, width: 100, alignItems: "center", justifyContent: "center" }}>
                             <FontAwesome name="user" size={80} color={primaryColor} />
                             <TouchableOpacity
-                                onPress={() => router.navigate("/ProfilePhoto")}
+                                onPress={() => router.navigate("/profile/ProfilePhoto")}
                                 style={{ position: "absolute", bottom: 0, right: 10 }}>
                                 <AntDesign name="camera" size={16} color={primaryColor} />
                             </TouchableOpacity>
