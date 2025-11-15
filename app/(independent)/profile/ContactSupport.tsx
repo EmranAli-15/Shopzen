@@ -45,7 +45,7 @@ export default function ContactSupport() {
                             <View style={{ padding: 3, backgroundColor: "#B9FFFA", borderRadius: "50%" }}>
                                 <MaterialCommunityIcons name="message-processing-outline" size={24} color="black" />
                             </View>
-                            <Text style={[globalStyles.txt as any, { color: "#3A726E", fontFamily: "Poppins", fontWeight: "700" }]}>Call Now</Text>
+                            <Text style={[globalStyles.txt as any, { color: "#3A726E", fontFamily: "Poppins", fontWeight: "700" }]}>Start Chat</Text>
                         </View>
                     </View>
                 </View>

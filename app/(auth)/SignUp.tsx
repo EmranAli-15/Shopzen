@@ -11,6 +11,10 @@ const delivery_truck = require('@/assets/images/delivery_truck.png');
 
 export default function SignUp() {
     const router = useRouter();
+    const [error, setError] = useState("");
+    const [nameError, setNameError] = useState("");
+    const [emailError, setEmailError] = useState("");
+    const [passwordError, setPasswordError] = useState("");
 
     const [showPass, setShowPass] = useState(true);
 
@@ -20,18 +24,20 @@ export default function SignUp() {
 
 
     const [nameFocus, setNameFocus] = useState(false);
-    const handleNameFocus = () => setNameFocus(true);
-    const handleNameBlur = () => setNameFocus(false);
-
-
     const [emailFocus, setEmailFocus] = useState(false);
-    const handleEmailFocus = () => setEmailFocus(true);
-    const handleEmailBlur = () => setEmailFocus(false);
-
-
     const [passwordFocus, setPasswordFocus] = useState(false);
-    const handlePasswordFocus = () => setPasswordFocus(true);
-    const handlePasswordBlur = () => setPasswordFocus(false);
+
+
+    const handleSignUp = () => {
+        if (!name) return setNameError("* Name is required")
+        else setNameError("")
+        if (!email) return setEmailError("* Email is required")
+        else setEmailError("")
+        if (!password) return setPasswordError("* Password is required")
+        setPasswordError("")
+
+        router.navigate('/Profile');
+    }
 
 
     return (
@@ -83,9 +89,12 @@ export default function SignUp() {
                                 value={name}
                                 placeholder="Enter your full name"
                                 placeholderTextColor="#666666"
-                                onFocus={handleNameFocus}
-                                onBlur={handleNameBlur}
+                                onFocus={() => setNameFocus(true)}
+                                onBlur={() => setNameFocus(false)}
                             />
+                            {
+                                nameError && <Text style={styles.errorText}>{nameError}</Text>
+                            }
                         </View>
                         <View>
                             <Text style={globalStyles.h6 as any}>Email or phone</Text>
@@ -99,9 +108,12 @@ export default function SignUp() {
                                 value={email}
                                 placeholder="Enter your email or phone number"
                                 placeholderTextColor="#666666"
-                                onFocus={handleEmailFocus}
-                                onBlur={handleEmailBlur}
+                                onFocus={() => setEmailFocus(true)}
+                                onBlur={() => setEmailFocus(false)}
                             />
+                            {
+                                emailError && <Text style={styles.errorText}>{emailError}</Text>
+                            }
                         </View>
                         <View>
                             <Text style={globalStyles.h6 as any}>Password</Text>
@@ -116,9 +128,12 @@ export default function SignUp() {
                                     value={password}
                                     placeholder="Enter your password"
                                     placeholderTextColor="#666666"
-                                    onFocus={handlePasswordFocus}
-                                    onBlur={handlePasswordBlur}
+                                    onFocus={() => setPasswordFocus(true)}
+                                    onBlur={() => setPasswordFocus(false)}
                                 />
+                                {
+                                    passwordError && <Text style={styles.errorText}>{passwordError}</Text>
+                                }
                                 <View style={{ position: "absolute", right: 15, top: 17 }}>
                                     <TouchableOpacity
                                         onPress={() => setShowPass(!showPass)}
@@ -136,7 +151,7 @@ export default function SignUp() {
                     <View>
                         <TouchableOpacity
                             style={globalStyles.btnFilled}
-                            onPress={() => router.navigate('/Profile')}
+                            onPress={() => handleSignUp()}
                         >
                             <Text style={[globalStyles.txt as any, { color: "white" }]}>Sign up</Text>
                         </TouchableOpacity>
@@ -170,4 +185,8 @@ const styles = StyleSheet.create({
         borderRadius: 2,
         backgroundColor: "#666666"
     },
+    errorText: {
+        fontSize: 12,
+        color: "red"
+    }
 });
