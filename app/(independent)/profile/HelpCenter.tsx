@@ -3,6 +3,7 @@ import Container from '@/components/Container';
 import { globalStyles, primaryBg } from '@/constants/globalStyles';
 import Feather from '@expo/vector-icons/Feather';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { FlatList, Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
@@ -14,6 +15,8 @@ const helpCenter5 = require('@/assets/images/profile/helpCenter5.png');
 const helpCenter6 = require('@/assets/images/profile/helpCenter6.png');
 
 export default function HelpCenter() {
+    const router = useRouter();
+
     const cards = [
         {
             id: "1",
@@ -89,11 +92,10 @@ export default function HelpCenter() {
 
                 <View>
                     <FlatList
-                        // style={{ marginTop: 16 }}
                         data={cards}
                         renderItem={({ item, index }) => (
                             <TouchableOpacity
-                                // onPress={() => setIsIcon(index)}
+                                onPress={() => router.navigate(item.path as any)}
                                 style={{ backgroundColor: primaryBg, padding: 16, marginBottom: 8, borderRadius: 20 }}
                             >
                                 <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
