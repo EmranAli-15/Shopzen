@@ -2,11 +2,13 @@ import BackButton from '@/components/BackButton'
 import Container from '@/components/Container'
 import { globalStyles } from '@/constants/globalStyles'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
+import { useRouter } from 'expo-router'
 import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 const contactSupport = require("@/assets/images/profile/contactSupport.png")
 
 export default function ContactSupport() {
+    const router = useRouter();
     return (
         <Container>
             <View>
@@ -41,12 +43,16 @@ export default function ContactSupport() {
                             </View>
                             <Text style={[globalStyles.txt as any, { color: "#FF620A", fontFamily: "Poppins", fontWeight: "700" }]}>Sent Email</Text>
                         </View>
-                        <View style={styles.container}>
-                            <View style={{ padding: 3, backgroundColor: "#B9FFFA", borderRadius: "50%" }}>
-                                <MaterialCommunityIcons name="message-processing-outline" size={24} color="black" />
+                        <TouchableOpacity
+                            onPress={() => router.navigate('/profile/LiveChat')}
+                        >
+                            <View style={styles.container}>
+                                <View style={{ padding: 3, backgroundColor: "#B9FFFA", borderRadius: "50%" }}>
+                                    <MaterialCommunityIcons name="message-processing-outline" size={24} color="black" />
+                                </View>
+                                <Text style={[globalStyles.txt as any, { color: "#3A726E", fontFamily: "Poppins", fontWeight: "700" }]}>Start Chat</Text>
                             </View>
-                            <Text style={[globalStyles.txt as any, { color: "#3A726E", fontFamily: "Poppins", fontWeight: "700" }]}>Start Chat</Text>
-                        </View>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>

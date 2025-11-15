@@ -62,7 +62,7 @@ export default function Profile() {
                             <FontAwesome name="user" size={80} color={primaryColor} />
                         </View>
                         <Text style={styles.headlines}>Md. Abdul Gaffar</Text>
-                        <Text style={globalStyles.p as any}>Softzenit@gmail.com</Text>
+                        <Text style={[globalStyles.p as any, { marginTop: -10 }]}>Softzenit@gmail.com</Text>
                     </View>
 
 
@@ -170,7 +170,8 @@ const styles = StyleSheet.create({
         fontWeight: 700,
         fontSize: 20,
         fontFamily: "Poppins",
-        color: "#333333"
+        color: "#333333",
+        marginBottom: 10
     },
     linkHeading: {
         fontWeight: 600,
