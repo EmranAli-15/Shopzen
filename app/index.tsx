@@ -13,7 +13,8 @@ export default function index() {
     const [loaded] = useFonts({
         PoppinsSemiBold: require('@/assets/fonts/Poppins-SemiBold.ttf'),
         PoppinsRegular: require('@/assets/fonts/Poppins-Regular.ttf'),
-        PoppinsMedium: require("@/assets/fonts/Poppins-Medium.ttf")
+        PoppinsMedium: require("@/assets/fonts/Poppins-Medium.ttf"),
+        PoppinsBold: require("@/assets/fonts/Poppins-Bold.ttf"),
     });
 
     const router = useRouter();

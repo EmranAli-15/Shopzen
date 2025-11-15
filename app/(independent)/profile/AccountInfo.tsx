@@ -1,6 +1,6 @@
 import Alert from '@/components/alert/Alert';
-import BackButton from '@/components/BackButton';
 import Container from '@/components/Container';
+import Header from '@/components/header/Header';
 import { globalStyles, primaryBg, primaryColor } from '@/constants/globalStyles';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Feather from '@expo/vector-icons/Feather';
@@ -61,14 +61,12 @@ export default function AccountInfo() {
             {
                 success && <Alert text='Profile update successfully' type='success'></Alert>
             }
-
+            <View>
+                <Header title='Account Information'></Header>
+            </View>
 
             <ScrollView>
-                <View style={{ flexDirection: "column", rowGap: 40, paddingBottom: 80 }}>
-                    <View>
-                        <BackButton></BackButton>
-                        <Text style={{ position: "absolute", flex: 1, alignSelf: "center", paddingVertical: 10, fontFamily: "Poppins", fontWeight: 700, fontSize: 24, color: "#1A1F71" }}>Account Information</Text>
-                    </View>
+                <View style={{ flexDirection: "column", rowGap: 20, paddingBottom: 20 }}>
 
                     {/* User profile view */}
                     <View style={{ flexDirection: "column", alignItems: "center" }}>
@@ -84,14 +82,14 @@ export default function AccountInfo() {
 
 
 
-                    <View style={{ flexDirection: "column", rowGap: 20 }}>
+                    <View style={{ flexDirection: "column", rowGap: 16 }}>
                         {/* Name */}
                         <View>
-                            <Text style={styles.inputHeading as any}>Full Name</Text>
+                            <Text style={globalStyles.inputTitle as any}>Full Name</Text>
                             <View style={{ position: "relative" }}>
                                 <TextInput
                                     style={[
-                                        globalStyles.inputStyle as any,
+                                        globalStyles.inputText as any,
                                         nameFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
                                     ]}
                                     onChangeText={text => setName(text)}
@@ -108,11 +106,11 @@ export default function AccountInfo() {
 
                         {/* Email */}
                         <View>
-                            <Text style={styles.inputHeading as any}>Email</Text>
+                            <Text style={globalStyles.inputTitle as any}>Email</Text>
                             <View style={{ position: "relative" }}>
                                 <TextInput
                                     style={[
-                                        globalStyles.inputStyle as any,
+                                        globalStyles.inputText as any,
                                         emailFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
                                     ]}
                                     onChangeText={text => setEmail(text)}
@@ -129,11 +127,11 @@ export default function AccountInfo() {
 
                         {/* Phone number */}
                         <View>
-                            <Text style={styles.inputHeading as any}>Phone number</Text>
+                            <Text style={globalStyles.inputTitle as any}>Phone number</Text>
                             <View style={{ position: "relative" }}>
                                 <TextInput
                                     style={[
-                                        globalStyles.inputStyle as any,
+                                        globalStyles.inputText as any,
                                         numberFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
                                     ]}
                                     onChangeText={text => setNumber(text)}
@@ -150,13 +148,13 @@ export default function AccountInfo() {
 
                         {/* Date of birth */}
                         <View>
-                            <Text style={styles.inputHeading as any}>Date of Birth</Text>
+                            <Text style={globalStyles.inputTitle as any}>Date of Birth</Text>
                             <View style={{ position: "relative" }}>
                                 <TouchableOpacity
-                                    style={[globalStyles.btnFilled, { backgroundColor: primaryBg, borderColor: primaryBg, borderWidth: 4 }]}
+                                    style={[globalStyles.inputText, { backgroundColor: primaryBg, borderWidth: 3, borderColor: primaryBg }]}
                                     onPress={() => setShow(true)}
                                 >
-                                    <Text style={[{ color: "black", fontFamily: "Poppins" }]}>{birthDate}</Text>
+                                    <Text>{birthDate}</Text>
                                 </TouchableOpacity>
                                 <MaterialCommunityIcons style={styles.editIcon} name="arrow-down-drop-circle-outline" size={20} color="black" />
                             </View>
@@ -172,11 +170,11 @@ export default function AccountInfo() {
 
                         {/* Occupation */}
                         <View>
-                            <Text style={styles.inputHeading as any}>Occupation</Text>
+                            <Text style={globalStyles.inputTitle as any}>Occupation</Text>
                             <View style={{ position: "relative" }}>
                                 <TextInput
                                     style={[
-                                        globalStyles.inputStyle as any,
+                                        globalStyles.inputText as any,
                                         occupationFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
                                     ]}
                                     onChangeText={text => setOccupation(text)}
@@ -193,24 +191,36 @@ export default function AccountInfo() {
 
                         {/* Gender */}
                         <View>
-                            <Text style={styles.inputHeading as any}>Gender</Text>
+                            <Text style={globalStyles.inputTitle as any}>Gender</Text>
                             <View style={{ position: "relative" }}>
                                 <TouchableOpacity
-                                    style={[globalStyles.btnFilled, showGender && { borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }, { backgroundColor: primaryBg, borderColor: primaryBg, borderWidth: 4 }]}
+                                    style={[globalStyles.textInput, showGender && { borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }, { backgroundColor: primaryBg, borderColor: primaryBg, borderWidth:1 }]}
                                     onPress={() => setShowGender(!showGender)}
                                 >
-                                    <Text style={[{ color: "black", fontFamily: "Poppins" }]}>{gender}</Text>
+                                    <Text style={{
+                                        fontFamily: "PoppinsRegular",
+                                        color: "#333333",
+                                        fontSize: 14,
+                                    }}>{gender}</Text>
                                 </TouchableOpacity>
-                                <MaterialCommunityIcons style={styles.editIcon} name="arrow-down-drop-circle-outline" size={20} color="black" />
+                                <MaterialCommunityIcons style={{position:"absolute", top:22, right:10}} name="arrow-down-drop-circle-outline" size={20} color="black" />
                             </View>
                             {
                                 showGender && <View style={{ padding: 16, backgroundColor: primaryBg, borderBottomLeftRadius: 28, borderBottomRightRadius: 28, marginTop: 4 }}>
                                     <TouchableOpacity onPress={() => genderFn("Male")}>
-                                        <Text>Male</Text>
+                                        <Text style={{
+                                            fontFamily: "PoppinsRegular",
+                                            color: "#333333",
+                                            fontSize: 14,
+                                        }}>Male</Text>
                                     </TouchableOpacity>
                                     <View style={styles.devideLine}></View>
                                     <TouchableOpacity onPress={() => genderFn("Female")}>
-                                        <Text>Female</Text>
+                                        <Text style={{
+                                            fontFamily: "PoppinsRegular",
+                                            color: "#333333",
+                                            fontSize: 14,
+                                        }}>Female</Text>
                                     </TouchableOpacity>
                                 </View>
                             }
@@ -259,10 +269,10 @@ const styles = StyleSheet.create({
         borderRadius: 2,
         backgroundColor: "#666666"
     },
-    inputHeading:{
-        fontSize:16,
-        fontWeight:"600",
-        fontFamily:"Poppins",
-        marginBottom:8
+    inputHeading: {
+        fontSize: 16,
+        fontWeight: "600",
+        fontFamily: "Poppins",
+        marginBottom: 8
     }
 })

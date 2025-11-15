@@ -8,7 +8,7 @@ export const globalStyles = {
         borderColor: primaryColor,
         backgroundColor: screenBg,
         paddingHorizontal: 10,
-        paddingVertical: 14,
+        paddingVertical: 12,
         borderRadius: 28
     },
     btnFilled: {
@@ -16,13 +16,13 @@ export const globalStyles = {
         borderColor: primaryColor,
         backgroundColor: primaryColor,
         paddingHorizontal: 10,
-        paddingVertical: 14,
+        paddingVertical: 12,
         borderRadius: 28
     },
     txt: {
         fontSize: 16,
         textAlign: "center",
-        fontWeight: "600",
+        fontFamily: "PoppinsSemiBold",
     },
     textInput: {
         paddingHorizontal: 16,
@@ -61,16 +61,22 @@ export const globalStyles = {
 
 
     // -----------------------------
-    inputHeading: {
-        fontSize: 16,
+    h1: {
+        fontSize: 24,
         fontFamily: "PoppinsMedium",
         color: "#333333",
-        marginBottom: 8
     },
-    inputStyle: {
+    inputTitle: {
+        fontFamily: "PoppinsMedium",
+        color: "#333333",
+        fontSize: 16,
+    },
+    inputText: {
+        fontFamily: "PoppinsRegular",
+        color: "#333333",
+        fontSize: 14,
         borderRadius: 31,
         padding: 16,
-        fontFamily:"PoppinsRegular"
     },
     inputBlurred: {
         backgroundColor: primaryBg,

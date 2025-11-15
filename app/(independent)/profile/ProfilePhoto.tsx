@@ -1,5 +1,5 @@
-import BackButton from '@/components/BackButton';
 import Container from '@/components/Container';
+import Header from '@/components/header/Header';
 import { globalStyles, primaryBg, primaryColor } from '@/constants/globalStyles';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import * as ImagePicker from "expo-image-picker";
@@ -45,13 +45,10 @@ export default function ProfilePhoto() {
 
     return (
         <Container>
-            <View style={{ flexDirection: "column",flex:1, rowGap:40}}>
+            <Header title='Upload Your Picture'></Header>
+            <View style={{ flexDirection: "column", flex: 1, rowGap: 40 }}>
                 <View>
-                    <View>
-                        <BackButton></BackButton>
-                        <Text style={{ position: "absolute", flex: 1, alignSelf: "center", paddingVertical: 10, fontFamily: "Poppins", fontWeight: 700, fontSize: 24, color: "#1A1F71" }}>Upload Your Picture</Text>
-                    </View>
-                    <Text style={[globalStyles.p as any, { textAlign: "left", fontSize:14 }]}>Add a profile picture to personalize your ShopZen experience. You can skip this for now.</Text>
+                    <Text style={[globalStyles.p as any, { textAlign: "left", fontSize: 14 }]}>Add a profile picture to personalize your ShopZen experience. You can skip this for now.</Text>
                 </View>
 
 
@@ -76,10 +73,10 @@ export default function ProfilePhoto() {
 
                     <View style={{ marginTop: 16 }}>
                         <TouchableOpacity
-                            style={[globalStyles.btnFilled, { width: "50%", alignSelf: "center", paddingVertical: 8 }]}
+                            style={[globalStyles.btnFilled, { width: "auto", alignSelf: "center", paddingVertical: 6 }]}
                             onPress={pickImage}
                         >
-                            <Text style={[globalStyles.txt as any, { color: "white" }]}>Upload another file</Text>
+                            <Text style={[globalStyles.txt as any, { color: "white", fontFamily:"PoppinsMedium" }]}>Upload another file</Text>
                         </TouchableOpacity>
 
                     </View>

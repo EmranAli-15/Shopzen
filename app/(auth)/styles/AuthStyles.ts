@@ -1,14 +1,12 @@
 export const AuthStyles = {
-    inputGap: {
-        flexDirection: "column",
-        rowGap: 20
+    errorText: {
+        fontSize: 14,
+        color: "#E63946",
+        fontFamily: "PoppinsRegular",
     },
-    sectionGap: {
-        flexDirection: "column",
-        rowGap: 40
-    },
-    introGap: {
-        flexDirection: "column",
-        rowGap: 24
+    font: {
+        fontSize: 16,
+        fontFamily: "PoppinsMedium",
+        color: "#333333"
     }
 };

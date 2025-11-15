@@ -3,7 +3,8 @@ import Container from '@/components/Container';
 import { globalStyles } from '@/constants/globalStyles';
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import Logo from './Logo';
 const delivery_truck = require('@/assets/images/delivery_truck.png');
 
 export default function AUthHome() {
@@ -16,16 +17,7 @@ export default function AUthHome() {
 
       {/* Logo and into */}
       <View>
-        <Text style={styles.heading}>Shop<Text style={{ color: "#0973BA" }}>Zen</Text></Text>
-        <View style={{ flexDirection: "row", alignSelf: "center", alignItems: "center", columnGap: 2 }}>
-          <Text style={{ color: "#3CB64B", fontWeight: "600" }}>Your Trusted Marketplace.</Text>
-          <Image
-            style={{ height: "auto", width: "auto" }}
-            source={delivery_truck}
-            width={37}
-            height={26}
-          />
-        </View>
+        <Logo></Logo>
       </View>
 
 

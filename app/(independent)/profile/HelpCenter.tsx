@@ -1,11 +1,11 @@
-import BackButton from '@/components/BackButton';
 import Container from '@/components/Container';
+import Header from '@/components/header/Header';
 import { globalStyles, primaryBg } from '@/constants/globalStyles';
 import Feather from '@expo/vector-icons/Feather';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { FlatList, Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { FlatList, Image, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 const helpCenter1 = require('@/assets/images/profile/helpCenter1.png');
 const helpCenter2 = require('@/assets/images/profile/helpCenter2.png');
@@ -67,63 +67,63 @@ export default function HelpCenter() {
 
     return (
         <Container>
-            <View style={{ flex: 1, flexDirection: "column", rowGap: 40 }}>
-                <View>
-                    <BackButton></BackButton>
-                    <Text style={{ position: "absolute", flex: 1, alignSelf: "center", paddingVertical: 10, fontFamily: "Poppins", fontWeight: 700, fontSize: 24, color: "#1A1F71" }}>Help Center</Text>
-                </View>
+            <Header title='Help Center'></Header>
+            <ScrollView>
+                <View style={{ flex: 1, flexDirection: "column", rowGap: 40 }}>
 
-                <View style={{ flexDirection: "column", rowGap: 32 }}>
-                    <View style={{ position: "relative" }}>
-                        <TextInput
-                            style={[
-                                globalStyles.textInput as any,
-                                searchFocus ? globalStyles.inputFocused : globalStyles.inputBlurred, { paddingLeft: 50 }
-                            ]}
-                            onChangeText={text => setSearch(text)}
-                            value={search}
-                            inputMode='email'
-                            placeholder="Search for help or FAQs…"
-                            placeholderTextColor="#666666"
-                            onFocus={() => setSearchFocus(true)}
-                            onBlur={() => setSearchFocus(false)}
-                        />
-                        <Feather style={{ position: "absolute", left: 15, top: 18 }} name="search" size={24} color="black" />
-                    </View>
+                    <View style={{ flexDirection: "column", rowGap: 18 }}>
+                        <View style={{ position: "relative" }}>
+                            <TextInput
+                                style={[
+                                    globalStyles.inputText as any,
+                                    searchFocus ? globalStyles.inputFocused : globalStyles.inputBlurred, { paddingLeft: 50 }
+                                ]}
+                                onChangeText={text => setSearch(text)}
+                                value={search}
+                                inputMode='email'
+                                placeholder="Search for help or FAQs…"
+                                placeholderTextColor="#666666"
+                                onFocus={() => setSearchFocus(true)}
+                                onBlur={() => setSearchFocus(false)}
+                            />
+                            <Feather style={{ position: "absolute", left: 15, top: 16 }} name="search" size={24} color="black" />
+                        </View>
 
-                    <View>
-                        <FlatList
-                            data={cards}
-                            renderItem={({ item, index }) => (
-                                <TouchableOpacity
-                                    onPress={() => router.navigate(item.path as any)}
-                                    style={{ backgroundColor: primaryBg, padding: 16, marginBottom: 8, borderRadius: 20 }}
-                                >
-                                    <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-                                        <View style={{ flexDirection: "row", alignItems: "center", columnGap: 8, width: "90%" }}>
-                                            <Image
-                                                style={{ objectFit: "contain", width: "20%", overflow: "hidden" }}
-                                                source={item.image}
-                                                height={50}
-                                            >
-                                            </Image>
+                        <View>
+                            <FlatList
+                                scrollEnabled={false}
+                                data={cards}
+                                renderItem={({ item, index }) => (
+                                    <TouchableOpacity
+                                        onPress={() => router.navigate(item.path as any)}
+                                        style={{ backgroundColor: primaryBg, padding: 16, marginBottom: 8, borderRadius: 20 }}
+                                    >
+                                        <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+                                            <View style={{ flexDirection: "row", alignItems: "center", columnGap: 8, width: "90%" }}>
+                                                <Image
+                                                    style={{ objectFit: "contain", width: "20%", overflow: "hidden" }}
+                                                    source={item.image}
+                                                    height={50}
+                                                >
+                                                </Image>
 
-                                            <View style={{ maxWidth: "80%" }}>
-                                                <Text style={{ fontSize: 18, color: "#333333", fontWeight: "500", fontFamily: "Poppins" }}>{item.heading}</Text>
-                                                <Text style={[globalStyles.p as any, { fontSize: 14, textAlign: "left" }]}>{item.text}</Text>
+                                                <View style={{ maxWidth: "80%" }}>
+                                                    <Text style={{ fontSize: 17, color: "#333333", fontFamily: "PoppinsMedium" }}>{item.heading}</Text>
+                                                    <Text style={[globalStyles.p as any, { fontSize: 14, textAlign: "left" }]}>{item.text}</Text>
+                                                </View>
+                                            </View>
+                                            <View style={{ width: "10%" }}>
+                                                <MaterialIcons name="arrow-forward-ios" size={24} color="#333333" />
                                             </View>
                                         </View>
-                                        <View style={{ width: "10%" }}>
-                                            <MaterialIcons name="arrow-forward-ios" size={24} color="black" />
-                                        </View>
-                                    </View>
-                                </TouchableOpacity>
-                            )}
-                            keyExtractor={(item, index) => index.toString()}
-                        />
+                                    </TouchableOpacity>
+                                )}
+                                keyExtractor={(item, index) => index.toString()}
+                            />
+                        </View>
                     </View>
                 </View>
-            </View>
+            </ScrollView>
 
         </Container>
     )

@@ -5,7 +5,8 @@ import { globalStyles } from '@/constants/globalStyles';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import Logo from './Logo';
 import { AuthStyles } from './styles/AuthStyles';
 const delivery_truck = require('@/assets/images/delivery_truck.png');
 
@@ -49,20 +50,11 @@ export default function SignIn() {
                 <BackButton></BackButton>
 
                 <View style={{ flex: 1, justifyContent: "center" }}>
-                    <View style={AuthStyles.sectionGap as any}>
+                    <View style={{ flexDirection: "column", rowGap: 40 }}>
                         {/* Logo and into */}
                         <View>
-                            <Text style={styles.heading}>Shop<Text style={{ color: "#0973BA" }}>Zen</Text></Text>
-                            <View style={{ flexDirection: "row", alignSelf: "center", alignItems: "center", columnGap: 2 }}>
-                                <Text style={{ color: "#3CB64B", fontWeight: "600", fontFamily: "Poppins" }}>Your Trusted Marketplace.</Text>
-                                <Image
-                                    style={{ height: "auto", width: "auto" }}
-                                    source={delivery_truck}
-                                    width={37}
-                                    height={26}
-                                />
-                            </View>
-                            <Text style={[styles.font as any, { alignSelf: "center", marginTop: 10 }]}>Welcome Back! Please enter your details.</Text>
+                            <Logo></Logo>
+                            <Text style={[AuthStyles.font as any, { alignSelf: "center", marginTop: 10 }]}>Welcome Back! Please enter your details.</Text>
                         </View>
 
 
@@ -70,9 +62,9 @@ export default function SignIn() {
                         {/* Email & password filed */}
                         <View style={{ flexDirection: "column", rowGap: 20 }}>
                             <View>
-                                <Text style={globalStyles.inputHeading as any}>Email or phone</Text>
+                                <Text style={globalStyles.inputTitle as any}>Email or phone</Text>
                                 <TextInput
-                                    style={[globalStyles.inputStyle,
+                                    style={[globalStyles.inputText,
                                     emailFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
                                     ]}
                                     onChangeText={text => setEmail(text)}
@@ -84,15 +76,15 @@ export default function SignIn() {
                                     onBlur={() => setEmailFocus(false)}
                                 />
                                 {
-                                    emailError && <Text style={styles.errorText}>{emailError}</Text>
+                                    emailError && <Text style={AuthStyles.errorText}>{emailError}</Text>
                                 }
                             </View>
                             <View>
-                                <Text style={globalStyles.inputHeading as any}>Password</Text>
+                                <Text style={globalStyles.inputTitle as any}>Password</Text>
                                 <View style={{ position: "relative" }}>
                                     <TextInput
                                         style={[
-                                            globalStyles.inputStyle as any,
+                                            globalStyles.inputText as any,
                                             passwordFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
                                         ]}
                                         secureTextEntry={showPass && true}
@@ -104,9 +96,9 @@ export default function SignIn() {
                                         onBlur={() => setPasswordFocus(false)}
                                     />
                                     {
-                                        passwordError && <Text style={styles.errorText}>{passwordError}</Text>
+                                        passwordError && <Text style={AuthStyles.errorText}>{passwordError}</Text>
                                     }
-                                    <View style={{ position: "absolute", right: 15, top: 13 }}>
+                                    <View style={{ position: "absolute", right: 15, top: 15 }}>
                                         <TouchableOpacity
                                             onPress={() => setShowPass(!showPass)}
                                         >
@@ -128,10 +120,10 @@ export default function SignIn() {
                         </TouchableOpacity>
 
 
-                        <View style={[AuthStyles.inputGap as any, { marginTop: -20 }]}>
+                        <View style={{ marginTop: -20, flexDirection: "column", rowGap: 10 }}>
                             <View style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}>
                                 <View style={styles.devideLine}></View>
-                                <Text style={styles.font as any}>Or continue with</Text>
+                                <Text style={AuthStyles.font as any}>Or continue with</Text>
                                 <View style={styles.devideLine}></View>
                             </View>
 
@@ -139,16 +131,16 @@ export default function SignIn() {
 
                             <View style={{ flexDirection: "column", rowGap: 8 }}>
                                 <TouchableOpacity onPress={() => router.navigate('/ForgetHome')}>
-                                    <Text style={[styles.font as any, { alignSelf: "center" }]}>Forget Password?</Text>
+                                    <Text style={[AuthStyles.font as any, { alignSelf: "center" }]}>Forget Password?</Text>
                                 </TouchableOpacity>
                                 <View style={{ flexDirection: "row", alignItems: "center", columnGap: 2, alignSelf: "center" }}>
-                                    <Text style={[styles.font as any, { alignSelf: "center" }]}>
+                                    <Text style={[AuthStyles.font as any, { alignSelf: "center" }]}>
                                         Dont have an account?
                                     </Text>
                                     <TouchableOpacity
                                         onPress={() => router.navigate('/SignUp')}
                                     >
-                                        <Text style={[styles.font as any, { color: "#FF620A" }]}>Sign up</Text>
+                                        <Text style={[AuthStyles.font as any, { color: "#FF620A" }]}>Sign up</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
@@ -162,25 +154,10 @@ export default function SignIn() {
 
 
 const styles = StyleSheet.create({
-    heading: {
-        fontSize: 44,
-        fontWeight: "900",
-        textAlign: "center",
-        color: "#FF620A"
-    },
     devideLine: {
         height: 2,
         flex: 1,
         borderRadius: 2,
         backgroundColor: "#666666"
-    },
-    errorText: {
-        fontSize: 14,
-        color: "#E63946"
-    },
-    font: {
-        fontSize: 16,
-        fontFamily: "PoppinsMedium",
-        color: "#333333"
     }
 });

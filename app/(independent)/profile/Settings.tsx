@@ -1,5 +1,5 @@
-import BackButton from '@/components/BackButton'
 import Container from '@/components/Container'
+import Header from '@/components/header/Header'
 import { primaryBg, primaryColor } from '@/constants/globalStyles'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import { Checkbox } from 'expo-checkbox'
@@ -37,15 +37,13 @@ export default function Settings() {
 
     return (
         <Container>
+            <Header title='Settings'></Header>
             <View style={{ flexDirection: "column", rowGap: 40 }}>
-                <View>
-                    <BackButton></BackButton>
-                    <Text style={{ position: "absolute", flex: 1, alignSelf: "center", paddingVertical: 10, fontFamily: "Poppins", fontWeight: 700, fontSize: 24, color: "#1A1F71" }}>Settings</Text>
-                </View>
 
 
                 <View style={{ flexDirection: "column", rowGap: 8 }}>
                     <TouchableOpacity
+                    onPress={()=> router.navigate('/ChangePassword')}
                         style={styles.linkStyle}
                     >
                         <View style={styles.linkStyleIn}>
@@ -80,8 +78,8 @@ export default function Settings() {
 
 
                 {/* Checkboxs */}
-                <View style={{ flexDirection: "column", rowGap: 16 }}>
-                    <Text style={{ fontFamily: "Poppins", fontSize: 20 }}>Notifications</Text>
+                <View>
+                    <Text style={styles.headlines}>Notifications</Text>
                     <View style={{ flexDirection: "column", rowGap: 16 }}>
                         <TouchableOpacity
                             style={styles.checkbox}
@@ -91,7 +89,7 @@ export default function Settings() {
                                 onValueChange={setChecked1}
                                 color={isChecked1 ? primaryColor : undefined}
                             />
-                            <Text>Other updates</Text>
+                            <Text style={styles.notifyText}>Other updates</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.checkbox}
@@ -101,7 +99,7 @@ export default function Settings() {
                                 onValueChange={setChecked2}
                                 color={isChecked2 ? primaryColor : undefined}
                             />
-                            <Text>Promotional Offers & Discounts</Text>
+                            <Text style={styles.notifyText}>Promotional Offers & Discounts</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.checkbox}
@@ -111,7 +109,7 @@ export default function Settings() {
                                 onValueChange={setChecked3}
                                 color={isChecked3 ? primaryColor : undefined}
                             />
-                            <Text>Seller Messages & Chat</Text>
+                            <Text style={styles.notifyText}>Seller Messages & Chat</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.checkbox}
@@ -121,7 +119,7 @@ export default function Settings() {
                                 onValueChange={setChecked4}
                                 color={isChecked4 ? primaryColor : undefined}
                             />
-                            <Text>Payment & Refund Alerts</Text>
+                            <Text style={styles.notifyText}>Payment & Refund Alerts</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.checkbox}
@@ -131,7 +129,7 @@ export default function Settings() {
                                 onValueChange={setChecked5}
                                 color={isChecked5 ? primaryColor : undefined}
                             />
-                            <Text>App Updates & Announcements</Text>
+                            <Text style={styles.notifyText}>App Updates & Announcements</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -142,17 +140,21 @@ export default function Settings() {
 
 
 const styles = StyleSheet.create({
-    headlines: {
-        fontWeight: 700,
-        fontSize: 20,
-        fontFamily: "Poppins",
-        color: "#333333"
-    },
     linkHeading: {
-        fontWeight: 600,
-        fontSize: 18,
-        fontFamily: "Poppins",
+        fontFamily: "PoppinsMedium",
+        fontSize: 16,
         color: "#4D4D4D"
+    },
+    notifyText: {
+        fontFamily: "PoppinsMedium",
+        fontSize: 14,
+        color: "#000000"
+    },
+    headlines: {
+        fontSize: 18,
+        fontFamily: "PoppinsSemiBold",
+        color: "#333333",
+        marginBottom: 4
     },
     linkStyle: {
         flexDirection: "row",
