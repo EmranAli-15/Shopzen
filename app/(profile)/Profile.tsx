@@ -112,6 +112,7 @@ export default function Profile() {
 
                             <TouchableOpacity
                                 style={styles.linkStyle}
+                                onPress={() => router.navigate('/Settings')}
                             >
                                 <View style={styles.linkStyleIn}>
                                     <Feather name="settings" size={24} color="black" />
@@ -190,10 +191,5 @@ const styles = StyleSheet.create({
         height: 1,
         borderRadius: 2,
         backgroundColor: "#666666"
-    },
-    navbar: {
-        padding: 5,
-        flexDirection: "row",
-        justifyContent: "space-around"
     }
 })

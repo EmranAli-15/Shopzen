@@ -45,7 +45,7 @@ export default function ProfilePhoto() {
 
     return (
         <Container>
-            <View style={{ flexDirection: "column",flex:1, justifyContent: "space-between", marginBottom:60}}>
+            <View style={{ flexDirection: "column",flex:1, rowGap:40}}>
                 <View>
                     <View>
                         <BackButton></BackButton>
