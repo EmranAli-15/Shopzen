@@ -27,7 +27,7 @@ export default function Orders() {
         </View>
 
         <View style={{ flexDirection: "column", rowGap: 16 }}>
-          <Text style={{ fontFamily: "PoppinsMedium", fontSize: 20, color: "#333333", textAlign:"center" }}>Didn't find what you're looking for?</Text>
+          <Text  style={[globalStyles.h2, { textAlign: "center" }]}>Didn't find what you're looking for?</Text>
           <TouchableOpacity
             style={globalStyles.btnFilled}
           >

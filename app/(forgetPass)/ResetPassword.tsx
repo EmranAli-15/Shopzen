@@ -34,11 +34,11 @@ export default function ResetPassword() {
                             <Image
                                 style={{ height: 70, width: 70 }}
                                 source={forget3}
-                                width={37}
-                                height={26}
+                                width={60}
+                                height={60}
                             />
                         </View>
-                        <Text style={globalStyles.h3 as any}>Reset Your Password</Text>
+                        <Text style={[globalStyles.h2, { textAlign: "center" }]}>Reset Your Password</Text>
                         <Text style={globalStyles.p as any}>
                             Your new password must be different to previously used password.
                         </Text>
@@ -48,11 +48,11 @@ export default function ResetPassword() {
                     {/* Email & password filed */}
                     <View style={ForgotStyles.inputGap as any}>
                         <View>
-                            <Text style={globalStyles.h6 as any}>Password</Text>
+                            <Text style={globalStyles.inputTitle as any}>Password</Text>
                             <View style={{ position: "relative" }}>
                                 <TextInput
                                     style={[
-                                        globalStyles.textInput as any,
+                                        globalStyles.inputText as any,
                                         passwordFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
                                     ]}
                                     secureTextEntry={showPass && true}
@@ -68,7 +68,7 @@ export default function ResetPassword() {
                                         onPress={() => setShowPass(!showPass)}
                                     >
                                         {
-                                            showPass ? <Ionicons name="eye-off-outline" size={24} color="black" /> : <Ionicons name="eye-outline" size={24} color="black" />
+                                            showPass ? <Ionicons name="eye-off-outline" size={24} color="#666666" /> : <Ionicons name="eye-outline" size={24} color="black" />
                                         }
                                     </TouchableOpacity>
                                 </View>
@@ -76,11 +76,11 @@ export default function ResetPassword() {
                         </View>
 
                         <View>
-                            <Text style={globalStyles.h6 as any}>Confirm Password</Text>
+                            <Text style={globalStyles.inputTitle as any}>Confirm Password</Text>
                             <View style={{ position: "relative" }}>
                                 <TextInput
                                     style={[
-                                        globalStyles.textInput as any,
+                                        globalStyles.inputText as any,
                                         conPassFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
                                     ]}
                                     secureTextEntry={showPass && true}
@@ -96,7 +96,7 @@ export default function ResetPassword() {
                                         onPress={() => setShowPass(!showPass)}
                                     >
                                         {
-                                            showPass ? <Ionicons name="eye-off-outline" size={24} color="black" /> : <Ionicons name="eye-outline" size={24} color="black" />
+                                            showPass ? <Ionicons name="eye-off-outline" size={24} color="#666666" /> : <Ionicons name="eye-outline" size={24} color="black" />
                                         }
                                     </TouchableOpacity>
                                 </View>
@@ -106,7 +106,7 @@ export default function ResetPassword() {
 
                     <TouchableOpacity
                         style={globalStyles.btnFilled}
-                    onPress={() => router.navigate('/ResetDone')}
+                        onPress={() => router.navigate('/ResetDone')}
                     >
                         <Text style={[globalStyles.txt as any, { color: "white" }]}>Update Password</Text>
                     </TouchableOpacity>

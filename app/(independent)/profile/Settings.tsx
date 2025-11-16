@@ -1,6 +1,6 @@
 import Container from '@/components/Container'
 import Header from '@/components/header/Header'
-import { primaryBg, primaryColor } from '@/constants/globalStyles'
+import { primaryBg, primaryColor, TYPOGRAPHY } from '@/constants/globalStyles'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import { Checkbox } from 'expo-checkbox'
 import { useRouter } from 'expo-router'
@@ -146,12 +146,12 @@ const styles = StyleSheet.create({
         color: "#4D4D4D"
     },
     notifyText: {
-        fontFamily: "PoppinsMedium",
+        fontFamily: "PoppinsRegular",
         fontSize: 14,
         color: "#000000"
     },
     headlines: {
-        fontSize: 18,
+        fontSize: TYPOGRAPHY.h2,
         fontFamily: "PoppinsSemiBold",
         color: "#333333",
         marginBottom: 4

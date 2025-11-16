@@ -23,7 +23,7 @@ export default function MyOrder() {
                 </View>
 
                 <View style={{ flexDirection: "column", rowGap: 8 }}>
-                    <Text style={[globalStyles.h1 as any, { textAlign: "center" }]}>No Orders Yet</Text>
+                    <Text style={[globalStyles.h2 as any, { textAlign: "center" }]}>No Orders Yet</Text>
                     <Text style={globalStyles.p as any}>You haven’t placed any orders yet. Discover amazing deals from trusted vendors across Bangladesh!</Text>
                 </View>
 

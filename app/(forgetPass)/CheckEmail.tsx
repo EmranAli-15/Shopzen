@@ -19,12 +19,12 @@ export default function CheckEmail() {
                             <Image
                                 style={{ height: 70, width: 70 }}
                                 source={forget1}
-                                width={37}
-                                height={26}
+                                width={60}
+                                height={60}
                             />
                         </View>
 
-                        <Text style={globalStyles.h3 as any}>Check Your Email</Text>
+                        <Text style={[globalStyles.h2, { textAlign: "center" }]}>Check Your Email</Text>
                         <Text style={globalStyles.p as any}>
                             A reset link has been sent to your email.
                         </Text>
@@ -46,7 +46,7 @@ export default function CheckEmail() {
                             <TouchableOpacity
                                 onPress={() => router.navigate('/ForgetHome')}
                             >
-                                <Text style={{ color: "#FF620A" }}>Click to resend</Text>
+                                <Text style={[globalStyles.h6 as any, { color: "#FF620A" }]}>Click to resend</Text>
                             </TouchableOpacity>
                         </View>
                     </View>

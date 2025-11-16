@@ -34,13 +34,13 @@ export default function UpdateDone() {
                     </View>
 
                     <View>
-                        <Text style={{ fontFamily: "PoppinsMedium", fontSize: 20, color: "#333333", textAlign: "center" }}>Password Changed</Text>
+                        <Text style={[globalStyles.h2, { textAlign: "center" }]}>Password Changed</Text>
                         <Text style={globalStyles.p as any}>Please provide your phone number. We'll text you a verification code to confirm it's you.</Text>
                     </View>
 
                     <TouchableOpacity
                         style={[globalStyles.btnFilled, { marginTop: 20 }]}
-                        onPress={() => router.navigate('/ProvideOTP')}
+                        onPress={() => router.navigate('/')}
                     >
                         <Text style={[globalStyles.txt as any, { color: "white" }]}>Continue</Text>
                     </TouchableOpacity>

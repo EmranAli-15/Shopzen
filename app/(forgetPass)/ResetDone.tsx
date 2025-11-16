@@ -19,12 +19,12 @@ export default function ResetDone() {
                             <Image
                                 style={{ height: 70, width: 70 }}
                                 source={forget4}
-                                width={37}
-                                height={26}
+                                width={60}
+                                height={60}
                             />
                         </View>
 
-                        <Text style={globalStyles.h3 as any}>Password Reset</Text>
+                        <Text style={[globalStyles.h2, { textAlign: "center" }]}>Password Reset</Text>
                         <Text style={globalStyles.p as any}>
                             Your password has been reset successfully. You can now sign in with your new password.
                         </Text>

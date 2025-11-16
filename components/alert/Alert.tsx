@@ -41,7 +41,7 @@ export default function Alert({ text, type }: { text: string; type: TType }) {
                                     <Feather name="loader" size={24} color="#ed6c02" />
                     }
                 </Text>
-                <Text style={{ color: 'black' }}>
+                <Text style={{ color: 'black', fontFamily:"PoppinsRegular" }}>
                     {text}
                 </Text>
             </View>

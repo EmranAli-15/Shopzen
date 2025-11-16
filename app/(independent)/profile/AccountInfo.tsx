@@ -74,7 +74,7 @@ export default function AccountInfo() {
                             <FontAwesome name="user" size={100} color={primaryColor} />
                             <TouchableOpacity
                                 onPress={() => router.navigate("/profile/ProfilePhoto")}
-                                style={{ position: "absolute", bottom: 0, right: 10 }}>
+                                style={{ position: "absolute", bottom: 0, right: 10, borderRadius: "50%", backgroundColor: "white", padding: 5 }}>
                                 <AntDesign name="camera" size={20} color={primaryColor} />
                             </TouchableOpacity>
                         </View>
@@ -194,7 +194,7 @@ export default function AccountInfo() {
                             <Text style={globalStyles.inputTitle as any}>Gender</Text>
                             <View style={{ position: "relative" }}>
                                 <TouchableOpacity
-                                    style={[globalStyles.textInput, showGender && { borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }, { backgroundColor: primaryBg, borderColor: primaryBg, borderWidth:1 }]}
+                                    style={[globalStyles.textInput, showGender && { borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }, { backgroundColor: primaryBg, borderColor: primaryBg, borderWidth: 1 }]}
                                     onPress={() => setShowGender(!showGender)}
                                 >
                                     <Text style={{
@@ -203,7 +203,7 @@ export default function AccountInfo() {
                                         fontSize: 14,
                                     }}>{gender}</Text>
                                 </TouchableOpacity>
-                                <MaterialCommunityIcons style={{position:"absolute", top:22, right:10}} name="arrow-down-drop-circle-outline" size={20} color="black" />
+                                <MaterialCommunityIcons style={{ position: "absolute", top: 22, right: 10 }} name="arrow-down-drop-circle-outline" size={20} color="black" />
                             </View>
                             {
                                 showGender && <View style={{ padding: 16, backgroundColor: primaryBg, borderBottomLeftRadius: 28, borderBottomRightRadius: 28, marginTop: 4 }}>

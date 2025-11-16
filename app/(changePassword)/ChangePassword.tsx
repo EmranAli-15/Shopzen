@@ -24,7 +24,7 @@ export default function ChangePassword() {
         <Container>
             <Header title='Change Password'></Header>
 
-            <View style={{flexDirection:"column", rowGap:20}}>
+            <View style={{ flexDirection: "column", rowGap: 20 }}>
                 <View style={{ alignSelf: "center" }}>
                     <Image
                         style={{ height: 80, width: "60%" }}
@@ -35,7 +35,7 @@ export default function ChangePassword() {
                 </View>
 
                 <View>
-                    <Text style={{ fontFamily: "PoppinsMedium", fontSize: 20, color: "#333333", textAlign: "center" }}>Change your password</Text>
+                    <Text style={[globalStyles.h2, { textAlign: "center" }]}>Change your password</Text>
                     <Text style={globalStyles.p as any}>Please provide your phone number. We'll text you a verification code to confirm it's you.</Text>
                 </View>
 
@@ -57,7 +57,7 @@ export default function ChangePassword() {
 
                 <TouchableOpacity
                     style={[globalStyles.btnFilled, { marginTop: 20 }]}
-                onPress={()=>router.navigate('/ProvideOTP')}
+                    onPress={() => router.navigate('/ProvideOTP')}
                 >
                     <Text style={[globalStyles.txt as any, { color: "white" }]}>Generate OTP</Text>
                 </TouchableOpacity>

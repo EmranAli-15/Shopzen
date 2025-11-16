@@ -1,7 +1,7 @@
 import Container from '@/components/Container';
 import Header from '@/components/header/Header';
 import MyModal from '@/components/MyModal';
-import { globalStyles, primaryBg, primaryColor } from '@/constants/globalStyles';
+import { globalStyles, primaryBg, primaryColor, TYPOGRAPHY } from '@/constants/globalStyles';
 import Feather from '@expo/vector-icons/Feather';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
@@ -18,7 +18,7 @@ export default function Profile() {
     const [modal, setModal] = useState(false);
 
     return (
-        <View>
+        <View style={{}}>
             <Container>
                 <MyModal modal={modal} setModal={setModal}>
                     <View style={{ flexDirection: "column", rowGap: 10 }}>
@@ -56,7 +56,7 @@ export default function Profile() {
 
 
                 <ScrollView>
-                    <View style={{ flex: 1, flexDirection: "column", rowGap: 18 }}>
+                    <View style={{ flexDirection: "column", rowGap: 40 }}>
                         {/* User profile view */}
                         <View style={{ flexDirection: "column", alignItems: "center", rowGap: 16 }}>
                             <View style={{ borderRadius: "50%", backgroundColor: primaryBg, padding: 10, height: 120, width: 120, alignItems: "center", justifyContent: "center" }}>
@@ -129,7 +129,7 @@ export default function Profile() {
 
 
                         {/* Support section */}
-                        <View>
+                        <View style={{marginBottom:20}}>
                             <Text style={styles.headlines}>Support</Text>
                             <View style={{ backgroundColor: primaryBg, padding: 10, borderRadius: 26 }}>
 
@@ -159,8 +159,6 @@ export default function Profile() {
 
                             </View>
                         </View>
-
-
                     </View>
                 </ScrollView>
             </Container>
@@ -171,7 +169,7 @@ export default function Profile() {
 
 const styles = StyleSheet.create({
     headlines: {
-        fontSize: 17,
+        fontSize: TYPOGRAPHY.h2,
         fontFamily: "PoppinsSemiBold",
         color: "#333333",
         marginBottom: 4

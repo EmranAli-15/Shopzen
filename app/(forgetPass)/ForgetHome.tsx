@@ -24,12 +24,12 @@ export default function ForgetHome() {
                             <Image
                                 style={{ height: 70, width: 70 }}
                                 source={forget1}
-                                width={37}
-                                height={26}
+                                width={60}
+                                height={60}
                             />
                         </View>
 
-                        <Text style={globalStyles.h3 as any}>Forgot Your Password?</Text>
+                        <Text style={[globalStyles.h2, { textAlign: "center" }]}>Forgot Your Password?</Text>
                         <Text style={globalStyles.p as any}>
                             Enter your registered email address, and we’ll send you a link to reset your password.
                         </Text>
@@ -39,10 +39,10 @@ export default function ForgetHome() {
                     {/* Email form */}
                     <View style={ForgotStyles.sectionGap as any}>
                         <View>
-                            <Text style={globalStyles.h6 as any}>Email or phone</Text>
+                            <Text style={globalStyles.inputTitle as any}>Email or phone</Text>
                             <TextInput
                                 style={[
-                                    globalStyles.textInput as any,
+                                    globalStyles.inputText as any,
                                     emailFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
                                 ]}
                                 onChangeText={text => setEmail(text)}
@@ -78,12 +78,6 @@ export default function ForgetHome() {
 
 
 const styles = StyleSheet.create({
-    heading: {
-        fontSize: 44,
-        fontWeight: "900",
-        textAlign: "center",
-        color: "#FF620A"
-    },
     devideLine: {
         height: 2,
         flex: 1,

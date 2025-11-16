@@ -18,7 +18,7 @@ export default function index() {
     });
 
     const router = useRouter();
-    const [modal, setModal] = useState(false);
+    const [modal, setModal] = useState(true);
 
     const languages = [
         {
@@ -106,15 +106,15 @@ export default function index() {
                     />
                 </View>
 
+                    <Text style={[{ fontSize: 18, textAlign: "center", fontFamily:"PoppinsMedium" }]}>We noticed you’re using Softzen from <Text style={{ color: "#FF620A", fontWeight: "bold" }}>Bangladesh</Text>. Tell us your preferred language and where you’re from.</Text>
                 <View>
-                    <Text style={[{ fontSize: 18, textAlign: "center", marginTop: -50 }]}>We noticed you’re using Softzen from <Text style={{ color: "#FF620A", fontWeight: "bold" }}>Bangladesh</Text>. Tell us your preferred language and where you’re from.</Text>
 
                     <View>
                         <View style={{ position: "relative", width: "100%" }}>
                             <TouchableOpacity
                                 onPress={() => handleLan("", false)}
                                 style={[styles.select, { marginTop: 15 }]}>
-                                <Text>{myLanguage}</Text>
+                                <Text style={{fontFamily:"PoppinsMedium"}}>{myLanguage}</Text>
                                 <AntDesign style={openLan && { transform: [{ rotate: '180deg' }] }} name="caret-down" size={16} color="black" />
                             </TouchableOpacity>
                             {
@@ -138,7 +138,7 @@ export default function index() {
                             <TouchableOpacity
                                 onPress={() => handleDis("", false)}
                                 style={[styles.select, { marginTop: 15 }]}>
-                                <Text>{myDistrict}</Text>
+                                <Text style={{fontFamily:"PoppinsMedium"}}>{myDistrict}</Text>
                                 <AntDesign style={openDis && { transform: [{ rotate: '180deg' }] }} name="caret-down" size={16} color="black" />
                             </TouchableOpacity>
                             {
@@ -177,24 +177,22 @@ export default function index() {
 
 
 const styles = StyleSheet.create({
-    mt: {
-        marginTop: 30
-    },
     select: {
         backgroundColor: "#FFF2EB",
         borderColor: "#FF620A",
         borderWidth: 1,
         borderRadius: 8,
-        padding: 8,
+        padding: 14,
         flexDirection: "row",
         justifyContent: "space-between"
     },
     optiosText: {
         marginLeft: 5,
         marginVertical: 2,
-        borderBottomWidth: 1,
-        borderColor: "gray",
-        paddingVertical: 3
+        paddingVertical: 3,
+        color:"#333333",
+        fontFamily:"PoppinsRegular",
+        fontSize:14
     },
     boxShadow: {
         backgroundColor: 'white',

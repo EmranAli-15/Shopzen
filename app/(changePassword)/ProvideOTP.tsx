@@ -35,11 +35,11 @@ export default function ProvideOTP() {
                 </View>
 
                 <View>
-                    <Text style={{ fontFamily: "PoppinsMedium", fontSize: 20, color: "#333333", textAlign: "center" }}>OTP Verification</Text>
+                    <Text style={[globalStyles.h2, { textAlign: "center" }]}>OTP Verification</Text>
                     <Text style={globalStyles.p as any}>We’ve sent a verification code to your phone. Please enter it below to continue.</Text>
                 </View>
 
-                <View style={{ flexDirection: "row", justifyContent:"space-evenly" }}>
+                <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
                     <View style={styles.numBox}></View>
                     <View style={styles.numBox}></View>
                     <View style={styles.numBox}></View>

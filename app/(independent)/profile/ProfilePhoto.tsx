@@ -4,7 +4,7 @@ import { globalStyles, primaryBg, primaryColor } from '@/constants/globalStyles'
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import * as ImagePicker from "expo-image-picker";
 import React, { useState } from 'react';
-import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 const icon1 = require("@/assets/images/profile/profileIcons/icon1.png");
 const icon2 = require("@/assets/images/profile/profileIcons/icon2.png");
 const icon3 = require("@/assets/images/profile/profileIcons/icon3.png");
@@ -46,72 +46,75 @@ export default function ProfilePhoto() {
     return (
         <Container>
             <Header title='Upload Your Picture'></Header>
-            <View style={{ flexDirection: "column", flex: 1, rowGap: 40 }}>
-                <View>
-                    <Text style={[globalStyles.p as any, { textAlign: "left", fontSize: 14 }]}>Add a profile picture to personalize your ShopZen experience. You can skip this for now.</Text>
-                </View>
-
-
-
-                <View>
-                    <View style={[styles.container, { borderRadius: "50%", overflow: "hidden" }]}>
-                        {
-                            profileURL && isIcon == -1 ? <Image
-                                style={styles.image}
-                                source={{ uri: profileURL }}
-                            /> :
-                                isIcon >= 0 ?
-                                    <Image
-                                        style={styles.image}
-                                        source={icons[isIcon]}
-                                    /> :
-                                    <View style={{ borderRadius: "50%", backgroundColor: primaryBg, padding: 10, height: 150, width: 150, alignItems: "center", justifyContent: "center" }}>
-                                        <FontAwesome name="user" size={130} color={primaryColor} />
-                                    </View>
-                        }
+            <ScrollView>
+                <View style={{ flexDirection: "column", flex: 1, rowGap: 40 }}>
+                    <View>
+                        <Text style={[globalStyles.p as any, { textAlign: "left", fontSize: 14 }]}>Add a profile picture to personalize your ShopZen experience. You can skip this for now.</Text>
                     </View>
 
-                    <View style={{ marginTop: 16 }}>
-                        <TouchableOpacity
-                            style={[globalStyles.btnFilled, { width: "auto", alignSelf: "center", paddingVertical: 6 }]}
-                            onPress={pickImage}
-                        >
-                            <Text style={[globalStyles.txt as any, { color: "white", fontFamily:"PoppinsMedium" }]}>Upload another file</Text>
-                        </TouchableOpacity>
 
-                    </View>
-                </View>
 
-                <View>
-                    <Text style={globalStyles.p as any}>Or choose avatar instead</Text>
-                    <FlatList
-                        style={{ marginTop: 16 }}
-                        numColumns={5}
-                        data={icons}
-                        renderItem={({ item, index }) => (
+                    <View>
+                        <View style={[styles.container, { borderRadius: "50%", overflow: "hidden" }]}>
+                            {
+                                profileURL && isIcon == -1 ? <Image
+                                    style={styles.image}
+                                    source={{ uri: profileURL }}
+                                /> :
+                                    isIcon >= 0 ?
+                                        <Image
+                                            style={styles.image}
+                                            source={icons[isIcon]}
+                                        /> :
+                                        <View style={{ borderRadius: "50%", backgroundColor: primaryBg, padding: 10, height: 150, width: 150, alignItems: "center", justifyContent: "center" }}>
+                                            <FontAwesome name="user" size={130} color={primaryColor} />
+                                        </View>
+                            }
+                        </View>
+
+                        <View style={{ marginTop: 16 }}>
                             <TouchableOpacity
-                                onPress={() => setIsIcon(index)}
-                                style={{ width: "20%", alignItems: "center", justifyContent: "center" }}
+                                style={[globalStyles.btnFilled, { width: "auto", alignSelf: "center", paddingVertical: 5 }]}
+                                onPress={pickImage}
                             >
-                                <Image
-                                    style={styles.icons}
-                                    source={item}
-                                    height={70}
-                                />
+                                <Text style={[{ color: "white", fontFamily: "PoppinsMedium" }]}>Upload another file</Text>
                             </TouchableOpacity>
-                        )}
-                        keyExtractor={(item, index) => index.toString()}
-                    />
-                </View>
 
-                <View>
-                    <TouchableOpacity
-                        style={globalStyles.btnFilled}
-                    >
-                        <Text style={[globalStyles.txt as any, { color: "white" }]}>Continue</Text>
-                    </TouchableOpacity>
+                        </View>
+                    </View>
+
+                    <View>
+                        <Text style={globalStyles.p as any}>Or choose avatar instead</Text>
+                        <FlatList
+                            style={{ marginTop: 16 }}
+                            numColumns={5}
+                            scrollEnabled={false}
+                            data={icons}
+                            renderItem={({ item, index }) => (
+                                <TouchableOpacity
+                                    onPress={() => setIsIcon(index)}
+                                    style={{ width: "20%", alignItems: "center", justifyContent: "center" }}
+                                >
+                                    <Image
+                                        style={styles.icons}
+                                        source={item}
+                                        height={70}
+                                    />
+                                </TouchableOpacity>
+                            )}
+                            keyExtractor={(item, index) => index.toString()}
+                        />
+                    </View>
+
+                    <View>
+                        <TouchableOpacity
+                            style={globalStyles.btnFilled}
+                        >
+                            <Text style={[globalStyles.txt as any, { color: "white" }]}>Continue</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
+            </ScrollView>
         </Container>
     )
 };
