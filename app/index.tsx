@@ -18,7 +18,7 @@ export default function index() {
     });
 
     const router = useRouter();
-    const [modal, setModal] = useState(true);
+    const [modal, setModal] = useState(false);
 
     const languages = [
         {
@@ -163,7 +163,7 @@ export default function index() {
                 <View>
                     <TouchableOpacity
                         style={globalStyles.btnFilled}
-                        onPress={() => router.navigate('/AuthHome')}
+                        onPress={() => router.navigate('/Profile')}
                     >
                         <Text style={[globalStyles.txt as any, { color: "white" }]}>Done</Text>
                     </TouchableOpacity>

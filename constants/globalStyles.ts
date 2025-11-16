@@ -88,7 +88,7 @@ export const globalStyles = {
         color: "#333333",
         fontSize: 14,
         borderRadius: 31,
-        padding: 16,
+        padding: 12,
     },
     inputBlurred: {
         backgroundColor: primaryBg,

@@ -12,7 +12,7 @@ export default function ProfileNav() {
     return (
         <View style={[styles.navbar, { backgroundColor: primaryBg }]}>
             <TouchableOpacity
-                onPress={() => router.navigate("/")}
+                onPress={() => router.navigate("/home/Index")}
                 style={styles.linkStyle}
             >
                 <AntDesign name="home" size={24} color="black" />
