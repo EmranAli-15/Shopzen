@@ -5,18 +5,23 @@ import axiosInstance from '@/utils/axiosInstance'
 import EvilIcons from '@expo/vector-icons/EvilIcons'
 import Feather from '@expo/vector-icons/Feather'
 import React, { useEffect, useState } from 'react'
-import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Dimensions, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import Products from './Products'
 import CategoriesSkleton from './ui/CategoriesSkleton'
 const searchButton = require("@/assets/images/home/searchButton.png");
 
 
-// Categorie images
-const groceres = require('@/assets/images/home/categories/Groceres.png');
-const home = require('@/assets/images/home/categories/Home.png');
-const iphone = require('@/assets/images/home/categories/Iphone.png');
-const suit = require('@/assets/images/home/categories/Suit.png');
-const beauty = require('@/assets/images/home/categories/Beauty.png');
+// ------------
+const easyReturn = require("@/assets/images/home/return.png");
+const truck = require("@/assets/images/home/truck.png");
+const sequre = require("@/assets/images/home/sequre.png");
+const support = require("@/assets/images/home/support.png");
+
+
+// Window width
+const { width } = Dimensions.get("window");
+const windowWidth = width;
 
 export default function index() {
   const [search, setSearch] = useState("");
@@ -48,79 +53,110 @@ export default function index() {
 
 
   return (
-    <View>
-      <SafeAreaView>
-        <View style={{ backgroundColor: primaryColor, flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-          <View style={{ position: "relative", padding: 10, flex: 1 }}>
-            <TextInput
-              style={[
-                globalStyles.inputText as any,
-                searchFocus ? globalStyles.inputFocused : globalStyles.inputBlurred, { paddingLeft: 50, width: "100%" }
-              ]}
-              onChangeText={text => setSearch(text)}
-              value={search}
-              inputMode='email'
-              placeholder="Search for products"
-              placeholderTextColor="#666666"
-              onFocus={() => setSearchFocus(true)}
-              onBlur={() => setSearchFocus(false)}
-            />
-            <Feather style={{ position: "absolute", left: 26, top: 22 }} name="search" size={24} color="black" />
+    <SafeAreaView>
+      <ScrollView>
+        <View>
+          <View>
+            <View style={{ backgroundColor: primaryColor, flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+              <View style={{ position: "relative", padding: 10, flex: 1 }}>
+                <TextInput
+                  style={[
+                    globalStyles.inputText as any,
+                    searchFocus ? globalStyles.inputFocused : globalStyles.inputBlurred, { paddingLeft: 50, width: "100%" }
+                  ]}
+                  onChangeText={text => setSearch(text)}
+                  value={search}
+                  inputMode='email'
+                  placeholder="Search for products"
+                  placeholderTextColor="#666666"
+                  onFocus={() => setSearchFocus(true)}
+                  onBlur={() => setSearchFocus(false)}
+                />
+                <Feather style={{ position: "absolute", left: 26, top: 22 }} name="search" size={24} color="black" />
+              </View>
+              <TouchableOpacity>
+                <Image
+                  style={{ height: 55, width: 55 }}
+                  source={searchButton}
+                  height={55}
+                  width={55}
+                ></Image>
+              </TouchableOpacity>
+            </View>
+            <View style={{ backgroundColor: "#00CDA5", padding: 10, flexDirection: "row", alignItems: "center" }}>
+              <EvilIcons name="location" size={20} color="white" />
+              <Text style={[globalStyles.small as any, { color: "white" }]}>Delivering to Dhaka, Bangladesh</Text>
+            </View>
+            <View style={{ paddingHorizontal: 10 }}>
+              <Text style={{ color: primaryColor, fontSize: 30, fontFamily: "PoppinsBold" }}>Shop<Text style={{ color: "#1A1F71" }}>Zen</Text></Text>
+              <Text style={[globalStyles.p as any, { textAlign: "left" }]}>Your Multi-Vendor Shopping Paradise</Text>
+            </View>
           </View>
-          <TouchableOpacity>
-            <Image
-              style={{ height: 55, width: 55 }}
-              source={searchButton}
-              height={55}
-              width={55}
-            ></Image>
-          </TouchableOpacity>
-        </View>
-        <View style={{ backgroundColor: "#00CDA5", padding: 10, flexDirection: "row", alignItems: "center" }}>
-          <EvilIcons name="location" size={20} color="white" />
-          <Text style={[globalStyles.small as any, { color: "white" }]}>Delivering to Dhaka, Bangladesh</Text>
-        </View>
-        <View style={{ paddingHorizontal: 10 }}>
-          <Text style={{ color: primaryColor, fontSize: 30, fontWeight: 900 }}>Shop<Text style={{ color: "#1A1F71" }}>Zen</Text></Text>
-          <Text style={[globalStyles.p as any, { textAlign: "left" }]}>Your Multi-Vendor Shopping Paradise</Text>
-        </View>
-      </SafeAreaView>
+          <Container>
+            {/* Categories */}
+            <View>
+
+              {
+                categoriesLoading ?
+                  <CategoriesSkleton></CategoriesSkleton> :
+                  <ScrollView
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={{ columnGap: 8 }}
+                  >
+                    {categories.map((item) => {
+                      return (
+                        (
+                          <TouchableOpacity key={item.id}>
+                            <View style={styles.navList}>
+                              <Image style={{ height: "100%", width: "100%", objectFit: "contain" }} source={{ uri: item.image }}></Image>
+                            </View>
+                            <Text style={[globalStyles.small as any, { color: "#1A1F71" }]}>{item.name.length > 10 ? <Text>{item.name.slice(0, 10)}..</Text> : item.name}</Text>
+                          </TouchableOpacity>
+                        )
+                      )
+                    })}
+                  </ScrollView>
+              }
+            </View>
+
+            {/* Carousel */}
+            <View>
+              <Carousel data={cateImgs} />
+            </View>
+
+            {/* Infos */}
+            <View>
+              <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                <View style={styles.imgContainer}>
+                  <Image style={styles.infoImg} source={truck}></Image>
+                  <Text style={[globalStyles.small as any, { textAlign: "center", color: "#1A1F71" }]}>Free Delivery</Text>
+                </View>
+                <View style={styles.imgContainer}>
+                  <Image style={styles.infoImg} source={easyReturn}></Image>
+                  <Text style={[globalStyles.small as any, { textAlign: "center", color: "#1A1F71" }]}>Easy Returns</Text>
+                </View>
+                <View style={styles.imgContainer}>
+                  <Image style={styles.infoImg} source={sequre}></Image>
+                  <Text style={[globalStyles.small as any, { textAlign: "center", color: "#1A1F71" }]}>Secure Payment</Text>
+                </View>
+                <View style={styles.imgContainer}>
+                  <Image style={styles.infoImg} source={support}></Image>
+                  <Text style={[globalStyles.small as any, { textAlign: "center", color: "#1A1F71" }]}>24/7 Support</Text>
+                </View>
+              </View>
+            </View>
 
 
-      <Container>
-        {/* Categories */}
-        <View>
 
-          {
-            categoriesLoading ?
-              <CategoriesSkleton></CategoriesSkleton> :
-              <ScrollView
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{ columnGap: 8 }}
-              >
-                {categories.map((item) => {
-                  return (
-                    (
-                      <TouchableOpacity key={item.id}>
-                        <View style={styles.navList}>
-                          <Image style={{ height: "100%", width: "100%", objectFit: "contain" }} source={{ uri: item.image }}></Image>
-                        </View>
-                        <Text style={[globalStyles.small as any, { color: "#1A1F71" }]}>{item.name.length > 10 ? <Text>{item.name.slice(0, 10)}..</Text> : item.name}</Text>
-                      </TouchableOpacity>
-                    )
-                  )
-                })}
-              </ScrollView>
-          }
+            {/* Products */}
+            <View>
+              <Products></Products>
+            </View>
+          </Container>
         </View>
-
-        {/* Carousel */}
-        <View>
-          <Carousel data={cateImgs} />
-        </View>
-      </Container>
-    </View>
+      </ScrollView>
+    </SafeAreaView>
   )
 };
 
@@ -135,5 +171,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     overflow: "hidden"
+  },
+  imgContainer: {
+    width: "18%",
+    height: 100
+  },
+  infoImg: {
+    width: "100%",
+    height: ((windowWidth * 17) / 100)
   }
 });
