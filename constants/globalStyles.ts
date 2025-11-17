@@ -63,6 +63,12 @@ export const globalStyles = {
 
 
     // -----------------------------
+    small: {
+        fontSize: 12,
+        fontFamily: "PoppinsRegular",
+        color: "#666666",
+        textAlign: "center"
+    },
     p: {
         fontSize: 15,
         fontFamily: "PoppinsRegular",
