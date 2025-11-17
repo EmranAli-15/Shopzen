@@ -30,6 +30,9 @@ export default function index() {
     require('@/assets/images/home/carousel1.png'),
     require('@/assets/images/home/carousel2.png'),
     require('@/assets/images/home/carousel3.png'),
+    require('@/assets/images/home/carousel1.png'),
+    require('@/assets/images/home/carousel2.png'),
+    require('@/assets/images/home/carousel3.png'),
   ]
 
 
@@ -89,7 +92,7 @@ export default function index() {
             </View>
             <View style={{ paddingHorizontal: 10 }}>
               <Text style={{ color: primaryColor, fontSize: 30, fontFamily: "PoppinsBold" }}>Shop<Text style={{ color: "#1A1F71" }}>Zen</Text></Text>
-              <Text style={[globalStyles.p as any, { textAlign: "left" }]}>Your Multi-Vendor Shopping Paradise</Text>
+              <Text style={[globalStyles.p as any, { textAlign: "left", marginTop:-8 }]}>Your Multi-Vendor Shopping Paradise</Text>
             </View>
           </View>
           <Container>
