@@ -30,7 +30,7 @@ export const globalStyles = {
     txt: {
         fontSize: 16,
         textAlign: "center",
-        fontFamily: "PoppinsSemiBold",
+        fontFamily: "PoppinsMedium",
     },
     textInput: {
         paddingHorizontal: 16,
@@ -42,12 +42,7 @@ export const globalStyles = {
         fontFamily: "Poppins",
     },
 
-    p: {
-        fontSize: 16,
-        fontFamily: "PoppinsRegular",
-        color: "#666666",
-        textAlign: "center"
-    },
+
 
 
     h6: {
@@ -68,6 +63,12 @@ export const globalStyles = {
 
 
     // -----------------------------
+    p: {
+        fontSize: 15,
+        fontFamily: "PoppinsRegular",
+        color: "#666666",
+        textAlign: "center"
+    },
     h1: {
         fontSize: TYPOGRAPHY.h1,
         fontFamily: "PoppinsMedium",

@@ -51,8 +51,8 @@ export default function SignUp() {
             </View>
 
 
-            <View style={{ flex: 1, justifyContent: "center" }}>
-                <View style={{flexDirection:"column", rowGap:20}}>
+            <View style={{ flex: 1, marginTop: 20 }}>
+                <View style={{ flex: 1, flexDirection: "column", justifyContent: "space-between" }}>
                     {/* Auth providers */}
                     <View style={{ flexDirection: "column", rowGap: 10 }}>
                         <Text style={AuthStyles.font}>Sign up quickly with:</Text>
@@ -126,7 +126,7 @@ export default function SignUp() {
                                 {
                                     passwordError && <Text style={AuthStyles.errorText}>{passwordError}</Text>
                                 }
-                                <View style={{ position: "absolute", right: 15, top: 15 }}>
+                                <View style={{ position: "absolute", right: 15, top: 12 }}>
                                     <TouchableOpacity
                                         onPress={() => setShowPass(!showPass)}
                                     >

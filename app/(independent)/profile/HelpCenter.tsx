@@ -86,7 +86,7 @@ export default function HelpCenter() {
                                 onFocus={() => setSearchFocus(true)}
                                 onBlur={() => setSearchFocus(false)}
                             />
-                            <Feather style={{ position: "absolute", left: 15, top: 16 }} name="search" size={24} color="black" />
+                            <Feather style={{ position: "absolute", left: 15, top: 12 }} name="search" size={24} color="black" />
                         </View>
 
                         <View>

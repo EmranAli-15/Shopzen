@@ -106,7 +106,7 @@ export default function index() {
                     />
                 </View>
 
-                    <Text style={[{ fontSize: 18, textAlign: "center", fontFamily:"PoppinsMedium" }]}>We noticed you’re using Softzen from <Text style={{ color: "#FF620A", fontWeight: "bold" }}>Bangladesh</Text>. Tell us your preferred language and where you’re from.</Text>
+                    <Text style={[{ fontSize: 18, textAlign: "center", fontFamily:"PoppinsMedium" }]}>We noticed you're using Softzen from <Text style={{ color: "#FF620A", fontWeight: "bold", fontFamily:"PoppinsMedium" }}>Bangladesh</Text>. Tell us your preferred language and where you're from.</Text>
                 <View>
 
                     <View>

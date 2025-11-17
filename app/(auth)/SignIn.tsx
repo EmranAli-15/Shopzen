@@ -49,18 +49,17 @@ export default function SignIn() {
             <Container>
                 <BackButton></BackButton>
 
+                {/* Logo and into */}
+                <View>
+                    <Logo></Logo>
+                    <Text style={[AuthStyles.font as any, { alignSelf: "center", marginTop: 10 }]}>Welcome Back! Please enter your details.</Text>
+                </View>
+
                 <View style={{ flex: 1, justifyContent: "center" }}>
                     <View style={{ flexDirection: "column", rowGap: 40 }}>
-                        {/* Logo and into */}
-                        <View>
-                            <Logo></Logo>
-                            <Text style={[AuthStyles.font as any, { alignSelf: "center", marginTop: 10 }]}>Welcome Back! Please enter your details.</Text>
-                        </View>
-
-
 
                         {/* Email & password filed */}
-                        <View style={{ flexDirection: "column", rowGap: 20 }}>
+                        <View style={{ flexDirection: "column", rowGap: 10 }}>
                             <View>
                                 <Text style={globalStyles.inputTitle as any}>Email or phone</Text>
                                 <TextInput
@@ -98,7 +97,7 @@ export default function SignIn() {
                                     {
                                         passwordError && <Text style={AuthStyles.errorText}>{passwordError}</Text>
                                     }
-                                    <View style={{ position: "absolute", right: 15, top: 15 }}>
+                                    <View style={{ position: "absolute", right: 15, top: 12 }}>
                                         <TouchableOpacity
                                             onPress={() => setShowPass(!showPass)}
                                         >
@@ -113,14 +112,14 @@ export default function SignIn() {
 
                         {/* Sign in button */}
                         <TouchableOpacity
-                            style={[globalStyles.btnFilled, { marginTop: 20 }]}
+                            style={[globalStyles.btnFilled]}
                             onPress={handleLogin}
                         >
                             <Text style={[globalStyles.txt as any, { color: "white" }]}>Sign in</Text>
                         </TouchableOpacity>
 
 
-                        <View style={{ marginTop: -20, flexDirection: "column", rowGap: 10 }}>
+                        <View style={{ flexDirection: "column", rowGap: 10 }}>
                             <View style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}>
                                 <View style={styles.devideLine}></View>
                                 <Text style={AuthStyles.font as any}>Or continue with</Text>

@@ -8,7 +8,7 @@ export default function Logo() {
         <View>
             <Text style={styles.heading}>Shop<Text style={{ color: "#0973BA" }}>Zen</Text></Text>
             <View style={{ flexDirection: "row", alignSelf: "center", alignItems: "center", columnGap: 2, marginTop: -15 }}>
-                <Text style={{ color: "#3CB64B", fontFamily: "PoppinsBold", fontSize: 13 }}>Your Trusted Marketplace.</Text>
+                <Text style={{ color: "#3CB64B", fontFamily: "PoppinsSemiBold", fontSize: 13 }}>Your Trusted Marketplace.</Text>
                 <Image
                     style={{ height: "auto", width: "auto" }}
                     source={delivery_truck}

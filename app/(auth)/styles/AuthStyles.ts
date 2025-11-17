@@ -6,7 +6,7 @@ export const AuthStyles = {
     },
     font: {
         fontSize: 16,
-        fontFamily: "PoppinsMedium",
+        fontFamily: "PoppinsRegular",
         color: "#333333"
     }
 };

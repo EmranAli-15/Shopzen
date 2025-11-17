@@ -62,7 +62,7 @@ export default function AccountInfo() {
                 success && <Alert text='Profile update successfully' type='success'></Alert>
             }
             <View>
-                <Header title='Account Information'></Header>
+                <Header title='Information'></Header>
             </View>
 
             <ScrollView>
@@ -194,7 +194,7 @@ export default function AccountInfo() {
                             <Text style={globalStyles.inputTitle as any}>Gender</Text>
                             <View style={{ position: "relative" }}>
                                 <TouchableOpacity
-                                    style={[globalStyles.textInput, showGender && { borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }, { backgroundColor: primaryBg, borderColor: primaryBg, borderWidth: 1 }]}
+                                    style={[globalStyles.textInput, showGender && { borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }, { backgroundColor: primaryBg }]}
                                     onPress={() => setShowGender(!showGender)}
                                 >
                                     <Text style={{
@@ -260,7 +260,7 @@ const styles = StyleSheet.create({
     editIcon: {
         position: "absolute",
         right: 10,
-        top: 16
+        top: 14
     },
     devideLine: {
         height: 1,

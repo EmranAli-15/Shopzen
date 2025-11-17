@@ -50,7 +50,7 @@ export default function UpdateDone() {
                     >
                         <View style={{ flexDirection: "row", alignItems: "center", alignSelf: "center" }}>
                             <Ionicons name="arrow-back" size={24} color="#FF620A" />
-                            <Text style={{ fontFamily: "PoppinsMedium", fontSize: 16 }}>Back to Sign in</Text>
+                            <Text style={{ fontFamily: "PoppinsMedium", fontSize: 15 }}>Back to Sign in</Text>
                         </View>
                     </TouchableOpacity>
                 </View>

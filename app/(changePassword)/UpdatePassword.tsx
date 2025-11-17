@@ -68,7 +68,7 @@ export default function UpdatePassword() {
                                 {
                                     passwordError && <Text style={AuthStyles.errorText}>{passwordError}</Text>
                                 }
-                                <View style={{ position: "absolute", right: 15, top: 15 }}>
+                                <View style={{ position: "absolute", right: 15, top: 12 }}>
                                     <TouchableOpacity
                                         onPress={() => setShowPass(!showPass)}
                                     >
@@ -99,7 +99,7 @@ export default function UpdatePassword() {
                                 {
                                     passwordError && <Text style={AuthStyles.errorText}>{passwordError}</Text>
                                 }
-                                <View style={{ position: "absolute", right: 15, top: 15 }}>
+                                <View style={{ position: "absolute", right: 15, top: 12 }}>
                                     <TouchableOpacity
                                         onPress={() => setShowPass(!showPass)}
                                     >
@@ -130,7 +130,7 @@ export default function UpdatePassword() {
                                 {
                                     passwordError && <Text style={AuthStyles.errorText}>{passwordError}</Text>
                                 }
-                                <View style={{ position: "absolute", right: 15, top: 15 }}>
+                                <View style={{ position: "absolute", right: 15, top: 12 }}>
                                     <TouchableOpacity
                                         onPress={() => setShowPass(!showPass)}
                                     >
