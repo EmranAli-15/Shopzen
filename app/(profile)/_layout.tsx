@@ -1,4 +1,4 @@
-import ProfileNav from '@/components/profileNav/ProfileNav';
+import MainNav from '@/components/mainNav/MainNav';
 import { screenBg } from '@/constants/globalStyles';
 import { Stack } from 'expo-router';
 import React from 'react';
@@ -16,7 +16,7 @@ export default function Layout() {
             }}>
             </Stack>
 
-            <ProfileNav />
+            <MainNav />
         </View>
     );
 }

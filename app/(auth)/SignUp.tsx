@@ -1,7 +1,10 @@
+import Alert from '@/components/alert/Alert';
 import AuthProvider from '@/components/authProvider/AuthProvider';
 import BackButton from '@/components/BackButton';
 import Container from '@/components/Container';
 import { globalStyles } from '@/constants/globalStyles';
+import axiosInstance from '@/utils/axiosInstance';
+import { makeHash } from '@/utils/hashing';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
@@ -13,7 +16,12 @@ const delivery_truck = require('@/assets/images/delivery_truck.png');
 export default function SignUp() {
     const router = useRouter();
     const [error, setError] = useState("");
+
+    const [loading, setLoading] = useState(false);
+
+
     const [nameError, setNameError] = useState("");
+    const [phoneError, setPhoneError] = useState("");
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
 
@@ -21,28 +29,48 @@ export default function SignUp() {
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState<any>("")
     const [password, setPassword] = useState("");
 
 
     const [nameFocus, setNameFocus] = useState(false);
     const [emailFocus, setEmailFocus] = useState(false);
+    const [phoneFocus, setPhoneFocus] = useState(false);
     const [passwordFocus, setPasswordFocus] = useState(false);
 
 
-    const handleSignUp = () => {
+    const handleSignUp = async () => {
         if (!name) return setNameError("* Name is required")
         else setNameError("")
+        if (!phone) return setPhoneError("* Phone is required")
+        else setPhoneError("")
         if (!email) return setEmailError("* Email is required")
         else setEmailError("")
         if (!password) return setPasswordError("* Password is required")
         setPasswordError("")
 
-        router.navigate('/Profile');
+        const password_hash = await makeHash(password);
+        console.log(password_hash)
+        const data = { name, email, password, password_hash, phone };
+        console.log(data)
+        try {
+            setLoading(true);
+            const response = await axiosInstance.post('/user', { data });
+            console.log(response);
+            setLoading(false)
+        } catch (err) {
+            console.log(err)
+        }
+
+        console.log(data)
+
+        // router.navigate('/profile/Profile');
     }
 
 
     return (
         <Container>
+            {loading && <Alert type='loading' text='user creating'></Alert>}
             <BackButton></BackButton>
             {/* Logo and into */}
             <View>
@@ -89,7 +117,7 @@ export default function SignUp() {
                             }
                         </View>
                         <View>
-                            <Text style={globalStyles.inputTitle as any}>Email or phone</Text>
+                            <Text style={globalStyles.inputTitle as any}>Email</Text>
                             <TextInput
                                 style={[
                                     globalStyles.inputText as any,
@@ -98,13 +126,32 @@ export default function SignUp() {
                                 inputMode='email'
                                 onChangeText={text => setEmail(text)}
                                 value={email}
-                                placeholder="Enter your email or phone number"
+                                placeholder="Enter your email"
                                 placeholderTextColor="#666666"
                                 onFocus={() => setEmailFocus(true)}
                                 onBlur={() => setEmailFocus(false)}
                             />
                             {
                                 emailError && <Text style={AuthStyles.errorText}>{emailError}</Text>
+                            }
+                        </View>
+                        <View>
+                            <Text style={globalStyles.inputTitle as any}>Phone</Text>
+                            <TextInput
+                                style={[
+                                    globalStyles.inputText as any,
+                                    phoneFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
+                                ]}
+                                inputMode='numeric'
+                                onChangeText={text => setPhone(text)}
+                                value={phone}
+                                placeholder="Enter your phone number"
+                                placeholderTextColor="#666666"
+                                onFocus={() => setPhoneFocus(true)}
+                                onBlur={() => setPhoneFocus(false)}
+                            />
+                            {
+                                phoneError && <Text style={AuthStyles.errorText}>{phoneError}</Text>
                             }
                         </View>
                         <View>

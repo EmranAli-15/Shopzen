@@ -92,12 +92,12 @@ export default function index() {
             </View>
             <View style={{ paddingHorizontal: 10 }}>
               <Text style={{ color: primaryColor, fontSize: 30, fontFamily: "PoppinsBold" }}>Shop<Text style={{ color: "#1A1F71" }}>Zen</Text></Text>
-              <Text style={[globalStyles.p as any, { textAlign: "left", marginTop:-8 }]}>Your Multi-Vendor Shopping Paradise</Text>
+              <Text style={[globalStyles.p as any, { textAlign: "left", marginTop: -8 }]}>Your Multi-Vendor Shopping Paradise</Text>
             </View>
           </View>
           <Container>
             {/* Categories */}
-            <View>
+            <View style={{ marginTop: -20 }}>
 
               {
                 categoriesLoading ?
@@ -105,16 +105,16 @@ export default function index() {
                   <ScrollView
                     horizontal
                     showsHorizontalScrollIndicator={false}
-                    contentContainerStyle={{ columnGap: 8 }}
+                    contentContainerStyle={{ columnGap: 16 }}
                   >
                     {categories.map((item) => {
                       return (
                         (
                           <TouchableOpacity key={item.id}>
                             <View style={styles.navList}>
-                              <Image style={{ height: "100%", width: "100%", objectFit: "contain" }} source={{ uri: item.image }}></Image>
+                              <Image style={{ objectFit: "contain", height: "100%", width: "100%" }} source={{ uri: item.image }}></Image>
                             </View>
-                            <Text style={[globalStyles.small as any, { color: "#1A1F71" }]}>{item.name.length > 10 ? <Text>{item.name.slice(0, 10)}..</Text> : item.name}</Text>
+                            <Text style={[globalStyles.small as any, { color: "#1A1F71", marginTop: 8 }]}>{item.name.length > 10 ? <Text>{item.name.slice(0, 10)}..</Text> : item.name}</Text>
                           </TouchableOpacity>
                         )
                       )
@@ -166,14 +166,14 @@ export default function index() {
 
 const styles = StyleSheet.create({
   navList: {
-    height: 70,
-    width: 70,
-    padding: 5,
+    height: 65,
+    width: 65,
+    padding: 4,
     borderRadius: "50%",
     backgroundColor: primaryBg,
     justifyContent: "center",
     alignItems: "center",
-    overflow: "hidden"
+    overflow: "hidden",
   },
   imgContainer: {
     width: "18%",

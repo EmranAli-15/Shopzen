@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 
 import { screenBg } from '@/constants/globalStyles';
+import { ContextProvider } from '@/contextProvider/ContextProvider';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { StyleSheet, View } from 'react-native';
 
@@ -16,14 +17,16 @@ export default function RootLayout() {
     //   </Stack>
     //   <StatusBar style="auto" />
     // </ThemeProvider>
-    <View style={styles.container}>
-      <Stack screenOptions={{
-        headerShown: false,
-        contentStyle: { backgroundColor: screenBg }
-      }}>
-      </Stack>
-      <StatusBar style="dark" />
-    </View>
+    <ContextProvider>
+      <View style={styles.container}>
+        <Stack screenOptions={{
+          headerShown: false,
+          contentStyle: { backgroundColor: screenBg }
+        }}>
+        </Stack>
+        <StatusBar style="dark" />
+      </View>
+    </ContextProvider>
   );
 }
 

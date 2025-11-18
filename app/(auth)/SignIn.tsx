@@ -36,7 +36,7 @@ export default function SignIn() {
         else setPasswordError("")
 
         resetForm();
-        router.navigate("/Profile");
+        router.navigate("/profile/Profile");
     }
 
 

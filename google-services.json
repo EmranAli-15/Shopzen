@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "533385933436",
+    "project_id": "shopzen-58b54",
+    "storage_bucket": "shopzen-58b54.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533385933436:android:2ff506a7dc1a3cdf6b4ff9",
+        "android_client_info": {
+          "package_name": "com.shopzen.emran.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "533385933436-mn4u3aii2qqksa2hsmj71ev1lbemhto2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4ewxY5SdCU--opJe4ayHhhdKjRQedWFc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "533385933436-mn4u3aii2qqksa2hsmj71ev1lbemhto2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -163,7 +163,7 @@ export default function index() {
                 <View>
                     <TouchableOpacity
                         style={globalStyles.btnFilled}
-                        onPress={() => router.navigate('/Profile')}
+                        onPress={() => router.navigate('/home/Index')}
                     >
                         <Text style={[globalStyles.txt as any, { color: "white" }]}>Done</Text>
                     </TouchableOpacity>
