@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 const { width } = Dimensions.get("window");
-const ITEM_WIDTH = width - 40;
+const ITEM_WIDTH = width - 20;
 
 export default function Carousel({ data }: { data: any }) {
     const scrollX = useRef(new Animated.Value(0)).current;
@@ -131,6 +131,6 @@ const styles = StyleSheet.create({
         height: 8,
         borderRadius: 4,
         backgroundColor: primaryColor,
-        marginTop:-25
+        marginTop:-20
     },
 });

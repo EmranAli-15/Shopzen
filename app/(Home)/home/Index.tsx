@@ -71,6 +71,7 @@ export default function index() {
     try {
       const response = await axiosInstance.get('/products');
       setAllProducts(response.data);
+      console.log(response.data)
       setProducts(response.data.slice(loadMore.skip, loadMore.limit));
       setProductLoading(false);
     } catch (err) {
@@ -127,7 +128,15 @@ export default function index() {
                           params: { id: item.id },
                         }}
                       >
-                        <Text style={[globalStyles.p as any, { textAlign: "left" }]}>{item.name.length > 32 ? <Text>{item.name.slice(0, 32)}..</Text> : item.name}</Text>
+                        <View style={{ flexDirection: "row", columnGap: 5 }}>
+                          <View style={{ height: 30, width: 60, borderRadius: 8 }}>
+                            <Image
+                              style={{ height: 30, width: 60, objectFit: "contain" }}
+                              source={{ uri: item.image1 }}
+                            ></Image>
+                          </View>
+                          <Text style={[globalStyles.p as any, { textAlign: "left" }]}>{item.name.length > 32 ? <Text>{item.name.slice(0, 32)}..</Text> : item.name}</Text>
+                        </View>
                       </Link>
                     )
                   )
@@ -171,7 +180,7 @@ export default function index() {
             </View>
             <View style={{ paddingHorizontal: 10 }}>
               <Text style={{ color: primaryColor, fontSize: 30, fontFamily: "PoppinsBold" }}>Shop<Text style={{ color: "#1A1F71" }}>Zen</Text></Text>
-              <Text style={[globalStyles.p as any, { textAlign: "left", marginTop: -8 }]}>Your Multi-Vendor Shopping Paradise</Text>
+              <Text style={[globalStyles.small as any, { textAlign: "left", marginTop: -10 }]}>Your Multi-Vendor Shopping Paradise</Text>
             </View>
           </View>
           <View>
@@ -194,7 +203,7 @@ export default function index() {
                                 <Image style={{ objectFit: "contain", height: "100%", width: "100%" }} source={{ uri: item.image }}></Image>
                               </View>
                             </View>
-                            <Text style={[globalStyles.small as any, { color: "#1A1F71", marginTop: 8 }]}>{item.name.length > 10 ? <Text>{item.name.slice(0, 10)}..</Text> : item.name}</Text>
+                            <Text style={[globalStyles.small as any, { color: "#1A1F71" }]}>{item.name.length > 10 ? <Text>{item.name.slice(0, 10)}..</Text> : item.name}</Text>
                           </TouchableOpacity>
                         )
                       )
@@ -210,7 +219,7 @@ export default function index() {
 
             {/* Infos */}
             <View style={styles.shadowWrapper}>
-              <View style={{ flexDirection: "row", justifyContent: "space-between", marginHorizontal:10 }}>
+              <View style={{ flexDirection: "row", justifyContent: "space-between", marginHorizontal: 10 }}>
                 <View style={styles.imgContainer}>
                   <Image style={styles.infoImg} source={truck} />
                   <Text style={[globalStyles.small as any, { textAlign: "center", color: "#1A1F71" }]}>
@@ -245,7 +254,7 @@ export default function index() {
 
             {/* Products */}
             <View style={{ marginTop: 30, marginHorizontal: 10 }}>
-              <Text style={[globalStyles.h2, {color:"#1A1F71"}]}>Featured Products</Text>
+              <Text style={[globalStyles.h2, { color: "#1A1F71" }]}>Featured Products</Text>
               {
                 productLoading ? <ProductCardSkleton></ProductCardSkleton> :
                   <Products products={products}></Products>

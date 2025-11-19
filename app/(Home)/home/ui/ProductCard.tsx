@@ -1,9 +1,9 @@
 // ProductCard.jsx
-import { primaryColor } from "@/constants/globalStyles";
+import { globalStyles, primaryColor } from "@/constants/globalStyles";
 import { Ionicons } from "@expo/vector-icons";
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function ProductCard({ image, title, price, rating, vendor }: { image: any, title: any, price: any, rating: any, vendor: any }) {
     return (
@@ -23,14 +23,20 @@ export default function ProductCard({ image, title, price, rating, vendor }: { i
 
 
                 <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-                    <View style={{ flexDirection: "row", columnGap: 1, alignItems: "center" }}>
-                        <FontAwesome6 name="bangladeshi-taka-sign" size={12} color="#1A1F71" />
+                    <View style={{ flexDirection: "row", columnGap: 2, alignItems: "center" }}>
+                        <FontAwesome6 name="bangladeshi-taka-sign" size={12} color={primaryColor} />
                         <Text style={styles.price}>{price}</Text>
                     </View>
                     <View style={{ flexDirection: "row", columnGap: 1, alignItems: "center" }}>
                         <Ionicons name="star" size={12} color={primaryColor} />
                         <Text style={styles.ratingText}>{rating}</Text>
                     </View>
+                </View>
+
+                <View style={{ marginTop: 5 }}>
+                    <TouchableOpacity style={[globalStyles.btnFilled, { paddingVertical: 5, borderRadius: 5, backgroundColor:"#1A1F71", borderWidth:0}]}>
+                        <Text style={{ alignSelf: "center", fontFamily: "PoppinsRegular", color: "#fff", fontSize:12 }}>Add cart</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>
@@ -65,7 +71,7 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        fontSize: 16,
+        fontSize: 13,
         color: "#000000",
         fontFamily: "PoppinsMedium",
         marginBottom: 4,
@@ -73,7 +79,7 @@ const styles = StyleSheet.create({
 
     price: {
         fontSize: 12,
-        color: "#1A1F71",
+        color: primaryColor,
         fontFamily: "PoppinsSemiBold",
         marginTop: 3
     },
