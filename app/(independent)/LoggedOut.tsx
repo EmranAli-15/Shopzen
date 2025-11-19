@@ -33,7 +33,7 @@ export default function SignOut() {
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={globalStyles.btn}
-                        // onPress={() => router.navigate('/Profile')}
+                        onPress={() => router.navigate('/home/Index')}
                         >
                             <Text style={[globalStyles.txt as any, { color: primaryColor }]}>Continue Shopping</Text>
                         </TouchableOpacity>

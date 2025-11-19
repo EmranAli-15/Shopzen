@@ -1,25 +1,36 @@
+import Alert from '@/components/alert/Alert';
 import AuthProvider from '@/components/authProvider/AuthProvider';
 import BackButton from '@/components/BackButton';
-import Container from '@/components/Container';
 import { globalStyles } from '@/constants/globalStyles';
+import { useAuth } from '@/contextProvider/ContextProvider';
+import { storeData } from '@/utils/asyncStorate';
+import axiosInstance from '@/utils/axiosInstance';
+import { decryptHash } from '@/utils/hashing';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Logo from './Logo';
 import { AuthStyles } from './styles/AuthStyles';
 const delivery_truck = require('@/assets/images/delivery_truck.png');
 
 export default function SignIn() {
     const router = useRouter();
+    const { setContextLoading } = useAuth()
+
+    // nayrit@gmail.com
+    // Haha@1234
 
     const [logInError, setLogInError] = useState("");
+    const [loginLoading, setLoginLoading] = useState(false);
+
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
 
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("nayrit@gmail.com");
+    const [password, setPassword] = useState("Haha@1234");
 
     const resetForm = () => {
         setEmail("");
@@ -28,15 +39,38 @@ export default function SignIn() {
         setPasswordError("");
         setLogInError("");
     }
-    const handleLogin = () => {
+    const handleLogin = async () => {
 
         if (!email) return setEmailError("* Email or phone number required");
         else setEmailError("");
         if (!password) return setPasswordError("* password required");
         else setPasswordError("")
 
-        resetForm();
-        router.navigate("/profile/Profile");
+        setLoginLoading(true);
+        const response = await axiosInstance.get('/users');
+
+
+
+
+
+        const data = response.data.find((user: any) => user.email === email)
+
+        if (data) {
+            setLoginLoading(false);
+            const pass = decryptHash(password, data.password_hash);
+            if (!pass) setLogInError("Password in correct")
+            else {
+                storeData({ key: "user", value: data });
+                setContextLoading(true)
+                router.navigate("/home/Index");
+            }
+        }
+        else {
+            setLogInError("User not found.")
+        };
+        setTimeout(() => {
+            setLogInError("");
+        }, 2500);
     }
 
 
@@ -45,18 +79,23 @@ export default function SignIn() {
     const [showPass, setShowPass] = useState(true);
 
     return (
-        <View>
-            <Container>
-                <BackButton></BackButton>
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            <SafeAreaView style={{ marginHorizontal: 10, flex: 1 }}>
+                <View style={{ flex: 1 }}>
+                    {logInError && <Alert text={logInError} type='error'></Alert>}
+                    {loginLoading && <Alert text="Logging ..." type='loading'></Alert>}
+                    <BackButton></BackButton>
 
-                {/* Logo and into */}
-                <View>
-                    <Logo></Logo>
-                    <Text style={[AuthStyles.font as any, { alignSelf: "center", marginTop: 10 }]}>Welcome Back! Please enter your details.</Text>
-                </View>
 
-                <View style={{ flex: 1, justifyContent: "center" }}>
-                    <View style={{ flexDirection: "column", rowGap: 40 }}>
+
+
+                    <View style={{ flex: 1, flexDirection: "column", justifyContent: "space-evenly", rowGap: 40 }}>
+                        {/* LOGO AND INTRO */}
+                        <View>
+                            <Logo></Logo>
+                            <Text style={[AuthStyles.font as any, { alignSelf: "center", marginTop: 10 }]}>Welcome Back! Please enter your details.</Text>
+                        </View>
+
 
                         {/* Email & password filed */}
                         <View style={{ flexDirection: "column", rowGap: 10 }}>
@@ -108,17 +147,17 @@ export default function SignIn() {
                                     </View>
                                 </View>
                             </View>
+                            {/* Sign in button */}
+                            <TouchableOpacity
+                                style={[globalStyles.btnFilled]}
+                                onPress={handleLogin}
+                            >
+                                <Text style={[globalStyles.txt as any, { color: "white" }]}>Sign in</Text>
+                            </TouchableOpacity>
                         </View>
 
-                        {/* Sign in button */}
-                        <TouchableOpacity
-                            style={[globalStyles.btnFilled]}
-                            onPress={handleLogin}
-                        >
-                            <Text style={[globalStyles.txt as any, { color: "white" }]}>Sign in</Text>
-                        </TouchableOpacity>
 
-
+                        {/* Others login options */}
                         <View style={{ flexDirection: "column", rowGap: 10 }}>
                             <View style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}>
                                 <View style={styles.devideLine}></View>
@@ -146,8 +185,8 @@ export default function SignIn() {
                         </View>
                     </View>
                 </View>
-            </Container>
-        </View>
+            </SafeAreaView>
+        </ScrollView>
     )
 }
 

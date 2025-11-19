@@ -4,11 +4,13 @@ import { globalStyles, primaryBg, primaryColor } from '@/constants/globalStyles'
 import axiosInstance from '@/utils/axiosInstance'
 import EvilIcons from '@expo/vector-icons/EvilIcons'
 import Feather from '@expo/vector-icons/Feather'
+import { Link } from 'expo-router'
 import React, { useEffect, useState } from 'react'
 import { Dimensions, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Products from './Products'
 import CategoriesSkleton from './ui/CategoriesSkleton'
+import ProductCardSkleton from './ui/ProductCardSkleton'
 const searchButton = require("@/assets/images/home/searchButton.png");
 
 
@@ -37,6 +39,8 @@ export default function index() {
 
 
 
+
+  // CATEGORIS
   const [categoriesLoading, setCategoriesLoading] = useState(true);
   const [categories, setCategories] = useState<any[]>([]);
   const fetchCategories = async () => {
@@ -55,10 +59,86 @@ export default function index() {
 
 
 
+
+
+
+  // PRODUCTS
+  const [loadMore, setLoadMore] = useState({ skip: 0, limit: 20 })
+
+  const [productLoading, setProductLoading] = useState(true);
+  const [allProducts, setAllProducts] = useState<any[]>([])
+  const [products, setProducts] = useState<any[]>([]);
+  const fetchProducts = async () => {
+    try {
+      const response = await axiosInstance.get('/products');
+      setAllProducts(response.data);
+      setProducts(response.data.slice(loadMore.skip, loadMore.limit));
+      setProductLoading(false);
+    } catch (err) {
+      console.log(err)
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, [])
+
+
+
+
+
+
+  // SEARCH PRODUCTS
+  const [searchProducts, setSearchProducts] = useState<any>([])
+
+
+  const filteredProducts = allProducts.filter(product =>
+    product.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  useEffect(() => {
+    setSearchProducts(filteredProducts.slice(0, 4));
+    if (search == "") setSearchProducts([])
+  }, [search])
+
+
+
+
+
   return (
     <SafeAreaView>
       <ScrollView>
-        <View>
+        <View style={{ position: 'relative' }}>
+          {/* Search products */}
+          {
+            searchProducts.length > 0 &&
+            <View style={styles.searchBox}>
+              <ScrollView
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{ columnGap: 16 }}
+              >
+                {searchProducts.map((item: any) => {
+                  return (
+                    (
+                      <Link
+                        style={{ marginTop: 8 }}
+                        key={item.id}
+                        href={{
+                          pathname: `/(Home)/home/product/[id]`,
+                          params: { id: item.id },
+                        }}
+                      >
+                        <Text style={[globalStyles.p as any, { textAlign: "left" }]}>{item.name.length > 32 ? <Text>{item.name.slice(0, 32)}..</Text> : item.name}</Text>
+                      </Link>
+                    )
+                  )
+                })}
+              </ScrollView>
+            </View>
+          }
+
+
+
           <View>
             <View style={{ backgroundColor: primaryColor, flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
               <View style={{ position: "relative", padding: 10, flex: 1 }}>
@@ -86,7 +166,7 @@ export default function index() {
                 ></Image>
               </TouchableOpacity>
             </View>
-            <View style={{ backgroundColor: "#00CDA5", padding: 10, flexDirection: "row", alignItems: "center" }}>
+            <View style={{ backgroundColor: "#00CDA5", paddingHorizontal: 10, paddingVertical: 5, flexDirection: "row", alignItems: "center" }}>
               <EvilIcons name="location" size={20} color="white" />
               <Text style={[globalStyles.small as any, { color: "white" }]}>Delivering to Dhaka, Bangladesh</Text>
             </View>
@@ -105,14 +185,16 @@ export default function index() {
                   <ScrollView
                     horizontal
                     showsHorizontalScrollIndicator={false}
-                    contentContainerStyle={{ columnGap: 16 }}
+                    contentContainerStyle={{ columnGap: 12 }}
                   >
                     {categories.map((item) => {
                       return (
                         (
                           <TouchableOpacity key={item.id}>
-                            <View style={styles.navList}>
-                              <Image style={{ objectFit: "contain", height: "100%", width: "100%" }} source={{ uri: item.image }}></Image>
+                            <View style={{ padding: 8, backgroundColor: primaryBg, borderRadius: "50%", height: 64, width: 64, alignItems: "center", justifyContent: "center" }}>
+                              <View style={styles.navList}>
+                                <Image style={{ objectFit: "contain", height: "100%", width: "100%" }} source={{ uri: item.image }}></Image>
+                              </View>
                             </View>
                             <Text style={[globalStyles.small as any, { color: "#1A1F71", marginTop: 8 }]}>{item.name.length > 10 ? <Text>{item.name.slice(0, 10)}..</Text> : item.name}</Text>
                           </TouchableOpacity>
@@ -154,7 +236,10 @@ export default function index() {
 
             {/* Products */}
             <View>
-              <Products></Products>
+              {
+                productLoading ? <ProductCardSkleton></ProductCardSkleton> :
+                  <Products products={products}></Products>
+              }
             </View>
           </Container>
         </View>
@@ -166,9 +251,8 @@ export default function index() {
 
 const styles = StyleSheet.create({
   navList: {
-    height: 65,
-    width: 65,
-    padding: 4,
+    height: 50,
+    width: 50,
     borderRadius: "50%",
     backgroundColor: primaryBg,
     justifyContent: "center",
@@ -182,5 +266,17 @@ const styles = StyleSheet.create({
   infoImg: {
     width: "100%",
     height: ((windowWidth * 17) / 100)
+  },
+  searchBox: {
+    top: 65,
+    zIndex: 999,
+    position: "absolute",
+    width: "100%",
+    padding: 8,
+    backgroundColor: "white",
+    shadowColor: "#000000",
+    shadowOpacity: 0.24,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 12
   }
 });

@@ -3,8 +3,6 @@ import AuthProvider from '@/components/authProvider/AuthProvider';
 import BackButton from '@/components/BackButton';
 import Container from '@/components/Container';
 import { globalStyles } from '@/constants/globalStyles';
-import axiosInstance from '@/utils/axiosInstance';
-import { makeHash } from '@/utils/hashing';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
@@ -27,10 +25,10 @@ export default function SignUp() {
 
     const [showPass, setShowPass] = useState(true);
 
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState<any>("")
-    const [password, setPassword] = useState("");
+    const [name, setName] = useState("hello");
+    const [email, setEmail] = useState("hello@gmail.com");
+    const [phone, setPhone] = useState<any>("012")
+    const [password, setPassword] = useState("012");
 
 
     const [nameFocus, setNameFocus] = useState(false);
@@ -38,6 +36,31 @@ export default function SignUp() {
     const [phoneFocus, setPhoneFocus] = useState(false);
     const [passwordFocus, setPasswordFocus] = useState(false);
 
+
+
+
+
+
+    async function postData(data:any) {
+        try {
+            const response = await fetch('https://api.softzenit.shop/shopzen/users', {
+                method: 'POST', // Specify the HTTP method
+                headers: {
+                    'Content-Type': 'application/json' // Indicate the content type
+                },
+                body: JSON.stringify(data) // Convert data to JSON string
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const responseData = await response.json();
+            console.log('Response from server:', responseData);
+        } catch (error) {
+            console.error('Error sending data:', error);
+        }
+    }
+
+    
 
     const handleSignUp = async () => {
         if (!name) return setNameError("* Name is required")
@@ -49,22 +72,11 @@ export default function SignUp() {
         if (!password) return setPasswordError("* Password is required")
         setPasswordError("")
 
-        const password_hash = await makeHash(password);
-        console.log(password_hash)
-        const data = { name, email, password, password_hash, phone };
-        console.log(data)
-        try {
-            setLoading(true);
-            const response = await axiosInstance.post('/user', { data });
-            console.log(response);
-            setLoading(false)
-        } catch (err) {
-            console.log(err)
-        }
+        // const password_hash = makeHash(password);
+        // console.log(password_hash)
+        // const data = { name, email, password, password_hash, phone };
 
-        console.log(data)
-
-        // router.navigate('/profile/Profile');
+        // postData(data);
     }
 
 

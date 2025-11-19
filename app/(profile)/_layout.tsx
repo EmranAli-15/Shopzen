@@ -1,11 +1,17 @@
-import MainNav from '@/components/mainNav/MainNav';
 import { screenBg } from '@/constants/globalStyles';
-import { Stack } from 'expo-router';
+import { useAuth } from '@/contextProvider/ContextProvider';
+import { Stack, useRouter } from 'expo-router';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 export default function Layout() {
+    const { user } = useAuth();
+    const router = useRouter();
 
+    console.log(user);
+
+    if (!user)
+        return router.navigate("/SignIn");
 
 
     return (
@@ -15,8 +21,6 @@ export default function Layout() {
                 contentStyle: { backgroundColor: screenBg }
             }}>
             </Stack>
-
-            <MainNav />
         </View>
     );
 }
@@ -24,6 +28,6 @@ export default function Layout() {
 const styles = StyleSheet.create({
     container: {
         // flex: 1
-        height:"100%"
+        height: "100%"
     }
 });

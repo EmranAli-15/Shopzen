@@ -1,6 +1,7 @@
 import Container from '@/components/Container';
 import Header from '@/components/header/Header';
 import { globalStyles, primaryBg, primaryColor } from '@/constants/globalStyles';
+import { useAuth } from '@/contextProvider/ContextProvider';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import * as ImagePicker from "expo-image-picker";
 import React, { useState } from 'react';
@@ -22,10 +23,13 @@ const icon14 = require("@/assets/images/profile/profileIcons/icon14.png");
 const icon15 = require("@/assets/images/profile/profileIcons/icon15.png");
 
 export default function ProfilePhoto() {
+
+    const { user } = useAuth();
+
     const icons = [icon1, icon2, icon3, icon4, icon5, icon6, icon7, icon8, icon9, icon10, icon11, icon12, icon13, icon14, icon15];
     const [isIcon, setIsIcon] = useState(-1);
 
-    const [profileURL, setProfileURL] = useState("");
+    const [profileURL, setProfileURL] = useState(user.image || "");
 
 
     const pickImage = async () => {

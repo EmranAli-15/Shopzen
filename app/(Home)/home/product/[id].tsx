@@ -8,12 +8,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { Dimensions, FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const { width } = Dimensions.get("window");
-const cateImgs = [
-    "https://api.softzenit.shop/media/product/image/images.jpeg",
-    "https://api.softzenit.shop/media/product/image/images.jpeg",
-    "https://api.softzenit.shop/media/product/image/images.jpeg",
-    "https://api.softzenit.shop/media/product/image/images.jpeg",
-]
 
 export default function ProductImages() {
     const { id } = useLocalSearchParams();
@@ -37,7 +31,10 @@ export default function ProductImages() {
                 response.data.image4,
                 response.data.image5
             ]
-            setImages(imgs)
+
+            const avaiImgs = imgs.filter((img: any) => img !== null)
+
+            setImages(avaiImgs)
             setLoading(false);
         } catch (err) {
             console.log(err)
@@ -132,7 +129,7 @@ export default function ProductImages() {
                     </View>
 
 
-                    <View style={{marginTop:10}}>
+                    <View style={{ marginTop: 10 }}>
                         <Text style={globalStyles.h2}>Product Description</Text>
                         <Text style={[globalStyles.small as any, { fontSize: 14, textAlign: "left" }]}>{product?.description}</Text>
                     </View>

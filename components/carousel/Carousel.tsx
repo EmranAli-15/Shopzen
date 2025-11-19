@@ -131,6 +131,6 @@ const styles = StyleSheet.create({
         height: 8,
         borderRadius: 4,
         backgroundColor: primaryColor,
-        marginTop:-30
+        marginTop:-25
     },
 });

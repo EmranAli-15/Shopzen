@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const axiosInstance = axios.create({
     baseURL: 'https://api.softzenit.shop/shopzen', // Replace with your API base URL
-    timeout: 5000, // Optional: Set a request timeout
+    // timeout: 5000, // Optional: Set a request timeout
     headers: {
         'Content-Type': 'application/json',
         // Add any other default headers here

@@ -2,6 +2,7 @@ import Alert from '@/components/alert/Alert';
 import Container from '@/components/Container';
 import Header from '@/components/header/Header';
 import { globalStyles, primaryBg, primaryColor } from '@/constants/globalStyles';
+import { useAuth } from '@/contextProvider/ContextProvider';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Feather from '@expo/vector-icons/Feather';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
@@ -9,9 +10,11 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 export default function AccountInfo() {
+    const { user } = useAuth();
+
     const router = useRouter();
     const [success, setSuccess] = useState(false);
 
@@ -34,10 +37,10 @@ export default function AccountInfo() {
     }
 
 
-    const [email, setEmail] = useState("Softzenit@gmail.com");
-    const [name, setName] = useState("Md. Abdul Gaffar");
+    const [email, setEmail] = useState(user.email);
+    const [name, setName] = useState(user.name);
     const [gender, setGender] = useState("Gender");
-    const [number, setNumber] = useState("01712345678");
+    const [number, setNumber] = useState(user.phone);
     const [occupation, setOccupation] = useState("Student");
 
 
@@ -71,7 +74,15 @@ export default function AccountInfo() {
                     {/* User profile view */}
                     <View style={{ flexDirection: "column", alignItems: "center" }}>
                         <View style={{ borderRadius: "50%", backgroundColor: primaryBg, padding: 10, height: 120, width: 120, alignItems: "center", justifyContent: "center" }}>
-                            <FontAwesome name="user" size={100} color={primaryColor} />
+                            <View style={{ borderRadius: "50%", backgroundColor: primaryBg, padding: 10, height: 120, width: 120, alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+                                {
+                                    user?.image ? <Image
+                                        style={{ height: 120, width: 120 }}
+                                        source={{ uri: user?.image }}
+                                    ></Image> :
+                                        <FontAwesome name="user" size={100} color={primaryColor} />
+                                }
+                            </View>
                             <TouchableOpacity
                                 onPress={() => router.navigate("/profile/ProfilePhoto")}
                                 style={{ position: "absolute", bottom: 0, right: 10, borderRadius: "50%", backgroundColor: "white", padding: 5 }}>

@@ -1,4 +1,5 @@
 import { primaryBg, primaryColor } from '@/constants/globalStyles';
+import { useAuth } from '@/contextProvider/ContextProvider';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
 import { usePathname, useRouter } from 'expo-router';
@@ -7,6 +8,7 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 export default function MainNav() {
     const router = useRouter();
+    const { user } = useAuth()
     const pathname = usePathname();
 
     return (
@@ -31,7 +33,13 @@ export default function MainNav() {
                 <AntDesign name="shopping-cart" size={24} color={pathname == "/cart/MyCart" ? primaryColor : "black"} />
             </TouchableOpacity>
             <TouchableOpacity
-                onPress={() => router.navigate("/profile/Profile")}
+                onPress={() => {
+                    if (!user) {
+                        router.push("/SignIn");
+                    } else {
+                        router.push("/profile/Profile");
+                    }
+                }}
                 style={styles.linkStyle}
             >
                 <SimpleLineIcons name="user" size={24} color={pathname == "/profile/Profile" ? primaryColor : "black"} />

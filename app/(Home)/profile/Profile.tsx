@@ -2,6 +2,8 @@ import Container from '@/components/Container';
 import Header from '@/components/header/Header';
 import MyModal from '@/components/MyModal';
 import { globalStyles, primaryBg, primaryColor, TYPOGRAPHY } from '@/constants/globalStyles';
+import { useAuth } from '@/contextProvider/ContextProvider';
+import { removeData } from '@/utils/asyncStorate';
 import Feather from '@expo/vector-icons/Feather';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
@@ -15,10 +17,21 @@ const logout = require('@/assets/images/signInOut/Logout.png')
 
 export default function Profile() {
     const router = useRouter();
+
     const [modal, setModal] = useState(false);
 
+
+    const { user, setContextLoading } = useAuth();
+
+    const handleSignOut = () => {
+        removeData("user");
+        setContextLoading(true);
+        router.navigate("/LoggedOut")
+    }
+
+
     return (
-        <View style={{}}>
+        <View>
             <Container>
                 <MyModal modal={modal} setModal={setModal}>
                     <View style={{ flexDirection: "column", rowGap: 10 }}>
@@ -42,7 +55,7 @@ export default function Profile() {
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={[globalStyles.btn, { flex: 1 }]}
-                                onPress={() => router.navigate("/LoggedOut")}
+                                onPress={() => handleSignOut()}
                             >
                                 <Text style={[globalStyles.txt as any, { color: primaryColor }]}>Sign Out</Text>
                             </TouchableOpacity>
@@ -59,12 +72,18 @@ export default function Profile() {
                     <View style={{ flexDirection: "column", rowGap: 40 }}>
                         {/* User profile view */}
                         <View style={{ flexDirection: "column", alignItems: "center", rowGap: 16 }}>
-                            <View style={{ borderRadius: "50%", backgroundColor: primaryBg, padding: 10, height: 120, width: 120, alignItems: "center", justifyContent: "center" }}>
-                                <FontAwesome name="user" size={100} color={primaryColor} />
+                            <View style={{ borderRadius: "50%", backgroundColor: primaryBg, padding: 10, height: 120, width: 120, alignItems: "center", justifyContent: "center", overflow:"hidden" }}>
+                                {
+                                    user?.image ? <Image
+                                    style={{height:120, width:120}}
+                                        source={{ uri: user?.image }}
+                                    ></Image> :
+                                        <FontAwesome name="user" size={100} color={primaryColor} />
+                                }
                             </View>
                             <View>
-                                <Text style={[styles.headlines, { textAlign: "center" }]}>Md. Abdul Gaffar</Text>
-                                <Text style={[globalStyles.p as any, { marginTop: -5 }]}>Softzenit@gmail.com</Text>
+                                <Text style={[styles.headlines, { textAlign: "center" }]}>{user?.name || "Md. Abdul Gaffar"}</Text>
+                                <Text style={[globalStyles.p as any, { marginTop: -5 }]}>{user?.email || "Softzenit@gmail.com"}</Text>
                             </View>
                         </View>
 
@@ -89,7 +108,7 @@ export default function Profile() {
 
                                 <TouchableOpacity
                                     style={styles.linkStyle}
-                                    onPress={() => router.navigate('/MyOrder')}
+                                    onPress={() => router.navigate('/profile/MyOrder')}
                                 >
                                     <View style={styles.linkStyleIn}>
                                         <MaterialCommunityIcons name="invoice-text-outline" size={24} color="#4D4D4D" />
@@ -102,7 +121,7 @@ export default function Profile() {
 
                                 <TouchableOpacity
                                     style={styles.linkStyle}
-                                    onPress={() => router.navigate('/MyAddress')}
+                                    onPress={() => router.navigate('/profile/MyAddress')}
                                 >
                                     <View style={styles.linkStyleIn}>
                                         <Octicons name="location" size={24} color="#4D4D4D" />
@@ -129,7 +148,7 @@ export default function Profile() {
 
 
                         {/* Support section */}
-                        <View style={{marginBottom:20}}>
+                        <View style={{ marginBottom: 20 }}>
                             <Text style={styles.headlines}>Support</Text>
                             <View style={{ backgroundColor: primaryBg, padding: 10, borderRadius: 26 }}>
 
