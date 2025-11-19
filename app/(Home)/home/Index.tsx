@@ -1,5 +1,4 @@
 import Carousel from '@/components/carousel/Carousel'
-import Container from '@/components/Container'
 import { globalStyles, primaryBg, primaryColor } from '@/constants/globalStyles'
 import axiosInstance from '@/utils/axiosInstance'
 import EvilIcons from '@expo/vector-icons/EvilIcons'
@@ -175,10 +174,9 @@ export default function index() {
               <Text style={[globalStyles.p as any, { textAlign: "left", marginTop: -8 }]}>Your Multi-Vendor Shopping Paradise</Text>
             </View>
           </View>
-          <Container>
+          <View>
             {/* Categories */}
-            <View style={{ marginTop: -20 }}>
-
+            <View style={{ marginTop: 20, marginHorizontal: 10 }}>
               {
                 categoriesLoading ?
                   <CategoriesSkleton></CategoriesSkleton> :
@@ -206,28 +204,39 @@ export default function index() {
             </View>
 
             {/* Carousel */}
-            <View>
+            <View style={{ marginHorizontal: 10 }}>
               <Carousel data={cateImgs} />
             </View>
 
             {/* Infos */}
-            <View>
-              <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+            <View style={styles.shadowWrapper}>
+              <View style={{ flexDirection: "row", justifyContent: "space-between", marginHorizontal:10 }}>
                 <View style={styles.imgContainer}>
-                  <Image style={styles.infoImg} source={truck}></Image>
-                  <Text style={[globalStyles.small as any, { textAlign: "center", color: "#1A1F71" }]}>Free Delivery</Text>
+                  <Image style={styles.infoImg} source={truck} />
+                  <Text style={[globalStyles.small as any, { textAlign: "center", color: "#1A1F71" }]}>
+                    Free Delivery
+                  </Text>
                 </View>
+
                 <View style={styles.imgContainer}>
-                  <Image style={styles.infoImg} source={easyReturn}></Image>
-                  <Text style={[globalStyles.small as any, { textAlign: "center", color: "#1A1F71" }]}>Easy Returns</Text>
+                  <Image style={styles.infoImg} source={easyReturn} />
+                  <Text style={[globalStyles.small as any, { textAlign: "center", color: "#1A1F71" }]}>
+                    Easy Returns
+                  </Text>
                 </View>
+
                 <View style={styles.imgContainer}>
-                  <Image style={styles.infoImg} source={sequre}></Image>
-                  <Text style={[globalStyles.small as any, { textAlign: "center", color: "#1A1F71" }]}>Secure Payment</Text>
+                  <Image style={styles.infoImg} source={sequre} />
+                  <Text style={[globalStyles.small as any, { textAlign: "center", color: "#1A1F71" }]}>
+                    Secure Payment
+                  </Text>
                 </View>
+
                 <View style={styles.imgContainer}>
-                  <Image style={styles.infoImg} source={support}></Image>
-                  <Text style={[globalStyles.small as any, { textAlign: "center", color: "#1A1F71" }]}>24/7 Support</Text>
+                  <Image style={styles.infoImg} source={support} />
+                  <Text style={[globalStyles.small as any, { textAlign: "center", color: "#1A1F71" }]}>
+                    24/7 Support
+                  </Text>
                 </View>
               </View>
             </View>
@@ -235,13 +244,14 @@ export default function index() {
 
 
             {/* Products */}
-            <View>
+            <View style={{ marginTop: 30, marginHorizontal: 10 }}>
+              <Text style={[globalStyles.h2, {color:"#1A1F71"}]}>Featured Products</Text>
               {
                 productLoading ? <ProductCardSkleton></ProductCardSkleton> :
                   <Products products={products}></Products>
               }
             </View>
-          </Container>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -274,9 +284,23 @@ const styles = StyleSheet.create({
     width: "100%",
     padding: 8,
     backgroundColor: "white",
-    shadowColor: "#000000",
+    shadowColor: "#333333",
     shadowOpacity: 0.24,
     shadowOffset: { width: 0, height: 6 },
     elevation: 12
-  }
+  },
+  shadowWrapper: {
+    paddingVertical: 10,
+
+    // iOS shadow
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+
+    // Android shadow (bottom only)
+    elevation: 3,
+    backgroundColor: "#fff",
+    borderRadius: 8,
+  },
 });

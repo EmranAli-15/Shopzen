@@ -5,7 +5,7 @@ import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Image, StyleSheet, Text, View } from "react-native";
 
-export default function ProductCard({ image, title, price, rating, vendor }: { image: any, title: any, price: any, rating: any, vendor:any }) {
+export default function ProductCard({ image, title, price, rating, vendor }: { image: any, title: any, price: any, rating: any, vendor: any }) {
     return (
         <View style={styles.card}>
             <Image source={{ uri: image }} style={styles.image} />
@@ -15,8 +15,8 @@ export default function ProductCard({ image, title, price, rating, vendor }: { i
 
 
                 <View style={{ flexDirection: "row", columnGap: 2, alignItems: "center" }}>
-                    <MaterialCommunityIcons name="storefront" size={18} color="#1A1F71" />
-                    <Text style={{fontFamily:"PoppinsRegular"}}>{vendor}</Text>
+                    <MaterialCommunityIcons name="storefront" size={12} color="#1A1F71" />
+                    <Text style={{ fontFamily: "PoppinsRegular", fontSize: 12, marginTop: 3 }}>{vendor}</Text>
                 </View>
 
 
@@ -24,11 +24,11 @@ export default function ProductCard({ image, title, price, rating, vendor }: { i
 
                 <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                     <View style={{ flexDirection: "row", columnGap: 1, alignItems: "center" }}>
-                        <FontAwesome6 name="bangladeshi-taka-sign" size={14} color="#1A1F71" />
+                        <FontAwesome6 name="bangladeshi-taka-sign" size={12} color="#1A1F71" />
                         <Text style={styles.price}>{price}</Text>
                     </View>
                     <View style={{ flexDirection: "row", columnGap: 1, alignItems: "center" }}>
-                        <Ionicons name="star" size={14} color={primaryColor} />
+                        <Ionicons name="star" size={12} color={primaryColor} />
                         <Text style={styles.ratingText}>{rating}</Text>
                     </View>
                 </View>
@@ -72,10 +72,10 @@ const styles = StyleSheet.create({
     },
 
     price: {
-        fontSize: 14,
+        fontSize: 12,
         color: "#1A1F71",
         fontFamily: "PoppinsSemiBold",
-        marginTop:3
+        marginTop: 3
     },
 
     ratingRow: {
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     },
 
     ratingText: {
-        fontSize: 14,
+        fontSize: 12,
         marginLeft: 4,
         color: "#666",
     },
