@@ -10,20 +10,20 @@ export default function AuthProvider() {
             <Image
                 style={{ height: "auto", width: "auto" }}
                 source={gmailImg}
-                width={39}
-                height={39}
+                width={34}
+                height={34}
             />
             <Image
                 style={{ height: "auto", width: "auto" }}
                 source={appleImg}
-                width={29}
-                height={35}
+                width={24}
+                height={30}
             />
             <Image
                 style={{ height: "auto", width: "auto" }}
                 source={facebookImg}
-                width={39}
-                height={39}
+                width={34}
+                height={34}
             />
         </View>
     )

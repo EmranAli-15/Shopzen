@@ -89,97 +89,99 @@ export default function SignIn() {
 
 
 
-                    <View style={{ flex: 1, flexDirection: "column", justifyContent: "space-evenly", rowGap: 40 }}>
-                        {/* LOGO AND INTRO */}
-                        <View>
-                            <Logo></Logo>
-                            <Text style={[AuthStyles.font as any, { alignSelf: "center", marginTop: 10 }]}>Welcome Back! Please enter your details.</Text>
-                        </View>
-
-
-                        {/* Email & password filed */}
-                        <View style={{ flexDirection: "column", rowGap: 10 }}>
+                    <View style={{ flex: 1, justifyContent: "center" }}>
+                        <View style={{ flexDirection: "column", rowGap: 40 }}>
+                            {/* LOGO AND INTRO */}
                             <View>
-                                <Text style={globalStyles.inputTitle as any}>Email or phone</Text>
-                                <TextInput
-                                    style={[globalStyles.inputText,
-                                    emailFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
-                                    ]}
-                                    onChangeText={text => setEmail(text)}
-                                    value={email}
-                                    inputMode='email'
-                                    placeholder="Enter your email or phone number"
-                                    placeholderTextColor="#666666"
-                                    onFocus={() => setEmailFocus(true)}
-                                    onBlur={() => setEmailFocus(false)}
-                                />
-                                {
-                                    emailError && <Text style={AuthStyles.errorText}>{emailError}</Text>
-                                }
+                                <Logo></Logo>
+                                <Text style={[{ alignSelf: "center", marginTop: 10, fontSize: 14, color: "#666666" }]}>Welcome Back! Please enter your details.</Text>
                             </View>
-                            <View>
-                                <Text style={globalStyles.inputTitle as any}>Password</Text>
-                                <View style={{ position: "relative" }}>
+
+
+                            {/* Email & password filed */}
+                            <View style={{ flexDirection: "column", rowGap: 10 }}>
+                                <View>
+                                    <Text style={globalStyles.inputTitle as any}>Email or phone</Text>
                                     <TextInput
-                                        style={[
-                                            globalStyles.inputText as any,
-                                            passwordFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
+                                        style={[globalStyles.inputText,
+                                        emailFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
                                         ]}
-                                        secureTextEntry={showPass && true}
-                                        onChangeText={text => setPassword(text)}
-                                        value={password}
-                                        placeholder="Enter your password"
+                                        onChangeText={text => setEmail(text)}
+                                        value={email}
+                                        inputMode='email'
+                                        placeholder="Enter your email or phone number"
                                         placeholderTextColor="#666666"
-                                        onFocus={() => setPasswordFocus(true)}
-                                        onBlur={() => setPasswordFocus(false)}
+                                        onFocus={() => setEmailFocus(true)}
+                                        onBlur={() => setEmailFocus(false)}
                                     />
                                     {
-                                        passwordError && <Text style={AuthStyles.errorText}>{passwordError}</Text>
+                                        emailError && <Text style={AuthStyles.errorText}>{emailError}</Text>
                                     }
-                                    <View style={{ position: "absolute", right: 15, top: 12 }}>
-                                        <TouchableOpacity
-                                            onPress={() => setShowPass(!showPass)}
-                                        >
-                                            {
-                                                showPass ? <Ionicons name="eye-off-outline" size={24} color="#666666" /> : <Ionicons name="eye-outline" size={24} color="#666666" />
-                                            }
-                                        </TouchableOpacity>
+                                </View>
+                                <View>
+                                    <Text style={globalStyles.inputTitle as any}>Password</Text>
+                                    <View style={{ position: "relative" }}>
+                                        <TextInput
+                                            style={[
+                                                globalStyles.inputText as any,
+                                                passwordFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
+                                            ]}
+                                            secureTextEntry={showPass && true}
+                                            onChangeText={text => setPassword(text)}
+                                            value={password}
+                                            placeholder="Enter your password"
+                                            placeholderTextColor="#666666"
+                                            onFocus={() => setPasswordFocus(true)}
+                                            onBlur={() => setPasswordFocus(false)}
+                                        />
+                                        {
+                                            passwordError && <Text style={AuthStyles.errorText}>{passwordError}</Text>
+                                        }
+                                        <View style={{ position: "absolute", right: 15, top: 12 }}>
+                                            <TouchableOpacity
+                                                onPress={() => setShowPass(!showPass)}
+                                            >
+                                                {
+                                                    showPass ? <Ionicons name="eye-off-outline" size={24} color="#666666" /> : <Ionicons name="eye-outline" size={24} color="#666666" />
+                                                }
+                                            </TouchableOpacity>
+                                        </View>
                                     </View>
                                 </View>
-                            </View>
-                            {/* Sign in button */}
-                            <TouchableOpacity
-                                style={[globalStyles.btnFilled]}
-                                onPress={handleLogin}
-                            >
-                                <Text style={[globalStyles.txt as any, { color: "white" }]}>Sign in</Text>
-                            </TouchableOpacity>
-                        </View>
-
-
-                        {/* Others login options */}
-                        <View style={{ flexDirection: "column", rowGap: 10 }}>
-                            <View style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}>
-                                <View style={styles.devideLine}></View>
-                                <Text style={AuthStyles.font as any}>Or continue with</Text>
-                                <View style={styles.devideLine}></View>
-                            </View>
-
-                            <AuthProvider></AuthProvider>
-
-                            <View style={{ flexDirection: "column", rowGap: 8 }}>
-                                <TouchableOpacity onPress={() => router.navigate('/ForgetHome')}>
-                                    <Text style={[AuthStyles.font as any, { alignSelf: "center" }]}>Forget Password?</Text>
+                                {/* Sign in button */}
+                                <TouchableOpacity
+                                    style={[globalStyles.btnFilled]}
+                                    onPress={handleLogin}
+                                >
+                                    <Text style={[globalStyles.txt as any, { color: "white" }]}>Sign in</Text>
                                 </TouchableOpacity>
-                                <View style={{ flexDirection: "row", alignItems: "center", columnGap: 2, alignSelf: "center" }}>
-                                    <Text style={[AuthStyles.font as any, { alignSelf: "center" }]}>
-                                        Dont have an account?
-                                    </Text>
-                                    <TouchableOpacity
-                                        onPress={() => router.navigate('/SignUp')}
-                                    >
-                                        <Text style={[AuthStyles.font as any, { color: "#FF620A" }]}>Sign up</Text>
+                            </View>
+
+
+                            {/* Others login options */}
+                            <View style={{ flexDirection: "column", rowGap: 10 }}>
+                                <View style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}>
+                                    <View style={styles.devideLine}></View>
+                                    <Text style={globalStyles.h1 as any}>Or continue with</Text>
+                                    <View style={styles.devideLine}></View>
+                                </View>
+
+                                <AuthProvider></AuthProvider>
+
+                                <View style={{ flexDirection: "column", rowGap: 8 }}>
+                                    <TouchableOpacity onPress={() => router.navigate('/ForgetHome')}>
+                                        <Text style={[globalStyles.h1 as any, { alignSelf: "center" }]}>Forget Password?</Text>
                                     </TouchableOpacity>
+                                    <View style={{ flexDirection: "row", alignItems: "center", columnGap: 2, alignSelf: "center" }}>
+                                        <Text style={[globalStyles.h1 as any, { alignSelf: "center" }]}>
+                                            Dont have an account?
+                                        </Text>
+                                        <TouchableOpacity
+                                            onPress={() => router.navigate('/SignUp')}
+                                        >
+                                            <Text style={[globalStyles.h1 as any, { color: "#FF620A" }]}>Sign up</Text>
+                                        </TouchableOpacity>
+                                    </View>
                                 </View>
                             </View>
                         </View>

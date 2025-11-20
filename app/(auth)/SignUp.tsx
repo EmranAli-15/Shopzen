@@ -6,7 +6,7 @@ import { globalStyles } from '@/constants/globalStyles';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Logo from './Logo';
 import { AuthStyles } from './styles/AuthStyles';
 const delivery_truck = require('@/assets/images/delivery_truck.png');
@@ -41,7 +41,7 @@ export default function SignUp() {
 
 
 
-    async function postData(data:any) {
+    async function postData(data: any) {
         try {
             const response = await fetch('https://api.softzenit.shop/shopzen/users', {
                 method: 'POST', // Specify the HTTP method
@@ -60,7 +60,7 @@ export default function SignUp() {
         }
     }
 
-    
+
 
     const handleSignUp = async () => {
         if (!name) return setNameError("* Name is required")
@@ -84,29 +84,28 @@ export default function SignUp() {
         <Container>
             {loading && <Alert type='loading' text='user creating'></Alert>}
             <BackButton></BackButton>
-            {/* Logo and into */}
-            <View>
-                <Logo></Logo>
-                <Text style={[AuthStyles.font as any, { alignSelf: "center", marginTop: 10 }]}>Welcome to ShopZen.</Text>
-            </View>
 
+            <ScrollView>
+                <View style={{ flexDirection: "column", rowGap: 40 }}>
+                    {/* Logo and into */}
+                    <View>
+                        <Logo></Logo>
+                        <Text style={[globalStyles.h1 as any, { alignSelf: "center", marginTop: 10 }]}>Welcome to ShopZen.</Text>
+                    </View>
 
-            <View style={{ flex: 1, marginTop: 20 }}>
-                <View style={{ flex: 1, flexDirection: "column", justifyContent: "space-between" }}>
                     {/* Auth providers */}
                     <View style={{ flexDirection: "column", rowGap: 10 }}>
-                        <Text style={AuthStyles.font}>Sign up quickly with:</Text>
+                        <Text style={globalStyles.h1}>Sign up quickly with:</Text>
 
                         <AuthProvider></AuthProvider>
 
                         {/* Line devide */}
                         <View style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}>
                             <View style={styles.devideLine}></View>
-                            <Text style={AuthStyles.font as any}>Or continue with</Text>
+                            <Text style={globalStyles.h1 as any}>Or continue with</Text>
                             <View style={styles.devideLine}></View>
                         </View>
                     </View>
-
 
                     {/* Inputs for signup */}
                     <View style={{ flexDirection: "column", rowGap: 10 }}>
@@ -196,29 +195,30 @@ export default function SignUp() {
                                 </View>
                             </View>
                         </View>
-                    </View>
 
-
-                    <View>
-                        <TouchableOpacity
-                            style={globalStyles.btnFilled}
-                            onPress={() => handleSignUp()}
-                        >
-                            <Text style={[globalStyles.txt as any, { color: "white" }]}>Sign up</Text>
-                        </TouchableOpacity>
-                        <View style={{ flexDirection: "row", alignItems: "center", columnGap: 2, alignSelf: "center", marginTop: 10 }}>
-                            <Text style={[AuthStyles.font as any, { alignSelf: "center" }]}>
-                                Already have an account?
-                            </Text>
+                        {/* Signup button */}
+                        <View>
                             <TouchableOpacity
-                                onPress={() => router.navigate('/SignIn')}
+                                style={globalStyles.btnFilled}
+                                onPress={() => handleSignUp()}
                             >
-                                <Text style={[AuthStyles.font as any, { color: "#FF620A" }]}>Sign in</Text>
+                                <Text style={[globalStyles.txt as any, { color: "white" }]}>Sign up</Text>
                             </TouchableOpacity>
+                            <View style={{ flexDirection: "row", alignItems: "center", columnGap: 2, alignSelf: "center", marginTop: 10 }}>
+                                <Text style={[globalStyles.h1 as any, { alignSelf: "center" }]}>
+                                    Already have an account?
+                                </Text>
+                                <TouchableOpacity
+                                    onPress={() => router.navigate('/SignIn')}
+                                >
+                                    <Text style={[globalStyles.h1 as any, { color: "#FF620A" }]}>Sign in</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
                     </View>
                 </View>
-            </View>
+            </ScrollView>
+
         </Container>
     )
 };

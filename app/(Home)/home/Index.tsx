@@ -152,12 +152,13 @@ export default function index() {
 
 
           <View>
-            <View style={{ backgroundColor: primaryColor, flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-              <View style={{ position: "relative", padding: 10, flex: 1 }}>
+            <View style={{ backgroundColor: primaryColor, flexDirection: "row", paddingVertical: 5, justifyContent: "space-between", alignItems: "center", paddingHorizontal: 10 }}>
+              <View style={{ position: "relative", flex: 1 }}>
                 <TextInput
                   style={[
                     globalStyles.inputText as any,
-                    searchFocus ? globalStyles.inputFocused : globalStyles.inputBlurred, { paddingLeft: 50, width: "100%" }
+                    searchFocus ? globalStyles.inputFocused : globalStyles.inputBlurred,
+                    { paddingLeft: 40, width: "100%", paddingVertical: 10 }
                   ]}
                   onChangeText={text => setSearch(text)}
                   value={search}
@@ -167,23 +168,23 @@ export default function index() {
                   onFocus={() => setSearchFocus(true)}
                   onBlur={() => setSearchFocus(false)}
                 />
-                <Feather style={{ position: "absolute", left: 26, top: 22 }} name="search" size={24} color="black" />
+                <Feather style={{ position: "absolute", left: 15, top: 12 }} name="search" size={18} color="#666666" />
               </View>
-              <TouchableOpacity>
-                <Image
-                  style={{ height: 55, width: 55 }}
-                  source={searchButton}
-                  height={55}
-                  width={55}
-                ></Image>
-              </TouchableOpacity>
+              <View style={{ height: 45, width: 45, marginTop:-2 }}>
+                <TouchableOpacity>
+                  <Image
+                    style={{ height: 50, width: 50 }}
+                    source={searchButton}
+                  ></Image>
+                </TouchableOpacity>
+              </View>
             </View>
-            <View style={{ backgroundColor: "#00CDA5", paddingHorizontal: 10, paddingVertical: 5, flexDirection: "row", alignItems: "center" }}>
-              <EvilIcons name="location" size={20} color="white" />
+            <View style={{ backgroundColor: "#00CDA5", paddingVertical: 1, paddingHorizontal: 10, flexDirection: "row", alignItems: "center" }}>
+              <EvilIcons name="location" size={14} color="white" />
               <Text style={[globalStyles.small as any, { color: "white" }]}>Delivering to Dhaka, Bangladesh</Text>
             </View>
             <View style={{ paddingHorizontal: 10 }}>
-              <Text style={{ color: primaryColor, fontSize: 30, fontFamily: "PoppinsBold" }}>Shop<Text style={{ color: "#1A1F71" }}>Zen</Text></Text>
+              <Text style={{ color: primaryColor, fontSize: 24, fontFamily: "PoppinsBold" }}>Shop<Text style={{ color: "#1A1F71" }}>Zen</Text></Text>
               <Text style={[globalStyles.small as any, { textAlign: "left", marginTop: -10 }]}>Your Multi-Vendor Shopping Paradise</Text>
             </View>
           </View>

@@ -28,7 +28,7 @@ export const globalStyles = {
         borderRadius: 28
     },
     txt: {
-        fontSize: 16,
+        fontSize: 12,
         textAlign: "center",
         fontFamily: "PoppinsMedium",
     },
@@ -64,19 +64,19 @@ export const globalStyles = {
 
     // -----------------------------
     small: {
-        fontSize: 12,
+        fontSize: 10,
         fontFamily: "PoppinsRegular",
         color: "#666666",
         textAlign: "center"
     },
     p: {
-        fontSize: 15,
+        fontSize: 12,
         fontFamily: "PoppinsRegular",
         color: "#666666",
         textAlign: "center"
     },
     h1: {
-        fontSize: TYPOGRAPHY.h1,
+        fontSize: 14,
         fontFamily: "PoppinsMedium",
         color: "#333333",
     },
@@ -88,12 +88,12 @@ export const globalStyles = {
     inputTitle: {
         fontFamily: "PoppinsMedium",
         color: "#333333",
-        fontSize: 16,
+        fontSize: 14,
     },
     inputText: {
         fontFamily: "PoppinsRegular",
         color: "#333333",
-        fontSize: 14,
+        fontSize: 12,
         borderRadius: 31,
         padding: 12,
     },
