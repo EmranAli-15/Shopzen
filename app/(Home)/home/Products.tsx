@@ -18,7 +18,7 @@ export default function Products({ products }: { products: any }) {
                     <Link
                         href={{
                             pathname: `/(Home)/home/product/[id]`,
-                            params: { id: item.id },
+                            params: { id: JSON.stringify(item) },
                         }}
                         style={{ width: "49%", marginBottom: 8 }}>
                         <ProductCard

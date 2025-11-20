@@ -1,7 +1,6 @@
 import Container from "@/components/Container";
 import Header from "@/components/header/Header";
 import { globalStyles, primaryColor } from "@/constants/globalStyles";
-import axiosInstance from "@/utils/axiosInstance";
 import { FontAwesome6, Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
@@ -11,39 +10,29 @@ const { width } = Dimensions.get("window");
 
 export default function ProductImages() {
     const { id } = useLocalSearchParams();
-    console.log(id)
-
-    const [loading, setLoading] = useState(true);
+    const productData = JSON.parse(id as any);
 
     const [product, setProduct] = useState<any>(null);
 
     const [images, setImages] = useState<any>([]);
 
 
-    const fetchProduct = async () => {
-        try {
-            const response = await axiosInstance.get(`/products/${id}`);
-            setProduct(response.data);
-            const imgs = [
-                response.data.image1,
-                response.data.image2,
-                response.data.image3,
-                response.data.image4,
-                response.data.image5
-            ]
 
-            const avaiImgs = imgs.filter((img: any) => img !== null)
-
-            setImages(avaiImgs)
-            setLoading(false);
-        } catch (err) {
-            console.log(err)
-        }
-    };
 
     useEffect(() => {
-        fetchProduct()
-    }, [])
+        setProduct(productData);
+
+        const imgs = [
+            productData.image1,
+            productData.image2,
+            productData.image3,
+            productData.image4,
+            productData.image5
+        ]
+
+        const avaiImgs = imgs.filter((img: any) => img !== null)
+        setImages(avaiImgs)
+    }, [id])
 
 
     const flatRef = useRef<any>(null);

@@ -71,7 +71,6 @@ export default function index() {
     try {
       const response = await axiosInstance.get('/products');
       setAllProducts(response.data);
-      console.log(response.data)
       setProducts(response.data.slice(loadMore.skip, loadMore.limit));
       setProductLoading(false);
     } catch (err) {
