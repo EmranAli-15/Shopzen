@@ -22,11 +22,7 @@ export default function Products({ products }: { products: any }) {
                         }}
                         style={{ width: "49%", marginBottom: 8 }}>
                         <ProductCard
-                            image={item.image1}
-                            title={item.name}
-                            price={item.original_price}
-                            rating={item.rating_avg}
-                            vendor={item.vendor_name}
+                            data={item}
                         />
                     </Link>
                 )}

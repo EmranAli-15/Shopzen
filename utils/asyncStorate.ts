@@ -5,7 +5,6 @@ export const storeData = async ({ key, value }: { key: any, value: any }) => {
     try {
         await AsyncStorage.setItem(key, JSON.stringify(value));
     } catch (e) {
-        // saving error
         console.error("Error saving data:", e);
     }
 };
@@ -15,11 +14,9 @@ export const retrieveData = async (key: any) => {
     try {
         const value = await AsyncStorage.getItem(key);
         if (value !== null) {
-            // value previously stored
             return value;
         }
     } catch (e) {
-        // error reading value
         console.error("Error retrieving data:", e);
     }
     return null;
@@ -30,7 +27,24 @@ export const removeData = async (key: any) => {
     try {
         await AsyncStorage.removeItem(key);
     } catch (e) {
-        // remove error
         console.error("Error removing data:", e);
     }
 };
+
+
+export const handleAddToCart = async (data: any) => {
+    let myCart = await retrieveData("myCart");
+
+    if (myCart) {
+        const cart = JSON.parse(myCart);
+        const flag = cart.find((item: any) => item.id === data.id);
+        if (!flag) {
+            const updatedCart = [...cart, data];
+            storeData({ key: "myCart", value: updatedCart })
+        }
+    }
+    else {
+        storeData({ key: "myCart", value: [data] })
+    }
+
+}

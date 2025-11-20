@@ -1,4 +1,3 @@
-import Alert from '@/components/alert/Alert';
 import Container from '@/components/Container';
 import Header from '@/components/header/Header';
 import { globalStyles, primaryBg, primaryColor } from '@/constants/globalStyles';
@@ -14,6 +13,7 @@ import { Image, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpac
 
 export default function AccountInfo() {
     const { user } = useAuth();
+    const {showAlert} = useAuth()
 
     const router = useRouter();
     const [success, setSuccess] = useState(false);
@@ -54,16 +54,11 @@ export default function AccountInfo() {
 
     const handleProfileUpdate = () => {
         setSuccess(true);
-        setTimeout(() => {
-            setSuccess(false)
-        }, 1000);
+        showAlert({text:"Profile updated", type:"success"})
     }
 
     return (
         <Container>
-            {
-                success && <Alert text='Profile update successfully' type='success'></Alert>
-            }
             <View>
                 <Header title='Information'></Header>
             </View>
