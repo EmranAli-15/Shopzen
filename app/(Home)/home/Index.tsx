@@ -62,7 +62,7 @@ export default function index() {
 
 
   // PRODUCTS
-  const [loadMore, setLoadMore] = useState({ skip: 0, limit: 20 })
+  const [loadMore, setLoadMore] = useState({ skip: 0, limit: 16 })
 
   const [productLoading, setProductLoading] = useState(true);
   const [allProducts, setAllProducts] = useState<any[]>([])
@@ -77,6 +77,11 @@ export default function index() {
       console.log(err)
     }
   };
+
+  useEffect(() => {
+    const d = [...products, ...allProducts.slice(loadMore.skip * loadMore.limit, (loadMore.skip + 1) * loadMore.limit)]
+    setProducts(d)
+  }, [loadMore])
 
   useEffect(() => {
     fetchProducts();
@@ -124,7 +129,7 @@ export default function index() {
                         key={item.id}
                         href={{
                           pathname: `/(Home)/home/product/[id]`,
-                          params: { id: item.id },
+                          params: { id: JSON.stringify(item) },
                         }}
                       >
                         <View style={{ flexDirection: "row", columnGap: 5 }}>
@@ -258,6 +263,14 @@ export default function index() {
                 productLoading ? <ProductCardSkleton></ProductCardSkleton> :
                   <Products products={products}></Products>
               }
+              <View style={{ alignSelf: "center", marginTop: 20 }}>
+                <TouchableOpacity
+                  onPress={() => setLoadMore({ skip: (loadMore.skip + 1), limit: 20 })}
+                  style={[globalStyles.btn, { width: 100, paddingVertical: 5 }]}
+                >
+                  <Text style={{ alignSelf: "center", fontFamily: "PoppinsMedium" }}>more</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </View>

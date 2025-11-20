@@ -2,6 +2,7 @@ import Container from '@/components/Container';
 import Header from '@/components/header/Header';
 import { globalStyles, primaryBg, primaryColor } from '@/constants/globalStyles';
 import { useAuth } from '@/contextProvider/ContextProvider';
+import { storeData } from '@/utils/asyncStorate';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Feather from '@expo/vector-icons/Feather';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
@@ -13,10 +14,9 @@ import { Image, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpac
 
 export default function AccountInfo() {
     const { user } = useAuth();
-    const {showAlert} = useAuth()
+    const { showAlert } = useAuth()
 
     const router = useRouter();
-    const [success, setSuccess] = useState(false);
 
 
     const [birthDate, setBirthDate] = useState("2025-11-13");
@@ -53,8 +53,11 @@ export default function AccountInfo() {
 
 
     const handleProfileUpdate = () => {
-        setSuccess(true);
-        showAlert({text:"Profile updated", type:"success"})
+        user.name = name
+        user.email = email
+        user.phone = number
+        storeData({ key: "user", value: user });
+        showAlert({ text: "Profile updated", type: "success" })
     }
 
     return (

@@ -2,6 +2,7 @@ import Container from '@/components/Container';
 import Header from '@/components/header/Header';
 import { globalStyles, primaryBg, primaryColor } from '@/constants/globalStyles';
 import { useAuth } from '@/contextProvider/ContextProvider';
+import { storeData } from '@/utils/asyncStorate';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import * as ImagePicker from "expo-image-picker";
 import React, { useState } from 'react';
@@ -24,7 +25,7 @@ const icon15 = require("@/assets/images/profile/profileIcons/icon15.png");
 
 export default function ProfilePhoto() {
 
-    const { user } = useAuth();
+    const { user, setContextLoading, showAlert } = useAuth();
 
     const icons = [icon1, icon2, icon3, icon4, icon5, icon6, icon7, icon8, icon9, icon10, icon11, icon12, icon13, icon14, icon15];
     const [isIcon, setIsIcon] = useState(-1);
@@ -45,6 +46,13 @@ export default function ProfilePhoto() {
             setIsIcon(-1);
         }
     };
+
+    const handleSavePhoto = () => {
+        user.image = profileURL;
+        storeData({ key: "user", value: user });
+        setContextLoading(true);
+        showAlert({ text: "Profile photo updated", type: "success" });
+    }
 
 
     return (
@@ -112,9 +120,10 @@ export default function ProfilePhoto() {
 
                     <View>
                         <TouchableOpacity
+                            onPress={() => handleSavePhoto()}
                             style={globalStyles.btnFilled}
                         >
-                            <Text style={[globalStyles.txt as any, { color: "white" }]}>Continue</Text>
+                            <Text style={[globalStyles.txt as any, { color: "white" }]}>Update Profile</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
