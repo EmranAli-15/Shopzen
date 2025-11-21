@@ -86,7 +86,7 @@ export default function HelpCenter() {
                                 onFocus={() => setSearchFocus(true)}
                                 onBlur={() => setSearchFocus(false)}
                             />
-                            <Feather style={{ position: "absolute", left: 15, top: 12 }} name="search" size={24} color="black" />
+                            <Feather style={{ position: "absolute", left: 15, top: 12 }} name="search" size={20} color="black" />
                         </View>
 
                         <View>
@@ -96,10 +96,10 @@ export default function HelpCenter() {
                                 renderItem={({ item, index }) => (
                                     <TouchableOpacity
                                         onPress={() => router.navigate(item.path as any)}
-                                        style={{ backgroundColor: primaryBg, padding: 16, marginBottom: 8, borderRadius: 20 }}
+                                        style={{ backgroundColor: primaryBg, padding: 10, marginBottom: 8, borderRadius: 20 }}
                                     >
                                         <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-                                            <View style={{ flexDirection: "row", alignItems: "center", columnGap: 8, width: "90%" }}>
+                                            <View style={{ flexDirection: "row", alignItems: "center", columnGap: 8, width: "85%" }}>
                                                 <Image
                                                     style={{ objectFit: "contain", width: "20%", overflow: "hidden" }}
                                                     source={item.image}
@@ -108,12 +108,12 @@ export default function HelpCenter() {
                                                 </Image>
 
                                                 <View style={{ maxWidth: "80%" }}>
-                                                    <Text style={{ fontSize: 17, color: "#333333", fontFamily: "PoppinsMedium" }}>{item.heading}</Text>
-                                                    <Text style={[globalStyles.p as any, { fontSize: 14, textAlign: "left" }]}>{item.text}</Text>
+                                                    <Text style={globalStyles.h1}>{item.heading}</Text>
+                                                    <Text style={[globalStyles.p as any, { textAlign: "left" }]}>{item.text}</Text>
                                                 </View>
                                             </View>
                                             <View style={{ width: "10%" }}>
-                                                <MaterialIcons name="arrow-forward-ios" size={24} color="#333333" />
+                                                <MaterialIcons name="arrow-forward-ios" size={18} color="#333333" />
                                             </View>
                                         </View>
                                     </TouchableOpacity>

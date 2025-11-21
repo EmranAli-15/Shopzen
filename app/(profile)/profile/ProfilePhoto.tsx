@@ -59,9 +59,9 @@ export default function ProfilePhoto() {
         <Container>
             <Header title='Upload Your Picture'></Header>
             <ScrollView>
-                <View style={{ flexDirection: "column", flex: 1, rowGap: 40 }}>
+                <View style={{ flexDirection: "column", flex: 1, rowGap: 30 }}>
                     <View>
-                        <Text style={[globalStyles.p as any, { textAlign: "left", fontSize: 14 }]}>Add a profile picture to personalize your ShopZen experience. You can skip this for now.</Text>
+                        <Text style={[globalStyles.p as any, { textAlign: "left" }]}>Add a profile picture to personalize your ShopZen experience. You can skip this for now.</Text>
                     </View>
 
 
@@ -86,10 +86,10 @@ export default function ProfilePhoto() {
 
                         <View style={{ marginTop: 16 }}>
                             <TouchableOpacity
-                                style={[globalStyles.btnFilled, { width: "auto", alignSelf: "center", paddingVertical: 5 }]}
+                                style={[globalStyles.btnFilled, { width: "auto", alignSelf: "center", paddingVertical: 5, borderRadius:8 }]}
                                 onPress={pickImage}
                             >
-                                <Text style={[{ color: "white", fontFamily: "PoppinsMedium" }]}>Upload another file</Text>
+                                <Text style={[globalStyles.txt as any, { color: "#fff" }]}>Upload another file</Text>
                             </TouchableOpacity>
 
                         </View>

@@ -95,6 +95,39 @@ export default function index() {
                 </View>
             </MyModal>
 
+
+
+            {/* MODAL FOR LANGUAGES */}
+            <MyModal modal={openLan} setModal={setOpenLan}>
+                <FlatList
+                    data={languages}
+                    renderItem={({ item }) => (
+                        <TouchableOpacity
+                            onPress={() => handleLan(item.language, true)}
+                        ><Text style={styles.optiosText}>{item.language}</Text></TouchableOpacity>
+                    )}
+                    keyExtractor={item => item.id}
+                ></FlatList>
+            </MyModal>
+            {/* MODAL FOR LANGUAGES */}
+            <MyModal modal={openDis} setModal={setOpenDis}>
+                <FlatList
+                    data={districts}
+                    renderItem={({ item }) => (
+                        <TouchableOpacity
+                            onPress={() => handleDis(item.district, true)}
+                        ><Text style={styles.optiosText}>{item.district}</Text></TouchableOpacity>
+                    )}
+                    keyExtractor={item => item.id}
+                ></FlatList>
+            </MyModal>
+
+
+
+
+
+
+
             <View style={{ flex: 1, justifyContent: "center" }}>
                 <View style={{ flexDirection: "column", rowGap: 40 }}>
 
@@ -112,52 +145,22 @@ export default function index() {
 
                     <View>
                         <View>
-                            <View style={{ position: "relative", width: "100%" }}>
+                            <View>
                                 <TouchableOpacity
                                     onPress={() => handleLan("", false)}
-                                    style={[styles.select, { marginTop: 15 }]}>
-                                    <Text style={{ fontFamily: "PoppinsMedium" }}>{myLanguage}</Text>
-                                    <AntDesign style={openLan && { transform: [{ rotate: '180deg' }] }} name="caret-down" size={16} color="black" />
+                                    style={[styles.select]}>
+                                    <Text style={{ fontFamily: "PoppinsRegular" }}>{myLanguage}</Text>
+                                    <AntDesign name="caret-down" size={16} color="black" />
                                 </TouchableOpacity>
-                                {
-                                    openLan &&
-                                    <View style={{ flex: 1, width: "100%" }}>
-                                        <FlatList
-                                            style={[styles.boxShadow, styles.fixedModal]}
-                                            data={languages}
-                                            renderItem={({ item }) => (
-                                                <TouchableOpacity
-                                                    onPress={() => handleLan(item.language, true)}
-                                                ><Text style={styles.optiosText}>{item.language}</Text></TouchableOpacity>
-                                            )}
-                                            keyExtractor={item => item.id}
-                                        ></FlatList>
-                                    </View>
-                                }
                             </View>
 
-                            <View style={{ position: "relative", width: "100%" }}>
+                            <View>
                                 <TouchableOpacity
                                     onPress={() => handleDis("", false)}
                                     style={[styles.select, { marginTop: 15 }]}>
-                                    <Text style={{ fontFamily: "PoppinsMedium" }}>{myDistrict}</Text>
-                                    <AntDesign style={openDis && { transform: [{ rotate: '180deg' }] }} name="caret-down" size={16} color="black" />
+                                    <Text style={{ fontFamily: "PoppinsRegular" }}>{myDistrict}</Text>
+                                    <AntDesign name="caret-down" size={16} color="black" />
                                 </TouchableOpacity>
-                                {
-                                    openDis &&
-                                    <View style={{ flex: 1, width: "100%" }}>
-                                        <FlatList
-                                            style={[styles.boxShadow, styles.fixedModal]}
-                                            data={districts}
-                                            renderItem={({ item }) => (
-                                                <TouchableOpacity
-                                                    onPress={() => handleDis(item.district, true)}
-                                                ><Text style={styles.optiosText}>{item.district}</Text></TouchableOpacity>
-                                            )}
-                                            keyExtractor={item => item.id}
-                                        ></FlatList>
-                                    </View>
-                                }
                             </View>
                         </View>
                     </View>
@@ -187,7 +190,8 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         padding: 8,
         flexDirection: "row",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        alignItems: "center"
     },
     optiosText: {
         marginLeft: 5,
@@ -195,7 +199,7 @@ const styles = StyleSheet.create({
         paddingVertical: 3,
         color: "#333333",
         fontFamily: "PoppinsRegular",
-        fontSize: 10
+        fontSize: 14
     },
     boxShadow: {
         backgroundColor: 'white',
@@ -211,7 +215,7 @@ const styles = StyleSheet.create({
     },
     container: {
         width: '100%',
-        height: "30%",
+        height: 200,
         alignSelf: 'center',
     },
     image: {

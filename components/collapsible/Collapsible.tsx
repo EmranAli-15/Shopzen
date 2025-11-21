@@ -20,7 +20,7 @@ export default function AnimatedCollapsible({ title, children }: any) {
     // For height animation
     const height = animation.interpolate({
         inputRange: [0, 1],
-        outputRange: [0, 120], // Set maxHeight according to your content
+        outputRange: [0, 80], // Set maxHeight according to your content
     });
 
     // Arrow rotation
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
         padding: 8
     },
     title: {
-        fontSize: 16,
+        fontSize: 14,
         fontFamily:"PoppinsMedium",
         width:"95%"
     },

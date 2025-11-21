@@ -9,9 +9,9 @@ export default function BackButton() {
         <View>
             <TouchableOpacity
                 onPress={() => router.back()}
-                style={{ backgroundColor: "#FFF2EB", width: 40, height: 40, alignItems: "center", justifyContent: "center", borderRadius: "50%" }}
+                style={{ width: 40, height: 40, alignItems: "center", justifyContent: "center", borderRadius: "50%" }}
             >
-                <Ionicons name="arrow-back" size={24} color="#FF620A" />
+                <Ionicons name="arrow-back" size={24} color="#1A1F71" />
             </TouchableOpacity>
         </View>
     )

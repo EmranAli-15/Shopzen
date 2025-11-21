@@ -304,8 +304,8 @@ export default function index() {
 
 const styles = StyleSheet.create({
   navList: {
-    height: 40,
-    width: 40,
+    height: 45,
+    width: 45,
     borderRadius: "50%",
     backgroundColor: primaryBg,
     justifyContent: "center",
@@ -314,11 +314,11 @@ const styles = StyleSheet.create({
   },
 
   shadowWrapper: {
-    shadowColor: "#D3D3D3",
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.1,
+    shadowColor: "#d3d3d1",
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.5,
     shadowRadius: 3,
-    elevation: 5,
+    elevation: 4,
     backgroundColor: "#fff",
     borderRadius: 8,
   },

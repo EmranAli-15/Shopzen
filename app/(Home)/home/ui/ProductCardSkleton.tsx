@@ -16,7 +16,7 @@ export default function ProductCardSkleton() {
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => (
                     <View style={{padding:4}} key={item}>
-                        <Skleton height={180} width={(width * 45) / 100} radius='8%'></Skleton>
+                        <Skleton height={220} width={(width * 45) / 100} radius='8%'></Skleton>
                     </View>
                 )}
             />

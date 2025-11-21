@@ -63,10 +63,10 @@ export default function AccountInfo() {
     return (
         <Container>
             <View>
-                <Header title='Information'></Header>
+                <Header title='Account Information'></Header>
             </View>
 
-            <ScrollView>
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <View style={{ flexDirection: "column", rowGap: 20, paddingBottom: 20 }}>
 
                     {/* User profile view */}
@@ -91,7 +91,7 @@ export default function AccountInfo() {
 
 
 
-                    <View style={{ flexDirection: "column", rowGap: 16 }}>
+                    <View style={{ flexDirection: "column", rowGap: 10 }}>
                         {/* Name */}
                         <View>
                             <Text style={globalStyles.inputTitle as any}>Full Name</Text>
@@ -109,7 +109,7 @@ export default function AccountInfo() {
                                     onFocus={() => setNameFocus(true)}
                                     onBlur={() => setNameFocus(false)}
                                 />
-                                <Feather style={styles.editIcon} name="edit" size={20} color="black" />
+                                <Feather style={styles.editIcon} name="edit" size={18} color="#666666" />
                             </View>
                         </View>
 
@@ -130,7 +130,7 @@ export default function AccountInfo() {
                                     onFocus={() => setEmailFocus(true)}
                                     onBlur={() => setEmailFocus(false)}
                                 />
-                                <Feather style={styles.editIcon} name="edit" size={20} color="black" />
+                                <Feather style={styles.editIcon} name="edit" size={18} color="#666666" />
                             </View>
                         </View>
 
@@ -151,7 +151,7 @@ export default function AccountInfo() {
                                     onFocus={() => setNumberFocus(true)}
                                     onBlur={() => setNumberFocus(false)}
                                 />
-                                <Feather style={styles.editIcon} name="edit" size={20} color="black" />
+                                <Feather style={styles.editIcon} name="edit" size={18} color="#666666" />
                             </View>
                         </View>
 
@@ -160,12 +160,12 @@ export default function AccountInfo() {
                             <Text style={globalStyles.inputTitle as any}>Date of Birth</Text>
                             <View style={{ position: "relative" }}>
                                 <TouchableOpacity
-                                    style={[globalStyles.inputText, { backgroundColor: primaryBg, borderWidth: 3, borderColor: primaryBg }]}
+                                    style={[globalStyles.inputText, { backgroundColor: primaryBg, borderWidth: 1, borderColor: primaryBg }]}
                                     onPress={() => setShow(true)}
                                 >
                                     <Text>{birthDate}</Text>
                                 </TouchableOpacity>
-                                <MaterialCommunityIcons style={styles.editIcon} name="arrow-down-drop-circle-outline" size={20} color="black" />
+                                <MaterialCommunityIcons style={styles.editIcon} name="arrow-down-drop-circle-outline" size={18} color="#666666" />
                             </View>
                             {show && (
                                 <DateTimePicker
@@ -194,7 +194,7 @@ export default function AccountInfo() {
                                     onFocus={() => setOccupationFocus(true)}
                                     onBlur={() => setOccupationFocus(false)}
                                 />
-                                <Feather style={styles.editIcon} name="edit" size={20} color="black" />
+                                <Feather style={styles.editIcon} name="edit" size={18} color="#666666" />
                             </View>
                         </View>
 
@@ -203,16 +203,16 @@ export default function AccountInfo() {
                             <Text style={globalStyles.inputTitle as any}>Gender</Text>
                             <View style={{ position: "relative" }}>
                                 <TouchableOpacity
-                                    style={[globalStyles.textInput, showGender && { borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }, { backgroundColor: primaryBg }]}
+                                    style={[globalStyles.textInput, showGender && { borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }, { backgroundColor: primaryBg, paddingVertical: 13 }]}
                                     onPress={() => setShowGender(!showGender)}
                                 >
                                     <Text style={{
                                         fontFamily: "PoppinsRegular",
                                         color: "#333333",
-                                        fontSize: 14,
+                                        fontSize: 12,
                                     }}>{gender}</Text>
                                 </TouchableOpacity>
-                                <MaterialCommunityIcons style={{ position: "absolute", top: 22, right: 10 }} name="arrow-down-drop-circle-outline" size={20} color="black" />
+                                <MaterialCommunityIcons style={{ position: "absolute", top: 17, right: 10 }} name="arrow-down-drop-circle-outline" size={18} color="#666666" />
                             </View>
                             {
                                 showGender && <View style={{ padding: 16, backgroundColor: primaryBg, borderBottomLeftRadius: 28, borderBottomRightRadius: 28, marginTop: 4 }}>
@@ -220,7 +220,7 @@ export default function AccountInfo() {
                                         <Text style={{
                                             fontFamily: "PoppinsRegular",
                                             color: "#333333",
-                                            fontSize: 14,
+                                            fontSize: 12,
                                         }}>Male</Text>
                                     </TouchableOpacity>
                                     <View style={styles.devideLine}></View>
@@ -228,7 +228,7 @@ export default function AccountInfo() {
                                         <Text style={{
                                             fontFamily: "PoppinsRegular",
                                             color: "#333333",
-                                            fontSize: 14,
+                                            fontSize: 12,
                                         }}>Female</Text>
                                     </TouchableOpacity>
                                 </View>
@@ -269,7 +269,7 @@ const styles = StyleSheet.create({
     editIcon: {
         position: "absolute",
         right: 10,
-        top: 14
+        top: 12
     },
     devideLine: {
         height: 1,

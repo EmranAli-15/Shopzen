@@ -1,6 +1,6 @@
 import Container from '@/components/Container'
 import Header from '@/components/header/Header'
-import { primaryBg, primaryColor, TYPOGRAPHY } from '@/constants/globalStyles'
+import { primaryBg, primaryColor } from '@/constants/globalStyles'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import { Checkbox } from 'expo-checkbox'
 import { useRouter } from 'expo-router'
@@ -142,7 +142,7 @@ export default function Settings() {
 const styles = StyleSheet.create({
     linkHeading: {
         fontFamily: "PoppinsMedium",
-        fontSize: 16,
+        fontSize: 14,
         color: "#4D4D4D"
     },
     notifyText: {
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
         color: "#000000"
     },
     headlines: {
-        fontSize: TYPOGRAPHY.h2,
+        fontSize: 14,
         fontFamily: "PoppinsSemiBold",
         color: "#333333",
         marginBottom: 4
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         backgroundColor: primaryBg,
-        padding: 16,
+        padding: 12,
         borderRadius: 32
     },
     linkStyleIn: {
@@ -173,18 +173,18 @@ const styles = StyleSheet.create({
         columnGap: 8,
         alignItems: "center",
         backgroundColor: primaryBg,
-        padding: 16,
+        padding: 12,
         borderRadius: 32
     },
     track: {
-        width: 58,
+        width: 53,
         borderWidth: 1,
         borderColor: primaryColor,
         padding: 2,
     },
     knob: {
-        width: 24,
-        height: 24,
+        width: 19,
+        height: 19,
         borderRadius: "50%",
         backgroundColor: primaryColor,
     },

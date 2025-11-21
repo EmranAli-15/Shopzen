@@ -5,6 +5,7 @@ import { FontAwesome6, Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
 import { Dimensions, FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const { width } = Dimensions.get("window");
 
@@ -32,6 +33,8 @@ export default function ProductImages() {
 
         const imgs = [
             productData.image1,
+            productData.image1,
+            productData.image1,
             productData.image2,
             productData.image3,
             productData.image4,
@@ -53,89 +56,101 @@ export default function ProductImages() {
     });
 
     return (
-        <ScrollView>
-            <Container>
+        <SafeAreaView>
+            <View style={{ marginHorizontal: 10 }}>
                 <Header title="Product details"></Header>
-                <ScrollView>
-                    <View style={{ alignItems: "center" }}>
-                        {/* Main Image Slider */}
-                        <FlatList
-                            data={images}
-                            ref={flatRef}
-                            horizontal
-                            pagingEnabled
-                            showsHorizontalScrollIndicator={false}
-                            onViewableItemsChanged={onViewChange.current}
-                            viewabilityConfig={{ itemVisiblePercentThreshold: 70 }}
-                            keyExtractor={(item, index) => index.toString()}
-                            renderItem={({ item }) => (
-                                <Image
-                                    source={{ uri: item }}
-                                    style={styles.mainImage}
-                                    resizeMode="contain"
-                                />
-                            )}
-                        />
+            </View>
+            <ScrollView>
 
-                        {/* Thumbnails */}
-                        <View style={styles.thumbnailContainer}>
-                            {images?.map((img: any, index: any) => {
-                                const isActive = index === activeIndex;
-                                return (
-                                    <TouchableOpacity
-                                        key={index}
-                                        activeOpacity={0.7}
-                                        onPress={() => {
-                                            setActiveIndex(index);
-                                            flatRef.current?.scrollToIndex({ index, animated: true });
-                                        }}
-                                    >
-                                        <Image
-                                            source={{ uri: img }}
-                                            style={[
-                                                styles.thumbnail,
-                                                {
-                                                    opacity: isActive ? 1 : 0.4,
-                                                    transform: [{ scale: isActive ? 1.15 : 0.85 }],
-                                                    borderWidth: 0
-                                                },
-                                            ]}
-                                        />
-                                    </TouchableOpacity>
-                                );
-                            })}
-                        </View>
+                <View style={{ alignItems: "center" }}>
+                    {/* Main Image Slider */}
+                    <FlatList
+                        data={images}
+                        ref={flatRef}
+                        horizontal
+                        pagingEnabled
+                        showsHorizontalScrollIndicator={false}
+                        onViewableItemsChanged={onViewChange.current}
+                        viewabilityConfig={{ itemVisiblePercentThreshold: 70 }}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({ item }) => (
+                            <Image
+                                source={{ uri: item }}
+                                style={styles.mainImage}
+                                resizeMode="cover"
+                            />
+                        )}
+                    />
+
+                    {/* Thumbnails */}
+                    <View style={styles.thumbnailContainer}>
+                        {images?.map((img: any, index: any) => {
+                            const isActive = index === activeIndex;
+                            return (
+                                <TouchableOpacity
+                                    key={index}
+                                    activeOpacity={0.7}
+                                    onPress={() => {
+                                        setActiveIndex(index);
+                                        flatRef.current?.scrollToIndex({ index, animated: true });
+                                    }}
+                                >
+                                    <Image
+                                        source={{ uri: img }}
+                                        style={[
+                                            styles.thumbnail,
+                                            {
+                                                opacity: isActive ? 1 : 0.4,
+                                                transform: [{ scale: isActive ? 1.15 : 0.85 }],
+                                                borderWidth: 0
+                                            },
+                                        ]}
+                                    />
+                                </TouchableOpacity>
+                            );
+                        })}
                     </View>
+                </View>
 
 
+                <Container>
 
-                    <View style={{ marginTop: 20 }}>
-                        <Text style={globalStyles.h2}>{product?.name}</Text>
+                    <View style={{ flexDirection: "column", rowGap: 10 }}>
 
-                        <View style={{ flexDirection: "row", alignItems: "center", columnGap: 2 }}>
-                            <FontAwesome6 name="bangladeshi-taka-sign" size={20} color={primaryColor} />
-                            <Text style={{ textAlign: "left", marginTop: 7, color: primaryColor, fontSize: 22, fontFamily: "PoppinsBold" }}>{product?.original_price}</Text>
-                        </View>
-
-                        <View style={{ flexDirection: "row", alignItems: "center", columnGap: 2 }}>
-                            <Ionicons name="star" size={14} color={primaryColor} />
-                            <Ionicons name="star" size={14} color={primaryColor} />
-                            <Ionicons name="star" size={14} color={primaryColor} />
-                            <Ionicons name="star" size={14} color={primaryColor} />
-                            <Ionicons name="star" size={14} color="gray" />
-                            <Text style={{ fontFamily: "poppinsRegular" }}>{product?.rating_avg}</Text>
+                        {/* Product name */}
+                        <View>
+                            <Text style={[globalStyles.h1, { fontSize: 16 }]}>{product?.name}</Text>
+                            <Text style={[globalStyles.p as any, {textAlign:"left"}]}>Brand : Sony</Text>
                         </View>
 
 
+                        {/* Product price */}
+                        <View>
+                            <View style={{ flexDirection: "row", alignItems: "center", columnGap: 2 }}>
+                                <FontAwesome6 name="bangladeshi-taka-sign" size={16} color={primaryColor} />
+                                <Text style={{ textAlign: "left", marginTop: 7, color: primaryColor, fontSize: 16, fontFamily: "PoppinsBold" }}>{product?.original_price}</Text>
+                            </View>
+
+                            {/* Product rating */}
+                            <View style={{ flexDirection: "row", alignItems: "center", columnGap: 2 }}>
+                                <Ionicons name="star" size={12} color={primaryColor} />
+                                <Ionicons name="star" size={12} color={primaryColor} />
+                                <Ionicons name="star" size={12} color={primaryColor} />
+                                <Ionicons name="star" size={12} color={primaryColor} />
+                                <Ionicons name="star" size={12} color="gray" />
+                                <Text style={{ fontFamily: "poppinsRegular" }}>{product?.rating_avg}</Text>
+                            </View>
+                        </View>
 
 
 
 
+
+                        {/* Product description */}
                         <View>
                             <Text style={globalStyles.h1}>Product Description</Text>
                             <Text style={[globalStyles.p as any, { textAlign: "left" }]}>{product?.description}</Text>
                         </View>
-
 
 
                         {/* Add to cart */}
@@ -152,9 +167,9 @@ export default function ProductImages() {
 
 
                         {/* Shop details */}
-                        <View style={{ flexDirection: "column", rowGap: 8, marginVertical: 20 }}>
+                        <View style={{ flexDirection: "column", rowGap: 8, marginVertical: 20, marginBottom: 100 }}>
                             <View style={styles.devideLine}></View>
-                            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                            <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                                 <View style={{ flexDirection: "row", columnGap: 5, alignItems: "center" }}>
                                     <Image
                                         height={40}
@@ -165,25 +180,24 @@ export default function ProductImages() {
                                     <Text style={{ fontFamily: "PoppinsMedium", fontSize: 14 }}>{productData.vendor_name}</Text>
                                 </View>
                                 <TouchableOpacity
-                                    style={[globalStyles.btnFilled, { paddingVertical: 4, borderRadius: 8 }]}
+                                    style={[globalStyles.btnFilled, { paddingVertical: 4, borderRadius: 8, height: 30 }]}
                                 >
-                                    <Text style={globalStyles.txt as any}>View Shop</Text>
+                                    <Text style={[globalStyles.txt as any, { color: "#fff" }]}>View Shop</Text>
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.devideLine}></View>
                         </View>
                     </View>
-                </ScrollView>
-            </Container>
-        </ScrollView>
+                </Container>
+            </ScrollView>
+        </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
     mainImage: {
         width: width,
-        height: 180,
-        borderRadius: 12,
+        height: width,
     },
     thumbnailContainer: {
         flexDirection: "row",
@@ -191,10 +205,10 @@ const styles = StyleSheet.create({
     },
     thumbnail: {
         marginTop: 20,
-        width: 40,
-        height: 40,
-        borderRadius: 10,
-        marginHorizontal: 6,
+        width: 30,
+        height: 30,
+        borderRadius: 8,
+        marginHorizontal: 4,
         borderWidth: 2,
     },
     devideLine: {

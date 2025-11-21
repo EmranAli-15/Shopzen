@@ -20,7 +20,7 @@ export default function Products({ products }: { products: any }) {
                             pathname: `/(Home)/home/product/[id]`,
                             params: { id: JSON.stringify(item) },
                         }}
-                        style={{ width: "49%", marginBottom: 8 }}>
+                        style={{ width: "49%" }}>
                         <ProductCard
                             data={item}
                         />

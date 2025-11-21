@@ -1,7 +1,7 @@
 import Container from '@/components/Container';
 import Header from '@/components/header/Header';
 import MyModal from '@/components/MyModal';
-import { globalStyles, primaryBg, primaryColor, TYPOGRAPHY } from '@/constants/globalStyles';
+import { globalStyles, primaryBg, primaryColor } from '@/constants/globalStyles';
 import { useAuth } from '@/contextProvider/ContextProvider';
 import { removeData } from '@/utils/asyncStorate';
 import Feather from '@expo/vector-icons/Feather';
@@ -69,13 +69,13 @@ export default function Profile() {
 
 
                 <ScrollView>
-                    <View style={{ flexDirection: "column", rowGap: 40 }}>
+                    <View style={{ flexDirection: "column", rowGap: 30 }}>
                         {/* User profile view */}
                         <View style={{ flexDirection: "column", alignItems: "center", rowGap: 16 }}>
-                            <View style={{ borderRadius: "50%", backgroundColor: primaryBg, padding: 10, height: 120, width: 120, alignItems: "center", justifyContent: "center", overflow:"hidden" }}>
+                            <View style={{ borderRadius: "50%", backgroundColor: primaryBg, padding: 10, height: 120, width: 120, alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
                                 {
                                     user?.image ? <Image
-                                    style={{height:120, width:120}}
+                                        style={{ height: 120, width: 120 }}
                                         source={{ uri: user?.image }}
                                     ></Image> :
                                         <FontAwesome name="user" size={100} color={primaryColor} />
@@ -98,7 +98,7 @@ export default function Profile() {
                                     onPress={() => router.navigate('/profile/AccountInfo')}
                                 >
                                     <View style={styles.linkStyleIn}>
-                                        <SimpleLineIcons name="user" size={24} color="#4D4D4D" />
+                                        <SimpleLineIcons name="user" size={20} color="#4D4D4D" />
                                         <Text style={styles.linkHeading}>Account Information</Text>
                                     </View>
                                     <MaterialIcons name="arrow-forward-ios" size={16} color="#4D4D4D" />
@@ -111,7 +111,7 @@ export default function Profile() {
                                     onPress={() => router.navigate('/profile/MyOrder')}
                                 >
                                     <View style={styles.linkStyleIn}>
-                                        <MaterialCommunityIcons name="invoice-text-outline" size={24} color="#4D4D4D" />
+                                        <MaterialCommunityIcons name="invoice-text-outline" size={20} color="#4D4D4D" />
                                         <Text style={styles.linkHeading}>My Orders</Text>
                                     </View>
                                     <MaterialIcons name="arrow-forward-ios" size={16} color="#4D4D4D" />
@@ -124,7 +124,7 @@ export default function Profile() {
                                     onPress={() => router.navigate('/profile/MyAddress')}
                                 >
                                     <View style={styles.linkStyleIn}>
-                                        <Octicons name="location" size={24} color="#4D4D4D" />
+                                        <Octicons name="location" size={20} color="#4D4D4D" />
                                         <Text style={styles.linkHeading}>My Address</Text>
                                     </View>
                                     <MaterialIcons name="arrow-forward-ios" size={16} color="#4D4D4D" />
@@ -137,7 +137,7 @@ export default function Profile() {
                                     onPress={() => router.navigate('/profile/Settings')}
                                 >
                                     <View style={styles.linkStyleIn}>
-                                        <Feather name="settings" size={24} color="#4D4D4D" />
+                                        <Feather name="settings" size={20} color="#4D4D4D" />
                                         <Text style={styles.linkHeading}>Settings</Text>
                                     </View>
                                     <MaterialIcons name="arrow-forward-ios" size={16} color="#4D4D4D" />
@@ -157,7 +157,7 @@ export default function Profile() {
                                     onPress={() => router.navigate("/profile/HelpCenter")}
                                 >
                                     <View style={styles.linkStyleIn}>
-                                        <MaterialIcons name="help-outline" size={24} color="#4D4D4D" />
+                                        <MaterialIcons name="help-outline" size={20} color="#4D4D4D" />
                                         <Text style={styles.linkHeading}>Help Center</Text>
                                     </View>
                                     <MaterialIcons name="arrow-forward-ios" size={16} color="#4D4D4D" />
@@ -170,7 +170,7 @@ export default function Profile() {
                                     style={styles.linkStyle}
                                 >
                                     <View style={styles.linkStyleIn}>
-                                        <MaterialIcons name="logout" size={24} color="#4D4D4D" />
+                                        <MaterialIcons name="logout" size={20} color="#4D4D4D" />
                                         <Text style={styles.linkHeading}>Sign Out</Text>
                                     </View>
                                     <MaterialIcons name="arrow-forward-ios" size={16} color="#4D4D4D" />
@@ -188,13 +188,13 @@ export default function Profile() {
 
 const styles = StyleSheet.create({
     headlines: {
-        fontSize: TYPOGRAPHY.h2,
+        fontSize: 16,
         fontFamily: "PoppinsSemiBold",
         color: "#333333",
         marginBottom: 4
     },
     linkHeading: {
-        fontSize: 15,
+        fontSize: 13,
         fontFamily: "PoppinsMedium",
         color: "#4D4D4D"
     },
