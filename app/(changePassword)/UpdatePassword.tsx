@@ -4,8 +4,7 @@ import { globalStyles } from '@/constants/globalStyles'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { useRouter } from 'expo-router'
 import React, { useState } from 'react'
-import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import { AuthStyles } from '../(auth)/styles/AuthStyles'
+import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 const Change3 = require('@/assets/images/forget/Change3.png')
 
 export default function UpdatePassword() {
@@ -66,7 +65,7 @@ export default function UpdatePassword() {
                                     onBlur={() => setCurrentPasswordFocus(false)}
                                 />
                                 {
-                                    passwordError && <Text style={AuthStyles.errorText}>{passwordError}</Text>
+                                    passwordError && <Text style={styles.errorText}>{passwordError}</Text>
                                 }
                                 <View style={{ position: "absolute", right: 15, top: 12 }}>
                                     <TouchableOpacity
@@ -97,7 +96,7 @@ export default function UpdatePassword() {
                                     onBlur={() => setPasswordFocus(false)}
                                 />
                                 {
-                                    passwordError && <Text style={AuthStyles.errorText}>{passwordError}</Text>
+                                    passwordError && <Text style={styles.errorText}>{passwordError}</Text>
                                 }
                                 <View style={{ position: "absolute", right: 15, top: 12 }}>
                                     <TouchableOpacity
@@ -128,7 +127,7 @@ export default function UpdatePassword() {
                                     onBlur={() => setConfirmPasswordFocus(false)}
                                 />
                                 {
-                                    passwordError && <Text style={AuthStyles.errorText}>{passwordError}</Text>
+                                    passwordError && <Text style={styles.errorText}>{passwordError}</Text>
                                 }
                                 <View style={{ position: "absolute", right: 15, top: 12 }}>
                                     <TouchableOpacity
@@ -155,5 +154,10 @@ export default function UpdatePassword() {
     )
 }
 
-
-// { fontFamily: "PoppinsMedium", fontSize: 20, color: "#333333", textAlign: "center" }
+const styles = StyleSheet.create({
+    errorText: {
+        fontSize: 12,
+        color: "#E63946",
+        fontFamily: "PoppinsRegular",
+    },
+});

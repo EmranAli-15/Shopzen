@@ -15,7 +15,7 @@ export default function CategoriesSkleton() {
                     return (
                         (
                             <View key={index}>
-                                <Skleton height={70} width={70} radius='50%'></Skleton>
+                                <Skleton height={60} width={60} radius='50%'></Skleton>
                             </View>
                         )
                     )

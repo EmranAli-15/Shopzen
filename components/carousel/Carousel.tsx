@@ -127,9 +127,9 @@ const styles = StyleSheet.create({
         gap: 8,
     },
     dot: {
-        width: 8,
-        height: 8,
-        borderRadius: 4,
+        width: 6,
+        height: 6,
+        borderRadius: 3,
         backgroundColor: primaryColor,
         marginTop:-20
     },

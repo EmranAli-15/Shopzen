@@ -33,6 +33,6 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
         alignSelf: "center",
-        columnGap: 40,
+        columnGap: 20,
     }
 });

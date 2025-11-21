@@ -203,7 +203,7 @@ export default function index() {
                       return (
                         (
                           <TouchableOpacity key={item.id}>
-                            <View style={{ padding: 8, backgroundColor: primaryBg, borderRadius: "50%", height: 64, width: 64, alignItems: "center", justifyContent: "center" }}>
+                            <View style={{ padding: 8, backgroundColor: primaryBg, borderRadius: "50%", height: 58, width: 58, alignItems: "center", justifyContent: "center" }}>
                               <View style={styles.navList}>
                                 <Image style={{ objectFit: "contain", height: "100%", width: "100%" }} source={{ uri: item.image }}></Image>
                               </View>
@@ -283,8 +283,8 @@ export default function index() {
 
 const styles = StyleSheet.create({
   navList: {
-    height: 50,
-    width: 50,
+    height: 40,
+    width: 40,
     borderRadius: "50%",
     backgroundColor: primaryBg,
     justifyContent: "center",
