@@ -94,82 +94,85 @@ export default function index() {
                     </TouchableOpacity>
                 </View>
             </MyModal>
-            <View style={{ flex: 1, flexDirection: "column", justifyContent: "space-evenly" }}>
 
+            <View style={{ flex: 1, justifyContent: "center" }}>
+                <View style={{ flexDirection: "column", rowGap: 40 }}>
 
-
-                <View style={styles.container}>
-                    <Image
-                        style={styles.image}
-                        resizeMode="contain"
-                        source={bdLogo}
-                    />
-                </View>
-
-                    <Text style={[{ fontSize: 18, textAlign: "center", fontFamily:"PoppinsMedium" }]}>We noticed you're using Softzen from <Text style={{ color: "#FF620A", fontWeight: "bold", fontFamily:"PoppinsMedium" }}>Bangladesh</Text>. Tell us your preferred language and where you're from.</Text>
-                <View>
+                    <View style={styles.container}>
+                        <Image
+                            style={styles.image}
+                            resizeMode="contain"
+                            source={bdLogo}
+                        />
+                    </View>
 
                     <View>
-                        <View style={{ position: "relative", width: "100%" }}>
-                            <TouchableOpacity
-                                onPress={() => handleLan("", false)}
-                                style={[styles.select, { marginTop: 15 }]}>
-                                <Text style={{fontFamily:"PoppinsMedium"}}>{myLanguage}</Text>
-                                <AntDesign style={openLan && { transform: [{ rotate: '180deg' }] }} name="caret-down" size={16} color="black" />
-                            </TouchableOpacity>
-                            {
-                                openLan &&
-                                <View style={{ flex: 1, width: "100%" }}>
-                                    <FlatList
-                                        style={[styles.boxShadow, styles.fixedModal]}
-                                        data={languages}
-                                        renderItem={({ item }) => (
-                                            <TouchableOpacity
-                                                onPress={() => handleLan(item.language, true)}
-                                            ><Text style={styles.optiosText}>{item.language}</Text></TouchableOpacity>
-                                        )}
-                                        keyExtractor={item => item.id}
-                                    ></FlatList>
-                                </View>
-                            }
-                        </View>
+                        <Text style={[{ fontSize: 16, textAlign: "center", fontFamily: "PoppinsMedium" }]}>We noticed you're using Softzen from <Text style={{ color: "#FF620A", fontWeight: "bold", fontFamily: "PoppinsMedium" }}>Bangladesh</Text>. Tell us your preferred language and where you're from.</Text>
+                    </View>
 
-                        <View style={{ position: "relative", width: "100%" }}>
-                            <TouchableOpacity
-                                onPress={() => handleDis("", false)}
-                                style={[styles.select, { marginTop: 15 }]}>
-                                <Text style={{fontFamily:"PoppinsMedium"}}>{myDistrict}</Text>
-                                <AntDesign style={openDis && { transform: [{ rotate: '180deg' }] }} name="caret-down" size={16} color="black" />
-                            </TouchableOpacity>
-                            {
-                                openDis &&
-                                <View style={{ flex: 1, width: "100%" }}>
-                                    <FlatList
-                                        style={[styles.boxShadow, styles.fixedModal]}
-                                        data={districts}
-                                        renderItem={({ item }) => (
-                                            <TouchableOpacity
-                                                onPress={() => handleDis(item.district, true)}
-                                            ><Text style={styles.optiosText}>{item.district}</Text></TouchableOpacity>
-                                        )}
-                                        keyExtractor={item => item.id}
-                                    ></FlatList>
-                                </View>
-                            }
+                    <View>
+                        <View>
+                            <View style={{ position: "relative", width: "100%" }}>
+                                <TouchableOpacity
+                                    onPress={() => handleLan("", false)}
+                                    style={[styles.select, { marginTop: 15 }]}>
+                                    <Text style={{ fontFamily: "PoppinsMedium" }}>{myLanguage}</Text>
+                                    <AntDesign style={openLan && { transform: [{ rotate: '180deg' }] }} name="caret-down" size={16} color="black" />
+                                </TouchableOpacity>
+                                {
+                                    openLan &&
+                                    <View style={{ flex: 1, width: "100%" }}>
+                                        <FlatList
+                                            style={[styles.boxShadow, styles.fixedModal]}
+                                            data={languages}
+                                            renderItem={({ item }) => (
+                                                <TouchableOpacity
+                                                    onPress={() => handleLan(item.language, true)}
+                                                ><Text style={styles.optiosText}>{item.language}</Text></TouchableOpacity>
+                                            )}
+                                            keyExtractor={item => item.id}
+                                        ></FlatList>
+                                    </View>
+                                }
+                            </View>
+
+                            <View style={{ position: "relative", width: "100%" }}>
+                                <TouchableOpacity
+                                    onPress={() => handleDis("", false)}
+                                    style={[styles.select, { marginTop: 15 }]}>
+                                    <Text style={{ fontFamily: "PoppinsMedium" }}>{myDistrict}</Text>
+                                    <AntDesign style={openDis && { transform: [{ rotate: '180deg' }] }} name="caret-down" size={16} color="black" />
+                                </TouchableOpacity>
+                                {
+                                    openDis &&
+                                    <View style={{ flex: 1, width: "100%" }}>
+                                        <FlatList
+                                            style={[styles.boxShadow, styles.fixedModal]}
+                                            data={districts}
+                                            renderItem={({ item }) => (
+                                                <TouchableOpacity
+                                                    onPress={() => handleDis(item.district, true)}
+                                                ><Text style={styles.optiosText}>{item.district}</Text></TouchableOpacity>
+                                            )}
+                                            keyExtractor={item => item.id}
+                                        ></FlatList>
+                                    </View>
+                                }
+                            </View>
                         </View>
                     </View>
+
+                    <View>
+                        <TouchableOpacity
+                            style={globalStyles.btnFilled}
+                            onPress={() => router.navigate('/home/Index')}
+                        >
+                            <Text style={[globalStyles.txt as any, { color: "white" }]}>Done</Text>
+                        </TouchableOpacity>
+                    </View>
+
+
                 </View>
-
-                <View>
-                    <TouchableOpacity
-                        style={globalStyles.btnFilled}
-                        onPress={() => router.navigate('/home/Index')}
-                    >
-                        <Text style={[globalStyles.txt as any, { color: "white" }]}>Done</Text>
-                    </TouchableOpacity>
-                </View>
-
-
             </View>
         </Container>
     )
@@ -182,7 +185,7 @@ const styles = StyleSheet.create({
         borderColor: "#FF620A",
         borderWidth: 1,
         borderRadius: 8,
-        padding: 14,
+        padding: 8,
         flexDirection: "row",
         justifyContent: "space-between"
     },
@@ -190,9 +193,9 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         marginVertical: 2,
         paddingVertical: 3,
-        color:"#333333",
-        fontFamily:"PoppinsRegular",
-        fontSize:14
+        color: "#333333",
+        fontFamily: "PoppinsRegular",
+        fontSize: 10
     },
     boxShadow: {
         backgroundColor: 'white',

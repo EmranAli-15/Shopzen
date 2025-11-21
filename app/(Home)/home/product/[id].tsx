@@ -2,7 +2,6 @@ import Container from "@/components/Container";
 import Header from "@/components/header/Header";
 import { globalStyles, primaryColor } from "@/constants/globalStyles";
 import { FontAwesome6, Ionicons } from "@expo/vector-icons";
-import Entypo from '@expo/vector-icons/Entypo';
 import { useLocalSearchParams } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
 import { Dimensions, FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -128,6 +127,30 @@ export default function ProductImages() {
                         </View>
 
 
+
+
+
+
+                        <View>
+                            <Text style={globalStyles.h1}>Product Description</Text>
+                            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>{product?.description}</Text>
+                        </View>
+
+
+
+                        {/* Add to cart */}
+                        <View style={{ flexDirection: "column", alignItems: "center", justifyContent: "center", rowGap: 20, marginTop: 20 }}>
+                            <View style={{ flexDirection: "row", columnGap: 10 }}>
+                                <TouchableOpacity style={[globalStyles.btnFilled, { borderRadius: 8, paddingVertical: 5 }]}>
+                                    <Text style={{ color: "#fff", fontFamily: "PoppinsRegular" }}>Buy Now</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={[globalStyles.btn, { borderRadius: 8, paddingVertical: 5 }]}>
+                                    <Text style={{ color: primaryColor, fontFamily: "PoppinsRegular" }}>Add to Cart</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+
+
                         {/* Shop details */}
                         <View style={{ flexDirection: "column", rowGap: 8, marginVertical: 20 }}>
                             <View style={styles.devideLine}></View>
@@ -139,54 +162,15 @@ export default function ProductImages() {
                                         source={{ uri: productData.image1 }}
                                         style={{ height: 40, width: 40, borderRadius: 4 }}
                                     ></Image>
-                                    <Text style={{ fontFamily: "PoppinsMedium", fontSize: 16 }}>{productData.vendor_name}</Text>
+                                    <Text style={{ fontFamily: "PoppinsMedium", fontSize: 14 }}>{productData.vendor_name}</Text>
                                 </View>
                                 <TouchableOpacity
-                                    style={[globalStyles.btnFilled, { paddingVertical: 5, borderRadius: 16 }]}
+                                    style={[globalStyles.btnFilled, { paddingVertical: 4, borderRadius: 8 }]}
                                 >
-                                    <Text style={{ color: "white", fontFamily: "PoppinsRegular", alignSelf: "center", marginTop: 3 }}>View Shop</Text>
+                                    <Text style={globalStyles.txt as any}>View Shop</Text>
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.devideLine}></View>
-                        </View>
-
-
-
-                        <View>
-                            <Text style={globalStyles.h2}>Product Description</Text>
-                            <Text style={[globalStyles.small as any, { fontSize: 14, textAlign: "left" }]}>{product?.description}</Text>
-                        </View>
-
-
-
-                        {/* Add to cart */}
-                        <View style={{ flexDirection: "column", alignItems: "center", justifyContent: "center", rowGap: 20, marginTop: 20 }}>
-                            <View style={{ flexDirection: "row", alignItems: "center", columnGap: 16 }}>
-                                <Text style={{ fontFamily: "PoppinsMedium" }}>Quantity</Text>
-                                <View style={{ borderWidth: 1, borderRadius: 8, height: 25, width: 25, alignItems: "center", justifyContent: "center" }}>
-                                    <TouchableOpacity
-                                        onPress={() => handleQuantity(false)}
-                                    >
-                                        <Entypo name="minus" size={20} color="black" />
-                                    </TouchableOpacity>
-                                </View>
-                                <Text style={{ fontFamily: "PoppinsRegular" }}>{quantity}</Text>
-                                <View style={{ borderWidth: 1, borderRadius: 8, height: 25, width: 25, alignItems: "center", justifyContent: "center" }}>
-                                    <TouchableOpacity
-                                        onPress={() => handleQuantity(true)}
-                                    >
-                                        <Entypo name="plus" size={20} color="black" />
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                            <View style={{ flexDirection: "row", columnGap: 10 }}>
-                                <TouchableOpacity style={[globalStyles.btnFilled, { borderRadius: 16, paddingVertical: 5 }]}>
-                                    <Text style={{ color: "#fff", fontFamily: "PoppinsRegular" }}>Buy Now</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity style={[globalStyles.btn, { borderRadius: 16, paddingVertical: 5 }]}>
-                                    <Text style={{ color: primaryColor, fontFamily: "PoppinsRegular" }}>Add to Cart</Text>
-                                </TouchableOpacity>
-                            </View>
                         </View>
                     </View>
                 </ScrollView>
@@ -217,6 +201,6 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 1,
         borderRadius: 2,
-        backgroundColor: "#666666"
+        backgroundColor: "#D3D3D3"
     }
 });

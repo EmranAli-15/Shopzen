@@ -1,15 +1,16 @@
-import Carousel from '@/components/carousel/Carousel'
-import { globalStyles, primaryBg, primaryColor } from '@/constants/globalStyles'
-import axiosInstance from '@/utils/axiosInstance'
-import EvilIcons from '@expo/vector-icons/EvilIcons'
-import Feather from '@expo/vector-icons/Feather'
-import { Link } from 'expo-router'
-import React, { useEffect, useState } from 'react'
-import { Dimensions, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import Products from './Products'
-import CategoriesSkleton from './ui/CategoriesSkleton'
-import ProductCardSkleton from './ui/ProductCardSkleton'
+import Carousel from '@/components/carousel/Carousel';
+import { globalStyles, primaryBg, primaryColor } from '@/constants/globalStyles';
+import axiosInstance from '@/utils/axiosInstance';
+import EvilIcons from '@expo/vector-icons/EvilIcons';
+import Feather from '@expo/vector-icons/Feather';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { Link } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import { Dimensions, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Products from './Products';
+import CategoriesSkleton from './ui/CategoriesSkleton';
+import ProductCardSkleton from './ui/ProductCardSkleton';
 const searchButton = require("@/assets/images/home/searchButton.png");
 
 
@@ -170,7 +171,7 @@ export default function index() {
                 />
                 <Feather style={{ position: "absolute", left: 15, top: 12 }} name="search" size={18} color="#666666" />
               </View>
-              <View style={{ height: 45, width: 45, marginTop:-2 }}>
+              <View style={{ height: 45, width: 45, marginTop: -2 }}>
                 <TouchableOpacity>
                   <Image
                     style={{ height: 50, width: 50 }}
@@ -188,9 +189,14 @@ export default function index() {
               <Text style={[globalStyles.small as any, { textAlign: "left", marginTop: -10 }]}>Your Multi-Vendor Shopping Paradise</Text>
             </View>
           </View>
-          <View>
+
+
+
+          <View style={{ flexDirection: "column", rowGap: 14, marginTop: 14 }}>
+
+
             {/* Categories */}
-            <View style={{ marginTop: 20, marginHorizontal: 10 }}>
+            <View style={{ marginHorizontal: 10 }}>
               {
                 categoriesLoading ?
                   <CategoriesSkleton></CategoriesSkleton> :
@@ -217,14 +223,18 @@ export default function index() {
               }
             </View>
 
+
+
             {/* Carousel */}
             <View style={{ marginHorizontal: 10 }}>
               <Carousel data={cateImgs} />
             </View>
 
+
+
             {/* Infos */}
             <View style={styles.shadowWrapper}>
-              <View style={{ flexDirection: "row", justifyContent: "space-between", marginHorizontal: 10 }}>
+              <View style={{ flexDirection: "row", justifyContent: "space-between", marginHorizontal: 10, paddingBottom: 8 }}>
                 <View style={styles.imgContainer}>
                   <Image style={styles.infoImg} source={truck} />
                   <Text style={[globalStyles.small as any, { textAlign: "center", color: "#1A1F71" }]}>
@@ -258,22 +268,33 @@ export default function index() {
 
 
             {/* Products */}
-            <View style={{ marginTop: 30, marginHorizontal: 10 }}>
-              <Text style={[globalStyles.h2, { color: "#1A1F71" }]}>Featured Products</Text>
+            <View style={{ marginHorizontal: 10 }}>
+              <Text style={{ color: "#1A1F71", fontSize: 18, fontFamily: "PoppinsMedium", marginBottom: -10 }}>Featured Products</Text>
               {
                 productLoading ? <ProductCardSkleton></ProductCardSkleton> :
                   <Products products={products}></Products>
               }
-              <View style={{ alignSelf: "center", marginTop: 20 }}>
+              <View style={{ alignSelf: "center", marginVertical: 10 }}>
                 <TouchableOpacity
                   onPress={() => setLoadMore({ skip: (loadMore.skip + 1), limit: 20 })}
-                  style={[globalStyles.btn, { width: 100, paddingVertical: 5 }]}
+                  style={[globalStyles.btn,
+                  {
+                    width: 100,
+                    paddingVertical: 3,
+                    borderColor: "#1A1F71",
+                    borderRadius: 8
+                  }]}
                 >
-                  <Text style={{ alignSelf: "center", fontFamily: "PoppinsMedium" }}>more</Text>
+                  <MaterialIcons style={{ alignSelf: "center" }} name="next-plan" size={24} color="#1A1F71" />
                 </TouchableOpacity>
               </View>
             </View>
+
+
           </View>
+
+
+
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -291,13 +312,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
     overflow: "hidden",
   },
+
+  shadowWrapper: {
+    shadowColor: "#D3D3D3",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 5,
+    backgroundColor: "#fff",
+    borderRadius: 8,
+  },
   imgContainer: {
-    width: "18%",
-    height: 100
+    width: 54,
   },
   infoImg: {
-    width: "100%",
-    height: ((windowWidth * 17) / 100)
+    width: 54,
+    height: 54
   },
   searchBox: {
     top: 65,
@@ -310,19 +340,5 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.24,
     shadowOffset: { width: 0, height: 6 },
     elevation: 12
-  },
-  shadowWrapper: {
-    paddingVertical: 10,
-
-    // iOS shadow
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-
-    // Android shadow (bottom only)
-    elevation: 3,
-    backgroundColor: "#fff",
-    borderRadius: 8,
   },
 });
