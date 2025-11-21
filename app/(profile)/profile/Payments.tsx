@@ -13,21 +13,45 @@ export default function Payment() {
       <View style={{ flexDirection: "column", rowGap: 40 }}>
 
         <View>
-          <Collapsible title="How do I change my email or phone number?">
-            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+          <Collapsible title="What payment methods are accepted?">
+            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>
+              ShopSen supports ..
+              {'\n'}
+              1. Bkash,
+              {'\n'}
+              2. Nagad,
+              {'\n'}
+              3. Rocket,
+              {'\n'}
+              4. Credit/Debit Cards and
+              {'\n'}
+              5. Cash on Delivery.
+            </Text>
           </Collapsible>
 
-          <Collapsible title="How do I track my order?">
-            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+          <Collapsible title="My payment failed. What should I do?">
+            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>
+              Please ensure enable internet or try a different method. If money was debucted, it will auto-refund within 48 hours.
+              </Text>
           </Collapsible>
 
-          <Collapsible title="How do I track my order?">
-            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+          <Collapsible title="How can I request a refund?">
+            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>
+              Go to..
+              {'\n'}
+              My Orders then Request Refund and follow the steps.
+            </Text>
+          </Collapsible>
+
+          <Collapsible title="My package hasn't arrived yet. What shoud I do?">
+            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>
+              Contact our support or the vendor directly for assistance.
+            </Text>
           </Collapsible>
         </View>
 
         <View style={{ flexDirection: "column", rowGap: 16 }}>
-          <Text style={{ fontFamily: "PoppinsMedium", fontSize: 20, color: "#333333", textAlign: "center" }}>Didn't find what you're looking for?</Text>
+          <Text style={[globalStyles.h1, { textAlign: "center" }]}>Didn't find what you're looking for?</Text>
           <TouchableOpacity
             style={globalStyles.btnFilled}
           >

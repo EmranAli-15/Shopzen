@@ -13,21 +13,32 @@ export default function TechnicalSupport() {
       <View style={{ flexDirection: "column", rowGap: 40 }}>
 
         <View>
-          <Collapsible title="How do I change my email or phone number?">
-            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+          <Collapsible title="The app is not loading or crashing.">
+            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>
+              Try restarting the app or updating to the latest version.
+            </Text>
           </Collapsible>
 
-          <Collapsible title="How do I track my order?">
-            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+          <Collapsible title="I can't log in.">
+            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>
+              Check your internet connection or reset your password.</Text>
           </Collapsible>
 
-          <Collapsible title="How do I track my order?">
-            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+          <Collapsible title="I'm not receiving notifications.">
+            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>
+              Enable notifications from device settings and within the app.
+            </Text>
+          </Collapsible>
+
+          <Collapsible title="Howcan I report a bug?">
+            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>
+              Go to settings then help center then app support and report issue.
+            </Text>
           </Collapsible>
         </View>
 
         <View style={{ flexDirection: "column", rowGap: 16 }}>
-          <Text style={{ fontFamily: "PoppinsMedium", fontSize: 20, color: "#333333", textAlign: "center" }}>Didn't find what you're looking for?</Text>
+          <Text style={[globalStyles.h1, { textAlign: "center" }]}>Didn't find what you're looking for?</Text>
           <TouchableOpacity
             style={globalStyles.btnFilled}
           >

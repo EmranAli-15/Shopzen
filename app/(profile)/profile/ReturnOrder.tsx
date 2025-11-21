@@ -13,21 +13,33 @@ export default function ReturnOrder() {
       <View style={{ flexDirection: "column", rowGap: 40 }}>
 
         <View>
-          <Collapsible title="How do I change my email or phone number?">
-            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+          <Collapsible title="How do I return an item?">
+            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>
+              Go to my Orders then select item then request return.
+            </Text>
           </Collapsible>
 
-          <Collapsible title="How do I track my order?">
-            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+          <Collapsible title="What are the return conditions?">
+            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>
+              Products must be unused, with tags, and returned within 7 days.
+            </Text>
           </Collapsible>
 
-          <Collapsible title="How do I track my order?">
-            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+          <Collapsible title="Can I cancle my order after purchase?">
+            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>
+              Orders can be canceled before they are shipped. After shipping, contact cupport for help.
+            </Text>
+          </Collapsible>
+
+          <Collapsible title="When will I receive my refunt after return?">
+            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>
+              Once the vendor confirms receipt, refunds process within 3-5 business days
+            </Text>
           </Collapsible>
         </View>
 
         <View style={{ flexDirection: "column", rowGap: 16 }}>
-          <Text style={{ fontFamily: "PoppinsMedium", fontSize: 20, color: "#333333", textAlign: "center" }}>Didn't find what you're looking for?</Text>
+          <Text style={[globalStyles.h1, { textAlign: "center" }]}>Didn't find what you're looking for?</Text>
           <TouchableOpacity
             style={globalStyles.btnFilled}
           >

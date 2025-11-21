@@ -12,8 +12,8 @@ export default function Logo() {
                 <Image
                     style={{ height: "auto", width: "auto" }}
                     source={delivery_truck}
-                    width={37-12}
-                    height={26-12}
+                    width={22}
+                    height={16}
                 />
             </View>
         </View>

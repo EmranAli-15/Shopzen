@@ -14,20 +14,26 @@ export default function MyAccount() {
 
         <View>
           <Collapsible title="How do I change my email or phone number?">
-            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>
+              Go to Profile then Account info and edit yours details.
+            </Text>
           </Collapsible>
 
-          <Collapsible title="How do I track my order?">
-            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+          <Collapsible title="I forgot my password. What should I do?">
+            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>
+              Use Forgot password on the login screen to reset it via OTP or email.
+            </Text>
           </Collapsible>
 
-          <Collapsible title="How do I track my order?">
-            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+          <Collapsible title="How do I delete my account?">
+            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>
+              Contact support to request permanent.
+            </Text>
           </Collapsible>
         </View>
 
         <View style={{ flexDirection: "column", rowGap: 16 }}>
-          <Text style={{ fontFamily: "PoppinsMedium", fontSize: 20, color: "#333333", textAlign:"center"  }}>Didn't find what you're looking for?</Text>
+          <Text style={[globalStyles.h1, { textAlign: "center" }]}>Didn't find what you're looking for?</Text>
           <TouchableOpacity
             style={globalStyles.btnFilled}
           >
