@@ -1,7 +1,7 @@
 import Container from '@/components/Container';
 import { globalStyles } from '@/constants/globalStyles';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useRouter } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { ForgotStyles } from './styles/ForgotStyles';
@@ -40,14 +40,10 @@ export default function CheckEmail() {
                         </TouchableOpacity>
 
                         <View style={{ flexDirection: "row", alignItems: "center", columnGap: 2, alignSelf: "center" }}>
-                            <Text style={[globalStyles.h6 as any, { alignSelf: "center" }]}>
+                            <Text style={[globalStyles.h1 as any, { alignSelf: "center", fontFamily:"PoppinsRegular" }]}>
                                 Don't receive the email?
                             </Text>
-                            <TouchableOpacity
-                                onPress={() => router.navigate('/ForgetHome')}
-                            >
-                                <Text style={[globalStyles.h6 as any, { color: "#FF620A" }]}>Click to resend</Text>
-                            </TouchableOpacity>
+                            <Link href="/ForgetHome" style={[globalStyles.h1 as any, { color: "#FF620A", fontFamily:"PoppinsRegular" }]}>Click to resend</Link>
                         </View>
                     </View>
 
@@ -56,7 +52,7 @@ export default function CheckEmail() {
                     >
                         <View style={{ flexDirection: "row", alignItems: "center", alignSelf: "center" }}>
                             <Ionicons name="arrow-back" size={24} color="#FF620A" />
-                            <Text style={globalStyles.h6 as any}>Back to Sign in</Text>
+                            <Text style={globalStyles.h1 as any}>Back to Sign in</Text>
                         </View>
                     </TouchableOpacity>
                 </View>

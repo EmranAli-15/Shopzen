@@ -330,7 +330,7 @@ const styles = StyleSheet.create({
     height: 54
   },
   searchBox: {
-    top: 65,
+    top: 52,
     zIndex: 999,
     position: "absolute",
     width: "100%",

@@ -13,7 +13,7 @@ import React, { useState } from 'react';
 import { Image, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 export default function AccountInfo() {
-    const { user } = useAuth();
+    const { user, setAlert } = useAuth();
     const { showAlert } = useAuth()
 
     const router = useRouter();
@@ -56,8 +56,11 @@ export default function AccountInfo() {
         user.name = name
         user.email = email
         user.phone = number
+        showAlert({ text: "Profile updated", type: "success" });
         storeData({ key: "user", value: user });
-        showAlert({ text: "Profile updated", type: "success" })
+        setTimeout(() => {
+            setAlert(null);
+        }, 1000);
     }
 
     return (

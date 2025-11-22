@@ -66,7 +66,7 @@ export default function ForgetHome() {
                         >
                             <View style={{ flexDirection: "row", alignItems: "center", alignSelf: "center" }}>
                                 <Ionicons name="arrow-back" size={24} color="#FF620A" />
-                                <Text style={globalStyles.h6 as any}>Back to Sign in</Text>
+                                <Text style={globalStyles.h1 as any}>Back to Sign in</Text>
                             </View>
                         </TouchableOpacity>
                     </View>

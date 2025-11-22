@@ -8,13 +8,14 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function ProductCard({ data }: { data: any }) {
-    const { showAlert } = useAuth()
+    const { showAlert, setAlert } = useAuth()
 
     const handleCart = (data: any) => {
         showAlert({ text: "Product added to cart", type: "success" });
-
         handleAddToCart(data);
-
+        setTimeout(() => {
+            setAlert(null)
+        }, 1000);
     }
 
     const {

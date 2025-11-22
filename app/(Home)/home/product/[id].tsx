@@ -1,6 +1,8 @@
 import Container from "@/components/Container";
 import Header from "@/components/header/Header";
 import { globalStyles, primaryColor } from "@/constants/globalStyles";
+import { useAuth } from "@/contextProvider/ContextProvider";
+import { handleAddToCart } from "@/utils/asyncStorate";
 import { FontAwesome6, Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
@@ -10,19 +12,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const { width } = Dimensions.get("window");
 
 export default function ProductImages() {
+    const { showAlert, setAlert } = useAuth();
     const { id } = useLocalSearchParams();
     const productData = JSON.parse(id as any);
     const [product, setProduct] = useState<any>(null);
     const [images, setImages] = useState<any>([]);
-
-
-    const [quantity, setQuantity] = useState(1);
-    const handleQuantity = (flag: boolean) => {
-        if (flag) setQuantity(quantity + 1);
-        else {
-            if (quantity > 1) setQuantity(quantity - 1);
-        }
-    }
 
 
 
@@ -54,6 +48,16 @@ export default function ProductImages() {
             setActiveIndex(viewableItems[0].index);
         }
     });
+
+
+
+    const handleCart = (data: any) => {
+        showAlert({ text: "Product added to cart", type: "success" });
+        handleAddToCart(data);
+        setTimeout(() => {
+            setAlert(null)
+        }, 1000);
+    }
 
     return (
         <SafeAreaView>
@@ -120,7 +124,7 @@ export default function ProductImages() {
                         {/* Product name */}
                         <View>
                             <Text style={[globalStyles.h1, { fontSize: 16 }]}>{product?.name}</Text>
-                            <Text style={[globalStyles.p as any, {textAlign:"left"}]}>Brand : Sony</Text>
+                            <Text style={[globalStyles.p as any, { textAlign: "left" }]}>Brand : Sony</Text>
                         </View>
 
 
@@ -159,7 +163,9 @@ export default function ProductImages() {
                                 <TouchableOpacity style={[globalStyles.btnFilled, { borderRadius: 8, paddingVertical: 5 }]}>
                                     <Text style={{ color: "#fff", fontFamily: "PoppinsRegular" }}>Buy Now</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={[globalStyles.btn, { borderRadius: 8, paddingVertical: 5 }]}>
+                                <TouchableOpacity
+                                onPress={()=>handleCart(productData)}
+                                style={[globalStyles.btn, { borderRadius: 8, paddingVertical: 5 }]}>
                                     <Text style={{ color: primaryColor, fontFamily: "PoppinsRegular" }}>Add to Cart</Text>
                                 </TouchableOpacity>
                             </View>

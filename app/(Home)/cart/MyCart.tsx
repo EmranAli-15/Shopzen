@@ -3,7 +3,8 @@ import Header from '@/components/header/Header'
 import MyModal from '@/components/MyModal'
 import { globalStyles, primaryColor } from '@/constants/globalStyles'
 import { retrieveData, storeData } from '@/utils/asyncStorate'
-import { FontAwesome6, MaterialCommunityIcons } from '@expo/vector-icons'
+import { FontAwesome6 } from '@expo/vector-icons'
+import Entypo from '@expo/vector-icons/Entypo'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import { Checkbox } from 'expo-checkbox'
 import { Link } from 'expo-router'
@@ -50,22 +51,22 @@ export default function MyCart() {
             <Header title='My Cart'></Header>
             {
                 <MyModal modal={delModal} setModal={setDelModal}>
-                    <Text style={{ alignSelf: "center", fontSize: 20, fontFamily: "PoppinsBold" }}>Are you sure!</Text>
-                    <View style={{ flexDirection: "row", marginTop: 20, width: "100%" }}>
-                        <View style={{ width: "50%" }}>
+                    <Text style={[globalStyles.h1, { textAlign: "center" }]}>Want to remove from cart!</Text>
+                    <View style={{ flexDirection: "row", marginTop: 20, justifyContent: "center", width: "100%", columnGap: 10 }}>
+                        <View>
                             <TouchableOpacity
-                                style={[globalStyles.btnFilled, { width: "100%" }]}
+                                style={{ height: 30, borderRadius: 8, width: 80, backgroundColor: primaryColor, justifyContent: "center" }}
                                 onPress={() => setDelModal(false)}
                             >
-                                <Text style={[globalStyles.txt as any, { color: "white" }]}>NO</Text>
+                                <Text style={[{ color: "white", textAlign: "center" }]}>NO</Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={{ width: "50%" }}>
+                        <View>
                             <TouchableOpacity
-                                style={[globalStyles.btn, { width: "100%" }]}
+                                style={{ height: 30, borderRadius: 8, width: 80, borderWidth: 1, borderColor: primaryColor, justifyContent: "center" }}
                                 onPress={() => confirmItemDelete()}
                             >
-                                <Text style={[globalStyles.txt as any, { color: "#FF620A" }]}>Confirm!</Text>
+                                <Text style={[{ paddingVertical: 1, color: "#FF620A", textAlign: "center" }]}>Yes!</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -93,55 +94,78 @@ export default function MyCart() {
                     </View> :
                     <ScrollView
                         showsHorizontalScrollIndicator={false}
-                        contentContainerStyle={{ columnGap: 12 }}
+                    // contentContainerStyle={{ columnGap: 12 }}
                     >
                         {cart.map((item: any) => {
                             return (
-                                <Link
-                                    href={{
-                                        pathname: `/(Home)/home/product/[id]`,
-                                        params: { id: JSON.stringify(item) },
-                                    }}
-                                    style={{ marginTop: 10 }}
+                                <View
+                                    style={{ marginTop: 15 }}
                                     key={item.id}
                                 >
-                                    <View
-                                        style={{ flexDirection: "row", columnGap: 10 }}
-                                    >
-                                        <View>
-                                            <Checkbox
-                                                style={{ marginTop: 10 }}
-                                                value={false}
-                                                // onValueChange={setChecked4}
-                                                // color={isChecked4 ? primaryColor : undefined}
-                                                color="black"
-                                            />
-                                        </View>
-                                        <View>
-                                            <View style={{ flexDirection: "row", columnGap: 10 }}>
-                                                <View>
-                                                    <Image style={{ height: 80, width: 80, borderRadius: 8 }} source={{ uri: item.image1 }}></Image>
-                                                </View>
-                                                <View style={{ flexDirection: "column", justifyContent: "space-between" }}>
-                                                    <Text style={{ fontFamily: "PoppinsMedium" }}>{item.name}</Text>
-                                                    <View style={{ flexDirection: "row", columnGap: 2, alignItems: "center" }}>
-                                                        <MaterialCommunityIcons name="storefront" size={12} color="#1A1F71" />
-                                                        <Text style={{ fontFamily: "PoppinsRegular", fontSize: 12, marginTop: 3 }}>{item.vendor_name}</Text>
-                                                    </View>
-                                                    <TouchableOpacity
-                                                        onPress={() => handleRemoveItem(item.id)}
-                                                    >
-                                                        <MaterialIcons name="delete-outline" size={20} color="red" />
-                                                    </TouchableOpacity>
-                                                </View>
+                                    <View style={{ flexDirection: "row", columnGap: 10, width: "95%" }}>
+
+                                        {/* Checkbox and image */}
+                                        <View style={{ flexDirection: "row", columnGap: 15, width: "35%" }}>
+                                            <View>
+                                                <Checkbox
+                                                    style={{ marginTop: 10, borderWidth: 1, borderRadius: 5 }}
+                                                    value={false}
+                                                    // onValueChange={setChecked4}
+                                                    // color={isChecked4 ? primaryColor : undefined}
+                                                    // color={isChecked4 ? primaryColor : undefined}
+                                                    color="#1A1F71"
+                                                />
                                             </View>
+                                            <Link
+                                                href={{
+                                                    pathname: `/(Home)/home/product/[id]`,
+                                                    params: { id: JSON.stringify(item) },
+                                                }}
+                                            >
+                                                <Image style={{ height: 65, width: 65, borderRadius: 8 }} source={{ uri: item.image1 }}></Image>
+                                            </Link>
+                                        </View>
+
+
+                                        {/* All info about product */}
+                                        <View style={{ flexDirection: "column", justifyContent: "space-between", width: "62%" }}>
+
+                                            {/* Product name */}
+                                            <Text style={{ fontFamily: "PoppinsRegular", fontSize: 12 }}>{item.name}</Text>
+
+                                            {/* Product price */}
                                             <View style={{ flexDirection: "row", columnGap: 2, alignItems: "center" }}>
                                                 <FontAwesome6 name="bangladeshi-taka-sign" size={12} color={primaryColor} />
                                                 <Text style={styles.price}>{item.original_price}</Text>
                                             </View>
+
+
+
+                                            {/* Delete button and quantity */}
+                                            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                                                {/* Delete button */}
+                                                <TouchableOpacity
+                                                    onPress={() => handleRemoveItem(item.id)}
+                                                >
+                                                    <MaterialIcons name="delete-outline" size={18} color="#666666" />
+                                                </TouchableOpacity>
+
+                                                {/* Quantity */}
+                                                <View style={{ flexDirection: "row", columnGap: 15, alignItems: "center" }}>
+                                                    <TouchableOpacity
+                                                    >
+                                                        <Entypo name="squared-minus" size={20} color="#1A1F71" />
+                                                    </TouchableOpacity>
+                                                    <Text>1</Text>
+                                                    <TouchableOpacity
+                                                    >
+                                                        <Entypo name="squared-plus" size={20} color="#1A1F71" />
+                                                    </TouchableOpacity>
+                                                </View>
+                                            </View>
                                         </View>
                                     </View>
-                                </Link>
+                                </View>
                             )
                         })}
                     </ScrollView>
@@ -153,9 +177,9 @@ export default function MyCart() {
 
 const styles = StyleSheet.create({
     price: {
-        fontSize: 14,
+        fontSize: 12,
         color: primaryColor,
-        fontFamily: "PoppinsBold",
+        fontFamily: "PoppinsMedium",
         marginTop: 3
     }
 });

@@ -40,21 +40,21 @@ export default function Profile() {
                                 style={{ alignSelf: "center" }}
                                 resizeMode="contain"
                                 source={logout}
-                                height={60}
-                                width={60}
+                                height={40}
+                                width={40}
                             />
                         </View>
                         <Text style={[globalStyles.h1 as any, { textAlign: "center" }]}>Sign Out</Text>
                         <Text style={globalStyles.p as any}>Are you sure want to SIgn out of your ShopZen account?</Text>
-                        <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", columnGap: 10 }}>
+                        <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", columnGap: 30 }}>
                             <TouchableOpacity
-                                style={[globalStyles.btnFilled, { flex: 1 }]}
+                                style={[globalStyles.btnFilled, { flex: 1, borderRadius:8, paddingVertical:6 }]}
                                 onPress={() => setModal(false)}
                             >
                                 <Text style={[globalStyles.txt as any, { color: "white" }]}>Cancle</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
-                                style={[globalStyles.btn, { flex: 1 }]}
+                                style={[globalStyles.btn, { flex: 1, borderRadius:8, paddingVertical:6 }]}
                                 onPress={() => handleSignOut()}
                             >
                                 <Text style={[globalStyles.txt as any, { color: primaryColor }]}>Sign Out</Text>

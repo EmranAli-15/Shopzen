@@ -1,4 +1,3 @@
-import Alert from '@/components/alert/Alert';
 import AuthProvider from '@/components/authProvider/AuthProvider';
 import Container from '@/components/Container';
 import { globalStyles } from '@/constants/globalStyles';
@@ -13,14 +12,12 @@ import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 
 import Logo from './Logo';
 
 export default function SignIn() {
+    const { setAlert, showAlert } = useAuth()
     const router = useRouter();
     const { setContextLoading } = useAuth()
 
     // nayrit@gmail.com
     // Haha@1234
-
-    const [logInError, setLogInError] = useState("");
-    const [loginLoading, setLoginLoading] = useState(false);
 
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
@@ -34,7 +31,6 @@ export default function SignIn() {
         setPassword("");
         setEmailError("");
         setPasswordError("");
-        setLogInError("");
     }
     const handleLogin = async () => {
 
@@ -43,19 +39,18 @@ export default function SignIn() {
         if (!password) return setPasswordError("* password required");
         else setPasswordError("")
 
-        setLoginLoading(true);
+        showAlert({ text: "Loggin In", type: "loading" });
         const response = await axiosInstance.get('/users');
-
-
-
+        setAlert(null)
 
 
         const data = response.data.find((user: any) => user.email === email)
 
         if (data) {
-            setLoginLoading(false);
             const pass = decryptHash(password, data.password_hash);
-            if (!pass) setLogInError("Password in correct")
+            if (!pass) {
+                showAlert({ text: "Password incorrect", type: "error" });
+            }
             else {
                 storeData({ key: "user", value: data });
                 setContextLoading(true)
@@ -63,10 +58,10 @@ export default function SignIn() {
             }
         }
         else {
-            setLogInError("User not found.")
+            showAlert({ text: "User not found!", type: "error" });
         };
         setTimeout(() => {
-            setLogInError("");
+            setAlert(null);
         }, 2500);
     }
 
@@ -78,8 +73,6 @@ export default function SignIn() {
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
             <Container>
-                {logInError && <Alert text={logInError} type='error'></Alert>}
-                {loginLoading && <Alert text="Logging ..." type='loading'></Alert>}
 
                 <View style={{ flex: 1, justifyContent: "center" }}>
                     <View style={{ flexDirection: "column", rowGap: 40 }}>

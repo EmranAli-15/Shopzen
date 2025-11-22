@@ -9,7 +9,8 @@ type TContex = {
     setUser: any
     contextLoading: any,
     showAlert: any,
-    setContextLoading: any
+    setContextLoading: any,
+    setAlert:any
 }
 
 const AuthContext = createContext<TContex | undefined>(undefined);
@@ -24,7 +25,6 @@ export const ContextProvider = ({ children }: { children: React.ReactNode }) => 
 
     const showAlert = ({ text, type }: { text: string, type: string }) => {
         setAlert({ text, type });
-        setTimeout(() => setAlert(null), 2000);
     };
 
 
@@ -50,7 +50,8 @@ export const ContextProvider = ({ children }: { children: React.ReactNode }) => 
         setUser,
         showAlert,
         contextLoading,
-        setContextLoading
+        setContextLoading,
+        setAlert
     }
     return (
         <AuthContext.Provider value={data}>
