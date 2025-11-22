@@ -44,13 +44,16 @@
 // }
 
 
+import Container from '@/components/Container'
 import React from 'react'
 import { Text, View } from 'react-native'
 
 export default function Testing() {
   return (
-    <View>
-      <Text>Testing</Text>
+    <Container>
+      <View>
+      <Text>This will be categories page</Text>
     </View>
+    </Container>
   )
 }

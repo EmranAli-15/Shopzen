@@ -140,7 +140,7 @@ export default function index() {
                               source={{ uri: item.image1 }}
                             ></Image>
                           </View>
-                          <Text style={[globalStyles.p as any, { textAlign: "left" }]}>{item.name.length > 32 ? <Text>{item.name.slice(0, 32)}..</Text> : item.name}</Text>
+                          <Text style={{ textAlign: "left" }}>{item.name.length > 32 ? <Text>{item.name.slice(0, 32)}..</Text> : item.name}</Text>
                         </View>
                       </Link>
                     )

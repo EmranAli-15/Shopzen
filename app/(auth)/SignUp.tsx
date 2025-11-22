@@ -22,10 +22,10 @@ export default function SignUp() {
 
     const [showPass, setShowPass] = useState(true);
 
-    const [name, setName] = useState("hello");
-    const [email, setEmail] = useState("hello@gmail.com");
-    const [phone, setPhone] = useState<any>("012")
-    const [password, setPassword] = useState("012");
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState<any>("")
+    const [password, setPassword] = useState("");
 
 
     const [nameFocus, setNameFocus] = useState(false);

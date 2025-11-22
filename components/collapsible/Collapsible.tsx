@@ -46,7 +46,7 @@ export default function Collapsible({ title, children }: any) {
             </View>
 
             {/* Animated collapsible */}
-            <Animated.View style={{ height, overflow: "hidden", paddingHorizontal:10 }}>
+            <Animated.View style={{ height, overflow: "hidden" }}>
                 <View>{children}</View>
             </Animated.View>
         </View>

@@ -203,7 +203,7 @@ export default function ProductImages() {
 const styles = StyleSheet.create({
     mainImage: {
         width: width,
-        height: width,
+        height: 250,
     },
     thumbnailContainer: {
         flexDirection: "row",
